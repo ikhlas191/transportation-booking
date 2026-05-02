@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>My-Easytransport.com | Car Rental with Driver</title>
+<title>EZ Transport Rental | Car Rental Kuala Lumpur</title>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Fraunces:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
@@ -33,29 +33,28 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
 html { scroll-behavior: smooth; }
 
 body {
   font-family: 'Plus Jakarta Sans', sans-serif;
-  background: var(--cream);
+  background: #f0f0ea;
   color: var(--ink);
   min-height: 100vh;
-  overflow-x: hidden;
 }
 
-/* ── HERO HEADER ── */
+/* ── HERO ── */
 .hero {
   background: var(--ink);
   position: relative;
   overflow: hidden;
-  padding: 0;
+  cursor: pointer;
+  user-select: none;
 }
 .hero-bg {
   position: absolute; inset: 0;
   background:
-    radial-gradient(ellipse 80% 60% at 70% 50%, rgba(201,168,76,0.12) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 80% at 10% 80%, rgba(201,168,76,0.06) 0%, transparent 50%);
+    radial-gradient(ellipse 80% 60% at 70% 50%, rgba(201,168,76,0.13) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 80% at 10% 80%, rgba(201,168,76,0.07) 0%, transparent 50%);
 }
 .hero-lines {
   position: absolute; inset: 0;
@@ -66,1235 +65,983 @@ body {
 }
 .hero-inner {
   position: relative; z-index: 2;
-  max-width: 900px; margin: 0 auto;
-  padding: 48px 24px 52px;
-  display: flex; align-items: center; justify-content: space-between;
-  gap: 32px; flex-wrap: wrap;
+  max-width: 680px; margin: 0 auto;
+  padding: 40px 24px 48px;
+  text-align: center;
 }
-.hero-brand {
-  cursor: pointer;
-  user-select: none;
+.hero-pill {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: var(--gold-light);
+  font-size: 0.62rem; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase;
+  padding: 5px 14px; border-radius: 20px;
+  margin-bottom: 18px;
 }
 .hero-logo-row {
-  display: flex; align-items: center; gap: 14px;
-  margin-bottom: 10px;
+  display: flex; align-items: center; justify-content: center;
+  gap: 16px; margin-bottom: 14px;
 }
 .hero-icon {
-  width: 52px; height: 52px;
+  width: 56px; height: 56px;
   background: linear-gradient(135deg, var(--gold), var(--gold-light));
-  border-radius: 12px;
+  border-radius: 14px;
   display: flex; align-items: center; justify-content: center;
-  font-size: 1.6rem;
-  box-shadow: 0 4px 16px rgba(201,168,76,0.35);
+  font-size: 1.8rem;
+  box-shadow: 0 4px 20px rgba(201,168,76,0.4);
   flex-shrink: 0;
+  overflow: hidden;
 }
+.hero-logo-img { width: 100%; height: 100%; object-fit: cover; border-radius: 14px; }
 .hero-name {
   font-family: 'Fraunces', serif;
-  font-size: 1.55rem;
-  color: var(--white);
-  line-height: 1.1;
-  font-weight: 700;
+  font-size: 2rem; font-weight: 700;
+  color: var(--white); line-height: 1.1;
+  text-align: left;
 }
-.hero-name span { color: var(--gold-light); font-style: italic; font-weight: 400; }
+.hero-name em { color: var(--gold-light); font-style: italic; font-weight: 400; }
 .hero-tagline {
-  font-size: 0.78rem;
   color: rgba(255,255,255,0.45);
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  font-weight: 500;
+  font-size: 0.78rem; letter-spacing: 1px;
+  margin-top: 6px; text-align: left;
 }
-.hero-badges {
-  display: flex; gap: 8px; flex-wrap: wrap;
+.hero-divider {
+  width: 60px; height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(201,168,76,0.5), transparent);
+  margin: 18px auto;
 }
-.badge {
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.1);
-  color: rgba(255,255,255,0.7);
-  padding: 6px 14px; border-radius: 30px;
-  font-size: 0.72rem; font-weight: 600;
-  letter-spacing: 0.5px;
-  display: flex; align-items: center; gap: 5px;
+.hero-stats {
+  display: flex; justify-content: center; gap: 32px;
 }
-.badge-gold {
-  background: rgba(201,168,76,0.15);
-  border-color: rgba(201,168,76,0.3);
-  color: var(--gold-light);
-}
+.hstat { text-align: center; }
+.hstat-n { font-family: 'Fraunces', serif; font-size: 1.3rem; color: var(--gold-light); font-weight: 700; }
+.hstat-l { font-size: 0.58rem; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 1.5px; margin-top: 2px; }
 
-/* ── STEP INDICATOR ── */
+/* ── STATUS BAR ── */
+#db-status {
+  font-size: 0.62rem; text-align: center;
+  padding: 7px; color: var(--ink-soft);
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  background: var(--white); border-bottom: 1px solid var(--border);
+}
+.dot { width: 6px; height: 6px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+.dot-online { background: #25d366; box-shadow: 0 0 5px #25d366; }
+.dot-offline { background: var(--red); }
+
+/* ── TABS ── */
+.tabs { display: none; padding: 10px 16px 0; background: var(--white); border-bottom: 1px solid var(--border); }
+.tabs.visible { display: flex; gap: 4px; }
+.tab-btn {
+  flex: 1; padding: 10px 8px;
+  border: none; border-bottom: 3px solid transparent;
+  background: transparent; color: var(--ink-soft);
+  font-weight: 700; font-size: 0.78rem;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  cursor: pointer; transition: all 0.2s;
+  border-radius: 8px 8px 0 0;
+}
+.tab-btn.active { color: var(--ink); border-bottom-color: var(--gold); background: var(--gold-pale); }
+
+/* ── STEP BAR ── */
 .steps-bar {
-  background: var(--white);
-  border-bottom: 1px solid var(--border);
+  background: var(--white); border-bottom: 1px solid var(--border);
   position: sticky; top: 0; z-index: 100;
   box-shadow: var(--shadow-sm);
 }
 .steps-inner {
-  max-width: 900px; margin: 0 auto;
-  padding: 0 24px;
-  display: flex;
+  max-width: 680px; margin: 0 auto;
+  padding: 0 20px; display: flex;
 }
 .step-item {
   flex: 1; display: flex; flex-direction: column;
-  align-items: center; padding: 14px 8px;
-  position: relative; cursor: default;
-  transition: all 0.3s;
+  align-items: center; padding: 12px 6px;
+  position: relative; cursor: default; transition: all 0.3s;
 }
 .step-item::after {
-  content: '';
-  position: absolute; top: 22px; left: calc(50% + 18px);
-  width: calc(100% - 36px); height: 2px;
-  background: var(--border);
-  transition: background 0.3s;
+  content: ''; position: absolute; top: 20px;
+  left: calc(50% + 18px); width: calc(100% - 36px); height: 2px;
+  background: var(--border); transition: background 0.3s;
 }
 .step-item:last-child::after { display: none; }
 .step-item.done::after { background: var(--gold); }
 .step-num {
-  width: 32px; height: 32px; border-radius: 50%;
+  width: 30px; height: 30px; border-radius: 50%;
   background: var(--border); color: var(--ink-soft);
   display: flex; align-items: center; justify-content: center;
-  font-size: 0.8rem; font-weight: 800;
-  transition: all 0.3s; margin-bottom: 6px;
-  position: relative; z-index: 1;
+  font-size: 0.78rem; font-weight: 800;
+  transition: all 0.3s; margin-bottom: 5px; position: relative; z-index: 1;
 }
-.step-item.active .step-num {
-  background: var(--ink); color: var(--gold-light);
-  box-shadow: 0 0 0 4px rgba(201,168,76,0.2);
-}
-.step-item.done .step-num {
-  background: var(--gold); color: var(--ink);
-}
-.step-lbl {
-  font-size: 0.64rem; font-weight: 700;
-  color: var(--ink-soft); text-transform: uppercase;
-  letter-spacing: 0.8px; text-align: center;
-  line-height: 1.2;
-}
+.step-item.active .step-num { background: var(--ink); color: var(--gold-light); box-shadow: 0 0 0 4px rgba(201,168,76,0.2); }
+.step-item.done .step-num { background: var(--gold); color: var(--ink); }
+.step-lbl { font-size: 0.6rem; font-weight: 700; color: var(--ink-soft); text-transform: uppercase; letter-spacing: 0.8px; text-align: center; }
 .step-item.active .step-lbl { color: var(--ink); }
 .step-item.done .step-lbl { color: var(--gold); }
 
-/* ── MAIN LAYOUT ── */
-.main {
-  max-width: 900px; margin: 0 auto;
-  padding: 32px 24px 80px;
-}
+/* ── MAIN ── */
+.main { max-width: 680px; margin: 0 auto; padding: 24px 16px 80px; }
 
-/* ── SECTION CARD ── */
-.form-section {
-  display: none;
-  animation: fadeSlide 0.4s ease;
-}
+/* ── BOOKING FORM ── */
+.form-section { display: none; animation: fadeSlide 0.35s ease; }
 .form-section.active { display: block; }
-
 @keyframes fadeSlide {
-  from { opacity: 0; transform: translateY(16px); }
+  from { opacity: 0; transform: translateY(14px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
+/* ── SECTION CARD ── */
 .section-card {
-  background: var(--white);
-  border-radius: 20px;
-  border: 1px solid var(--border);
-  box-shadow: var(--shadow-md);
-  overflow: hidden;
-  margin-bottom: 20px;
+  background: var(--white); border-radius: 20px;
+  border: 1px solid var(--border); box-shadow: var(--shadow-md);
+  overflow: hidden; margin-bottom: 16px;
 }
 .section-head {
-  padding: 20px 24px 18px;
-  border-bottom: 1px solid var(--border);
+  padding: 18px 22px 16px; border-bottom: 1px solid var(--border);
   display: flex; align-items: center; gap: 12px;
   background: linear-gradient(to right, #fafaf7, var(--white));
 }
 .section-icon {
-  width: 40px; height: 40px;
-  background: var(--ink);
-  border-radius: 10px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.1rem; flex-shrink: 0;
+  width: 38px; height: 38px; background: var(--ink);
+  border-radius: 10px; display: flex; align-items: center;
+  justify-content: center; font-size: 1rem; flex-shrink: 0;
 }
-.section-title {
+.section-title-text {
   font-family: 'Fraunces', serif;
-  font-size: 1.1rem; font-weight: 700;
-  color: var(--ink); line-height: 1.2;
+  font-size: 1.05rem; font-weight: 700; color: var(--ink);
 }
-.section-sub {
-  font-size: 0.74rem; color: var(--ink-soft);
-  margin-top: 2px; font-weight: 500;
-}
-.section-body { padding: 24px; }
+.section-sub { font-size: 0.72rem; color: var(--ink-soft); margin-top: 2px; }
+.section-body { padding: 20px 22px; }
 
 /* ── FORM ELEMENTS ── */
-.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
 .form-row.single { grid-template-columns: 1fr; }
-.form-row.triple { grid-template-columns: 1fr 1fr 1fr; }
-.form-group { display: flex; flex-direction: column; }
+.form-group { display: flex; flex-direction: column; margin-bottom: 14px; }
+.form-group:last-child { margin-bottom: 0; }
 label {
-  font-size: 0.72rem; font-weight: 700;
-  color: var(--ink-mid); text-transform: uppercase;
-  letter-spacing: 0.8px; margin-bottom: 6px;
-  display: flex; align-items: center; gap: 5px;
+  font-size: 0.7rem; font-weight: 700; color: var(--ink-mid);
+  text-transform: uppercase; letter-spacing: 0.8px;
+  margin-bottom: 6px; display: flex; align-items: center; gap: 4px;
 }
 label .req { color: var(--gold); }
-
 input, select, textarea {
   font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 0.9rem; color: var(--ink);
-  background: var(--cream);
-  border: 1.5px solid var(--border-dark);
-  border-radius: var(--radius-sm);
-  padding: 11px 14px;
-  outline: none;
+  font-size: 0.88rem; color: var(--ink);
+  background: var(--cream); border: 1.5px solid var(--border-dark);
+  border-radius: var(--radius-sm); padding: 11px 14px;
+  outline: none; width: 100%;
   transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
-  width: 100%;
   appearance: none; -webkit-appearance: none;
 }
 input:focus, select:focus, textarea:focus {
-  border-color: var(--gold);
-  background: var(--white);
+  border-color: var(--gold); background: var(--white);
   box-shadow: 0 0 0 3px rgba(201,168,76,0.15);
 }
 input::placeholder, textarea::placeholder { color: var(--ink-soft); font-weight: 400; }
-
 select {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236b7694' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 14px center;
-  padding-right: 38px;
-  cursor: pointer;
+  background-repeat: no-repeat; background-position: right 14px center;
+  padding-right: 38px; cursor: pointer;
 }
-textarea { resize: vertical; min-height: 80px; line-height: 1.6; }
+textarea { resize: vertical; min-height: 70px; line-height: 1.6; }
+input[type="date"]::-webkit-calendar-picker-indicator { opacity: 0.4; cursor: pointer; }
+input[type="time"]::-webkit-calendar-picker-indicator { opacity: 0.4; cursor: pointer; }
 
-/* ── LOCATION CARDS ── */
-.loc-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-  gap: 10px; margin-top: 4px;
-}
-.loc-card {
-  border: 1.5px solid var(--border-dark);
-  border-radius: var(--radius-sm);
-  padding: 12px 14px;
-  cursor: pointer;
-  transition: all 0.2s;
+/* ── CAR PREVIEW ── */
+.car-preview {
+  border: 1.5px solid var(--border); border-radius: var(--radius);
+  overflow: hidden; margin-bottom: 14px;
   background: var(--cream);
-  display: flex; align-items: center; gap: 10px;
 }
-.loc-card:hover {
-  border-color: var(--gold);
-  background: var(--gold-pale);
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-sm);
+.car-image {
+  width: 100%; height: 200px; object-fit: cover; display: block;
+  transition: transform 0.4s ease;
 }
-.loc-card.selected {
-  border-color: var(--gold);
-  background: var(--gold-pale);
-  box-shadow: 0 0 0 3px rgba(201,168,76,0.15);
-}
-.loc-dot {
-  width: 10px; height: 10px; border-radius: 50%;
-  background: var(--border-dark); flex-shrink: 0;
-  transition: background 0.2s;
-}
-.loc-card.selected .loc-dot { background: var(--gold); }
-.loc-name { font-size: 0.82rem; font-weight: 600; color: var(--ink); line-height: 1.3; }
-.loc-price { font-size: 0.7rem; color: var(--ink-soft); margin-top: 1px; }
-.loc-empty { color: var(--ink-soft); font-size: 0.82rem; text-align: center; padding: 20px; }
+.car-preview:hover .car-image { transform: scale(1.03); }
+.car-select-wrap { padding: 10px 12px; background: var(--white); border-top: 1px solid var(--border); }
+.car-select-wrap select { background: var(--cream); }
 
-/* ── VEHICLE CARDS ── */
-.vehicle-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 14px;
-}
-.vehicle-card {
-  border: 1.5px solid var(--border-dark);
-  border-radius: var(--radius);
-  overflow: hidden;
-  cursor: pointer;
-  transition: all 0.25s;
-  background: var(--cream);
-  position: relative;
-}
-.vehicle-card:hover {
-  border-color: var(--gold);
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-md);
-}
-.vehicle-card.selected {
-  border-color: var(--gold);
-  box-shadow: 0 0 0 3px rgba(201,168,76,0.2), var(--shadow-md);
-}
-.vehicle-img-wrap {
-  height: 140px; overflow: hidden;
-  background: linear-gradient(135deg, #f0f0ea, #e8e8e0);
-  display: flex; align-items: center; justify-content: center;
-  position: relative;
-}
-.vehicle-img-wrap img {
-  width: 100%; height: 100%; object-fit: cover;
-  transition: transform 0.3s;
-}
-.vehicle-card:hover .vehicle-img-wrap img { transform: scale(1.05); }
-.vehicle-img-placeholder { font-size: 3rem; opacity: 0.3; }
-.vehicle-badge-sel {
-  position: absolute; top: 10px; right: 10px;
-  background: var(--gold); color: var(--ink);
-  font-size: 0.6rem; font-weight: 800;
-  padding: 3px 8px; border-radius: 20px;
-  letter-spacing: 0.5px; text-transform: uppercase;
-  display: none;
-}
-.vehicle-card.selected .vehicle-badge-sel { display: block; }
-.vehicle-info { padding: 14px; }
-.vehicle-name {
-  font-family: 'Fraunces', serif;
-  font-size: 1rem; font-weight: 700;
-  color: var(--ink); margin-bottom: 4px;
-}
-.vehicle-pax {
-  font-size: 0.74rem; color: var(--ink-soft);
-  display: flex; align-items: center; gap: 4px;
-  margin-bottom: 8px;
-}
-.vehicle-price {
-  font-size: 0.8rem; font-weight: 700;
-  color: var(--gold);
-}
-.vehicle-desc {
-  font-size: 0.72rem; color: var(--ink-soft);
-  margin-top: 4px; line-height: 1.5;
-}
-.vehicle-empty { color: var(--ink-soft); font-size: 0.82rem; text-align: center; padding: 30px; }
-
-/* ── ADDON ITEMS ── */
-.addon-list { display: flex; flex-direction: column; gap: 10px; }
-.addon-item {
-  display: flex; align-items: center; justify-content: space-between;
-  border: 1.5px solid var(--border-dark);
-  border-radius: var(--radius-sm);
-  padding: 14px 16px;
-  background: var(--cream);
-  gap: 12px;
-}
-.addon-info { flex: 1; }
-.addon-name { font-size: 0.88rem; font-weight: 700; color: var(--ink); }
-.addon-price { font-size: 0.74rem; color: var(--gold); font-weight: 600; margin-top: 2px; }
-.addon-desc { font-size: 0.72rem; color: var(--ink-soft); margin-top: 2px; }
-.addon-qty {
-  display: flex; align-items: center; gap: 8px; flex-shrink: 0;
-}
-.qty-btn {
-  width: 30px; height: 30px; border-radius: 50%;
-  border: 1.5px solid var(--border-dark);
-  background: var(--white); color: var(--ink);
-  font-size: 1rem; font-weight: 700;
-  cursor: pointer; display: flex; align-items: center; justify-content: center;
-  transition: all 0.15s; line-height: 1;
-}
-.qty-btn:hover { border-color: var(--gold); background: var(--gold-pale); }
-.qty-num {
-  font-size: 0.9rem; font-weight: 700;
-  color: var(--ink); min-width: 20px; text-align: center;
+/* ── INFO NOTE ── */
+.info-note {
+  background: var(--gold-pale); border: 1px solid #e8d98a;
+  border-radius: var(--radius-sm); padding: 11px 14px;
+  font-size: 0.76rem; color: #7a6020;
+  display: flex; gap: 8px; align-items: flex-start; margin-bottom: 14px;
 }
 
-/* ── SUMMARY BOX ── */
-.summary-box {
-  background: var(--ink);
-  border-radius: var(--radius);
-  padding: 24px;
-  color: var(--white);
-  margin-bottom: 20px;
+/* ── PRICE SUMMARY ── */
+.price-summary {
+  background: linear-gradient(135deg, #f5fbf7 0%, #edf7f1 100%);
+  border: 1.5px solid var(--border); border-radius: var(--radius);
+  padding: 20px; margin: 16px 0;
 }
-.summary-title {
-  font-family: 'Fraunces', serif;
-  font-size: 1rem; color: var(--gold-light);
-  margin-bottom: 16px;
-  display: flex; align-items: center; gap: 8px;
+.price-summary-head {
+  font-family: 'Fraunces', serif; font-size: 0.95rem;
+  color: var(--ink); font-weight: 700; margin-bottom: 14px;
+  padding-bottom: 10px; border-bottom: 1.5px dashed var(--border);
+  display: flex; align-items: center; gap: 6px;
 }
-.sum-row {
-  display: flex; justify-content: space-between; align-items: flex-start;
-  padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.08);
-  font-size: 0.84rem; gap: 12px;
+.price-row {
+  display: flex; justify-content: space-between;
+  align-items: center; margin-bottom: 8px; font-size: 0.84rem;
 }
-.sum-row:last-child { border-bottom: none; }
-.sum-label { color: rgba(255,255,255,0.5); font-weight: 500; flex-shrink: 0; }
-.sum-val { color: var(--white); font-weight: 700; text-align: right; }
-.sum-val.gold { color: var(--gold-light); }
+.price-row span:first-child { color: var(--ink-soft); }
+.price-row span:last-child { font-weight: 600; color: var(--ink); }
+.discount-row span:last-child { color: var(--green) !important; }
+.special-row span:last-child { color: var(--red) !important; }
+.before-deposit-row {
+  border-top: 1.5px dashed var(--border); margin-top: 10px; padding-top: 10px;
+}
+.before-deposit-row span { font-weight: 700 !important; }
+.total-price-box {
+  background: var(--ink); border-radius: var(--radius-sm);
+  padding: 14px 16px; display: flex;
+  justify-content: space-between; align-items: center; margin-top: 14px;
+}
+.total-price-box .lbl {
+  font-size: 0.62rem; letter-spacing: 2px; text-transform: uppercase;
+  color: rgba(255,255,255,0.6); font-weight: 700;
+}
+.total-price-box .amt {
+  font-family: 'Fraunces', serif; font-size: 1.6rem;
+  color: var(--gold-light); font-weight: 700;
+}
 
 /* ── TERMS ── */
-.terms-wrap {
-  background: #fffdf0;
-  border: 1.5px solid #e8d98a;
-  border-radius: var(--radius-sm);
-  padding: 16px;
-  margin-bottom: 20px;
-  display: flex; gap: 12px; align-items: flex-start;
+.terms-box {
+  background: #fffdf0; border: 1.5px solid #e8d98a;
+  border-radius: var(--radius-sm); padding: 14px; margin-bottom: 16px;
 }
-.terms-wrap input[type="checkbox"] {
-  width: 18px; height: 18px; flex-shrink: 0;
-  margin-top: 1px; accent-color: var(--gold);
-  cursor: pointer;
+.terms-box.agreed {
+  background: #f0fdf4; border-color: #86efac;
 }
-.terms-wrap label {
-  font-size: 0.8rem; color: #7a6020;
-  font-weight: 500; text-transform: none;
-  letter-spacing: 0; cursor: pointer; margin: 0;
-  line-height: 1.5;
+.terms-check-row { display: flex; align-items: flex-start; gap: 10px; }
+.terms-check-row input[type="checkbox"] {
+  width: 18px; height: 18px; margin-top: 1px;
+  accent-color: var(--gold); flex-shrink: 0; cursor: pointer;
+}
+.terms-check-row label {
+  font-size: 0.78rem; color: #7a6020; cursor: pointer;
+  line-height: 1.5; margin: 0; font-weight: 500;
+  text-transform: none; letter-spacing: 0;
+}
+.terms-box.agreed .terms-check-row label { color: #166534; }
+.links-container {
+  margin-top: 10px; padding-top: 10px;
+  border-top: 1px dashed #e8d98a;
+  display: flex; flex-wrap: wrap; gap: 8px;
+}
+.terms-link-item {
+  font-size: 0.72rem; color: var(--ink-mid); text-decoration: none;
+  border: 1px solid var(--border-dark); padding: 4px 10px;
+  border-radius: 20px; font-weight: 600; transition: all 0.15s;
+  display: inline-flex; align-items: center; gap: 4px;
+}
+.terms-link-item:hover { background: var(--gold-pale); border-color: var(--gold); color: var(--ink); }
+
+/* ── LOC DIVIDER ── */
+.loc-divider {
+  display: flex; align-items: center; gap: 10px;
+  color: var(--ink-soft); font-size: 0.68rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 1px; margin: 4px 0 14px;
+}
+.loc-divider::before, .loc-divider::after {
+  content: ''; flex: 1; height: 1px; background: var(--border);
 }
 
 /* ── BUTTONS ── */
-.btn-row {
-  display: flex; gap: 12px; margin-top: 24px;
-}
 .btn {
   font-family: 'Plus Jakarta Sans', sans-serif;
   font-weight: 700; font-size: 0.88rem;
-  padding: 14px 24px; border-radius: var(--radius-sm);
+  padding: 14px 20px; border-radius: var(--radius-sm);
   border: none; cursor: pointer;
   display: flex; align-items: center; gap: 8px;
   transition: all 0.2s; text-decoration: none;
   letter-spacing: 0.3px; white-space: nowrap;
+  width: 100%; justify-content: center; margin-bottom: 10px;
 }
-.btn:disabled { opacity: 0.35; cursor: not-allowed; transform: none !important; }
+.btn:disabled { opacity: 0.35; cursor: not-allowed; }
 .btn:active:not(:disabled) { transform: scale(0.97); }
+.btn-row { display: flex; gap: 12px; margin-top: 20px; }
+.btn-row .btn { margin-bottom: 0; }
+
+.btn-review {
+  background: transparent; color: var(--ink);
+  border: 1.5px solid var(--border-dark);
+}
+.btn-review:hover { background: var(--cream); border-color: var(--ink-mid); }
+.btn-wa {
+  background: linear-gradient(135deg, #25d366, #1aad52);
+  color: white; box-shadow: 0 4px 14px rgba(37,211,102,0.3);
+}
+.btn-wa:hover:not(:disabled) { box-shadow: 0 8px 24px rgba(37,211,102,0.4); transform: translateY(-1px); }
+.btn-email {
+  background: linear-gradient(135deg, #ea4335, #c0392b);
+  color: white; box-shadow: 0 4px 14px rgba(234,67,53,0.3);
+}
+.btn-email:hover:not(:disabled) { transform: translateY(-1px); }
 .btn-primary {
   background: var(--ink); color: var(--gold-light);
-  flex: 1; justify-content: center;
   box-shadow: var(--shadow-sm);
 }
-.btn-primary:hover:not(:disabled) {
-  background: #1a2035;
-  box-shadow: var(--shadow-md);
-  transform: translateY(-1px);
-}
-.btn-gold {
-  background: linear-gradient(135deg, var(--gold), var(--gold-light));
-  color: var(--ink); flex: 1; justify-content: center;
-  box-shadow: 0 4px 14px rgba(201,168,76,0.35);
-}
-.btn-gold:hover:not(:disabled) {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(201,168,76,0.45);
-}
+.btn-primary:hover:not(:disabled) { background: #1a2035; transform: translateY(-1px); }
 .btn-ghost {
   background: transparent; color: var(--ink-mid);
   border: 1.5px solid var(--border-dark);
 }
-.btn-ghost:hover { background: var(--cream); border-color: var(--ink-mid); }
-.btn-wa {
-  background: linear-gradient(135deg, #25d366, #1aad52);
-  color: white; flex: 1; justify-content: center;
-  box-shadow: 0 4px 14px rgba(37,211,102,0.3);
+.btn-ghost:hover { background: var(--cream); }
+.btn-save {
+  background: linear-gradient(135deg, var(--gold), var(--gold-light));
+  color: var(--ink); box-shadow: 0 4px 14px rgba(201,168,76,0.3);
 }
-.btn-wa:hover:not(:disabled) {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(37,211,102,0.4);
-}
-.btn-sm { padding: 7px 14px; font-size: 0.76rem; }
+.btn-save:hover { transform: translateY(-1px); }
+.btn-sm { padding: 6px 12px; font-size: 0.72rem; width: auto; border-radius: var(--radius-sm); margin-bottom: 0; }
 .btn-danger { background: var(--red); color: white; }
 .btn-edit { background: var(--blue); color: white; }
 
-/* ── DIVIDER ── */
-.divider {
-  display: flex; align-items: center; gap: 12px;
-  margin: 4px 0 18px; color: var(--ink-soft);
-  font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 600;
+/* ── PAYMENT ACCEPT STRIP ── */
+.accept-strip {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 16px 20px; margin-top: 16px;
 }
-.divider::before, .divider::after {
-  content: ''; flex: 1; height: 1px; background: var(--border);
+.accept-title {
+  font-size: 0.6rem; text-transform: uppercase; letter-spacing: 2px;
+  color: var(--ink-soft); font-weight: 700; margin-bottom: 12px;
+  display: flex; align-items: center; gap: 8px;
 }
+.accept-title::before { content:''; width:3px; height:12px; background:var(--gold); border-radius:2px; }
+.payment-logos { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.pay-logo {
+  height: 30px; padding: 4px 10px;
+  background: var(--cream); border: 1px solid var(--border);
+  border-radius: 6px; display: flex; align-items: center; justify-content: center;
+  font-size: 0.62rem; font-weight: 800; color: var(--ink-mid);
+  white-space: nowrap; transition: border-color 0.2s;
+}
+.pay-logo:hover { border-color: var(--gold); }
+.pay-logo svg { height: 16px; width: auto; }
 
-/* ── INFO NOTE ── */
-.info-note {
-  background: var(--gold-pale);
-  border: 1px solid #e8d98a;
-  border-radius: var(--radius-sm);
-  padding: 12px 14px;
-  font-size: 0.78rem; color: #7a6020;
-  display: flex; gap: 8px; align-items: flex-start;
-  margin-bottom: 16px;
+/* ── TRUST STRIP ── */
+.trust-strip {
+  display: flex; gap: 8px; padding: 14px 16px;
+  background: var(--gold-pale); border-top: 1px solid var(--border);
 }
+.trust-item {
+  flex: 1; text-align: center; background: var(--white);
+  border-radius: 12px; padding: 10px 6px; border: 1px solid var(--border);
+}
+.trust-icon { font-size: 1.1rem; margin-bottom: 3px; }
+.trust-lbl { font-size: 0.56rem; color: var(--ink-soft); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
 
-/* ── ADMIN PANEL ── */
-#adminPanel {
-  display: none;
-  position: fixed; inset: 0;
-  background: rgba(10,15,30,0.85);
-  backdrop-filter: blur(6px);
-  z-index: 9999;
-  padding: 16px;
-  overflow-y: auto;
-  align-items: flex-start;
-  justify-content: center;
+/* ── BOTTOM ACTIONS ── */
+.bottom-actions {
+  display: flex; gap: 10px; padding: 14px 16px 18px;
+  background: var(--white); border-top: 1px solid var(--border);
 }
-#adminPanel.open { display: flex; }
-.admin-modal {
-  background: var(--white);
-  border-radius: 22px;
-  width: 100%; max-width: 680px;
-  box-shadow: var(--shadow-lg);
-  overflow: hidden;
-  margin: auto;
-}
-.admin-head {
-  background: var(--ink);
-  padding: 22px 26px;
-  display: flex; align-items: center; justify-content: space-between;
-}
-.admin-head h2 {
-  font-family: 'Fraunces', serif;
-  color: var(--gold-light); font-size: 1.2rem; font-weight: 700;
-}
-.admin-head p { color: rgba(255,255,255,0.4); font-size: 0.74rem; margin-top: 3px; }
-.admin-close {
-  background: rgba(255,255,255,0.1); border: none;
-  color: white; width: 34px; height: 34px;
-  border-radius: 50%; cursor: pointer; font-size: 1rem;
+.btn-bottom {
+  flex: 1; border: none; padding: 13px 10px; border-radius: var(--radius-sm);
+  cursor: pointer; font-size: 0.8rem; font-weight: 700;
   display: flex; align-items: center; justify-content: center;
-  transition: background 0.15s;
+  gap: 6px; text-decoration: none;
+  font-family: 'Plus Jakarta Sans', sans-serif; transition: all 0.2s;
 }
-.admin-close:hover { background: rgba(255,255,255,0.2); }
-.admin-body { padding: 24px; }
-.admin-tabs {
-  display: flex; gap: 4px;
-  background: var(--cream); border-radius: var(--radius-sm);
-  padding: 4px; margin-bottom: 20px;
+.btn-back {
+  background: var(--cream); color: var(--ink);
+  border: 1.5px solid var(--border-dark);
 }
-.admin-tab {
-  flex: 1; padding: 9px;
-  border: none; background: transparent;
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 0.76rem; font-weight: 700;
-  color: var(--ink-soft); cursor: pointer;
-  border-radius: 6px; transition: all 0.2s;
-  text-transform: uppercase; letter-spacing: 0.5px;
+.btn-back:hover { background: var(--border); }
+.btn-help {
+  background: linear-gradient(135deg, #25d366, #1aad52);
+  color: white; box-shadow: 0 4px 12px rgba(37,211,102,0.3);
 }
-.admin-tab.active {
-  background: var(--ink); color: var(--gold-light);
-}
-.admin-tab-content { display: none; }
-.admin-tab-content.active { display: block; }
 
+/* ── MODAL ── */
+.modal-overlay {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(10,15,30,0.8); backdrop-filter: blur(4px);
+  display: none; justify-content: center; align-items: center;
+  z-index: 2000; padding: 16px;
+}
+.modal-content {
+  background: var(--white); padding: 26px; border-radius: 22px;
+  width: 100%; max-width: 440px; max-height: 88vh; overflow-y: auto;
+  box-shadow: var(--shadow-lg);
+}
+.modal-content h3 {
+  font-family: 'Fraunces', serif; color: var(--ink);
+  text-align: center; font-size: 1.2rem; margin-bottom: 18px; font-weight: 700;
+}
+.review-row {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  border-bottom: 1px solid var(--border); padding: 9px 0; font-size: 0.83rem; gap: 12px;
+}
+.review-row span:first-child { color: var(--ink-soft); font-weight: 600; flex-shrink: 0; }
+.review-row span:last-child { color: var(--ink); font-weight: 700; text-align: right; }
+
+/* ── ADMIN ── */
+.admin-head {
+  background: var(--ink); padding: 22px 24px;
+}
+.admin-head h2 { font-family: 'Fraunces', serif; color: var(--gold-light); font-size: 1.2rem; font-weight: 700; }
+.admin-head p { color: rgba(255,255,255,0.4); font-size: 0.74rem; margin-top: 4px; }
+.admin-section-title {
+  font-size: 0.6rem; text-transform: uppercase; letter-spacing: 2px;
+  color: var(--gold); font-weight: 800; margin: 22px 0 12px;
+  display: flex; align-items: center; gap: 8px;
+}
+.admin-section-title::after { content: ''; flex: 1; height: 1px; background: rgba(201,168,76,0.2); }
+.admin-section-title:first-child { margin-top: 0; }
 .admin-form-box {
-  background: var(--cream);
-  border: 1.5px dashed var(--border-dark);
-  border-radius: var(--radius-sm);
-  padding: 16px; margin-bottom: 14px;
+  background: var(--cream); border: 1.5px dashed var(--border-dark);
+  border-radius: var(--radius-sm); padding: 14px; margin-bottom: 14px;
 }
 .admin-form-box input,
 .admin-form-box select,
-.admin-form-box textarea {
-  margin-bottom: 10px; background: var(--white);
-}
-.admin-form-box input:last-child,
-.admin-form-box select:last-child,
-.admin-form-box textarea:last-child { margin-bottom: 0; }
-
+.admin-form-box textarea { margin-bottom: 8px; background: var(--white); }
+.admin-form-box .flex-row { display: flex; gap: 8px; margin-bottom: 8px; }
+.admin-form-box .flex-row > div { flex: 1; }
+.admin-form-box .flex-row input { margin-bottom: 0; }
 .admin-item {
   display: flex; justify-content: space-between; align-items: center;
-  padding: 12px 14px; background: var(--cream);
-  margin-bottom: 8px; border-radius: var(--radius-sm);
-  border: 1px solid var(--border);
-  gap: 10px;
+  padding: 11px 14px; background: var(--cream); margin-bottom: 8px;
+  border-radius: var(--radius-sm); border: 1px solid var(--border);
+  gap: 10px; transition: border-color 0.2s;
 }
-.admin-item-info { flex: 1; }
-.admin-item-info strong { display: block; color: var(--ink); font-size: 0.84rem; }
+.admin-item:hover { border-color: var(--gold); }
+.admin-item-info { flex: 1; font-size: 0.8rem; }
+.admin-item-info strong { display: block; color: var(--ink); margin-bottom: 2px; }
 .admin-item-info span { color: var(--ink-soft); font-size: 0.74rem; }
 .admin-btns { display: flex; gap: 6px; flex-shrink: 0; }
+.admin-body { padding: 22px; }
 
-/* ── TRUST FOOTER ── */
-.trust-footer {
-  background: var(--ink);
-  padding: 28px 24px;
-  text-align: center;
-  margin-top: 40px;
+/* ── FLATPICKR ── */
+.flatpickr-calendar { font-family: 'Plus Jakarta Sans', sans-serif !important; border-radius: 12px !important; box-shadow: var(--shadow-lg) !important; border: 1px solid var(--border) !important; }
+.flatpickr-day.selected, .flatpickr-day.selected:hover { background: var(--ink) !important; border-color: var(--ink) !important; color: var(--gold-light) !important; }
+.flatpickr-day:hover { background: var(--gold-pale) !important; border-color: var(--gold) !important; }
+.flatpickr-months .flatpickr-month { background: var(--ink) !important; color: white !important; }
+.flatpickr-current-month { color: white !important; }
+
+/* ── COMPANY FOOTER ── */
+.company-footer { background: linear-gradient(180deg, #0d1220 0%, #070b14 100%); }
+.company-footer-top {
+  max-width: 680px; margin: 0 auto;
+  padding: 48px 24px 36px;
+  display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 36px;
 }
-.trust-inner { max-width: 900px; margin: 0 auto; }
-.trust-items {
-  display: flex; justify-content: center; gap: 32px; flex-wrap: wrap;
-  margin-bottom: 16px;
+.cf-brand { grid-column: span 1; }
+.cf-logo-row { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+.cf-icon {
+  width: 42px; height: 42px; border-radius: 10px;
+  background: linear-gradient(135deg, var(--gold), var(--gold-light));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.3rem; flex-shrink: 0; box-shadow: 0 4px 14px rgba(201,168,76,0.3);
+  overflow: hidden;
 }
-.trust-item { text-align: center; }
-.trust-icon { font-size: 1.4rem; margin-bottom: 4px; }
-.trust-lbl { font-size: 0.64rem; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
-.trust-copy { font-size: 0.72rem; color: rgba(255,255,255,0.2); }
+.cf-logo-img { width: 100%; height: 100%; object-fit: cover; }
+.cf-logo-name { font-family: 'Fraunces', serif; color: white; font-size: 1rem; font-weight: 700; }
+.cf-logo-name em { color: var(--gold-light); font-style: italic; font-weight: 400; }
+.cf-tagline { font-size: 0.72rem; color: rgba(255,255,255,0.3); line-height: 1.6; margin-top: 4px; }
+.cf-reg {
+  margin-top: 10px; font-size: 0.68rem; color: rgba(255,255,255,0.25);
+  background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+  padding: 6px 10px; border-radius: 6px; display: inline-block; line-height: 1.6;
+}
+.cf-section-title {
+  font-size: 0.6rem; text-transform: uppercase; letter-spacing: 2px;
+  color: var(--gold); font-weight: 700; margin-bottom: 14px;
+  padding-bottom: 8px; border-bottom: 1px solid rgba(201,168,76,0.2);
+}
+.cf-about-text { font-size: 0.76rem; color: rgba(255,255,255,0.4); line-height: 1.8; }
+.cf-about-text strong { color: rgba(255,255,255,0.65); font-weight: 600; }
+.cf-contact-item { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 11px; }
+.cf-contact-icon {
+  width: 28px; height: 28px; border-radius: 7px;
+  background: rgba(201,168,76,0.12); border: 1px solid rgba(201,168,76,0.2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.8rem; flex-shrink: 0;
+}
+.cf-contact-text { font-size: 0.75rem; color: rgba(255,255,255,0.45); line-height: 1.5; }
+.cf-contact-text a { color: var(--gold-light); text-decoration: none; }
+.cf-contact-text a:hover { text-decoration: underline; }
+.company-footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding: 16px 24px; max-width: 680px; margin: 0 auto;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 8px;
+}
+.cf-copy { font-size: 0.66rem; color: rgba(255,255,255,0.2); }
+.cf-copy a { color: rgba(255,255,255,0.35); text-decoration: none; }
 
 /* ── TOAST ── */
 .toast {
   position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
   background: var(--ink); color: var(--gold-light);
-  padding: 12px 22px; border-radius: 30px;
-  font-size: 0.82rem; font-weight: 700;
-  box-shadow: var(--shadow-lg);
-  z-index: 99999; opacity: 0;
-  transition: opacity 0.3s;
-  pointer-events: none;
-  white-space: nowrap;
+  padding: 11px 22px; border-radius: 30px;
+  font-size: 0.82rem; font-weight: 700; box-shadow: var(--shadow-lg);
+  z-index: 99999; opacity: 0; transition: opacity 0.3s;
+  pointer-events: none; white-space: nowrap;
 }
 .toast.show { opacity: 1; }
 
-/* ── TERMS CHECKED STATE ── */
-.terms-wrap.agreed {
-  background: #e8f5e9;
-  border-color: #4caf50;
-}
-.terms-wrap.agreed label { color: #1b5e20; }
-.terms-check-icon {
-  display: none; font-size: 1.1rem; flex-shrink: 0; margin-top: 1px;
-}
-.terms-wrap.agreed .terms-check-icon { display: block; }
-.terms-link {
-  display: inline-flex; align-items: center; gap: 4px;
-  color: var(--gold); font-size: 0.74rem; font-weight: 700;
-  text-decoration: none; margin-top: 8px;
-  border-bottom: 1px dashed var(--gold);
-  transition: opacity 0.15s;
-}
-.terms-link:hover { opacity: 0.75; }
-
-/* ── PRICE DISPLAY ROW ── */
-.price-display {
-  background: linear-gradient(135deg, var(--ink) 0%, #1a2035 100%);
-  border-radius: var(--radius-sm);
-  padding: 14px 16px;
-  margin-top: 12px;
-  display: flex; justify-content: space-between; align-items: center;
-}
-.price-display-label {
-  font-size: 0.7rem; color: rgba(255,255,255,0.5);
-  text-transform: uppercase; letter-spacing: 1px; font-weight: 600;
-}
-.price-display-amount {
-  font-family: 'Fraunces', serif;
-  font-size: 1.3rem; color: var(--gold-light); font-weight: 700;
-}
-.price-note {
-  font-size: 0.68rem; color: rgba(255,255,255,0.35);
-  margin-top: 2px; text-align: right;
-}
-
-/* ── PAYMENT SELECT ── */
-.payment-option {
-  display: flex; align-items: center; gap: 10px;
-  padding: 12px 14px;
-  border: 1.5px solid var(--border-dark);
-  border-radius: var(--radius-sm);
-  margin-bottom: 8px;
-  cursor: pointer; transition: all 0.2s;
-  background: var(--cream);
-}
-.payment-option:hover { border-color: var(--gold); background: var(--gold-pale); }
-.payment-option.selected { border-color: var(--gold); background: var(--gold-pale); box-shadow: 0 0 0 3px rgba(201,168,76,0.15); }
-.payment-option input[type="radio"] { accent-color: var(--gold); width:16px; height:16px; flex-shrink:0; }
-.payment-label { font-size: 0.88rem; font-weight: 700; color: var(--ink); }
-.payment-sub { font-size: 0.72rem; color: var(--ink-soft); margin-top: 1px; }
-
-/* ── PAYMENT ACCEPT STRIP ── */
-.accept-strip {
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 16px 20px;
-  margin-top: 16px;
-}
-.accept-title {
-  font-size: 0.62rem; text-transform: uppercase;
-  letter-spacing: 2px; color: var(--ink-soft);
-  font-weight: 700; margin-bottom: 12px;
-  display: flex; align-items: center; gap: 8px;
-}
-.accept-title::before { content:''; width:3px; height:12px; background:var(--gold); border-radius:2px; }
-.payment-logos {
-  display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
-}
-.pay-logo {
-  height: 32px; padding: 4px 10px;
-  background: var(--cream); border: 1px solid var(--border);
-  border-radius: 6px; display: flex; align-items: center; justify-content: center;
-  font-size: 0.65rem; font-weight: 800; color: var(--ink-mid);
-  white-space: nowrap; letter-spacing: 0.3px;
-  transition: border-color 0.2s;
-}
-.pay-logo:hover { border-color: var(--gold); }
-.pay-logo svg { height: 18px; width: auto; }
-.pay-logo img { height: 18px; width: auto; object-fit: contain; }
-
-/* ── COMPANY FOOTER ── */
-.company-footer {
-  background: linear-gradient(180deg, #0d1220 0%, #070b14 100%);
-  padding: 0;
-  margin-top: 0;
-}
-.company-footer-top {
-  max-width: 900px; margin: 0 auto;
-  padding: 48px 24px 36px;
-  display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 40px;
-}
-.cf-brand { grid-column: span 1; }
-.cf-logo-row { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
-.cf-icon {
-  width: 44px; height: 44px; border-radius: 10px;
-  background: linear-gradient(135deg, var(--gold), var(--gold-light));
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.3rem; flex-shrink: 0;
-  box-shadow: 0 4px 14px rgba(201,168,76,0.3);
-}
-.cf-logo-name {
-  font-family: 'Fraunces', serif; color: white;
-  font-size: 1.1rem; font-weight: 700; line-height: 1.2;
-}
-.cf-logo-name span { color: var(--gold-light); font-style: italic; font-weight: 400; }
-.cf-tagline { font-size: 0.74rem; color: rgba(255,255,255,0.35); line-height: 1.6; margin-top: 4px; }
-.cf-section-title {
-  font-size: 0.62rem; text-transform: uppercase;
-  letter-spacing: 2px; color: var(--gold);
-  font-weight: 700; margin-bottom: 14px;
-  padding-bottom: 8px; border-bottom: 1px solid rgba(201,168,76,0.2);
-}
-.cf-about-text {
-  font-size: 0.78rem; color: rgba(255,255,255,0.45);
-  line-height: 1.8;
-}
-.cf-about-text strong { color: rgba(255,255,255,0.7); font-weight: 600; }
-.cf-reg {
-  margin-top: 10px; font-size: 0.7rem;
-  color: rgba(255,255,255,0.3);
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.08);
-  padding: 6px 10px; border-radius: 6px; display: inline-block;
-}
-.cf-contact-item {
-  display: flex; align-items: flex-start; gap: 10px;
-  margin-bottom: 12px;
-}
-.cf-contact-icon {
-  width: 30px; height: 30px; border-radius: 8px;
-  background: rgba(201,168,76,0.12);
-  border: 1px solid rgba(201,168,76,0.2);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 0.85rem; flex-shrink: 0;
-}
-.cf-contact-text { font-size: 0.78rem; color: rgba(255,255,255,0.5); line-height: 1.5; }
-.cf-contact-text a { color: var(--gold-light); text-decoration: none; }
-.cf-contact-text a:hover { text-decoration: underline; }
-.company-footer-bottom {
-  border-top: 1px solid rgba(255,255,255,0.06);
-  padding: 16px 24px;
-  max-width: 900px; margin: 0 auto;
-  display: flex; justify-content: space-between; align-items: center;
-  flex-wrap: wrap; gap: 8px;
-}
-.cf-copy { font-size: 0.68rem; color: rgba(255,255,255,0.2); }
-.cf-copy a { color: rgba(255,255,255,0.35); text-decoration: none; }
-
-/* ── FLATPICKR CUSTOM ── */
-.flatpickr-calendar {
-  font-family: 'Plus Jakarta Sans', sans-serif !important;
-  border-radius: 12px !important;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.18) !important;
-  border: 1px solid var(--border) !important;
-}
-.flatpickr-day.selected, .flatpickr-day.selected:hover {
-  background: var(--ink) !important;
-  border-color: var(--ink) !important;
-  color: var(--gold-light) !important;
-}
-.flatpickr-day:hover {
-  background: var(--gold-pale) !important;
-  border-color: var(--gold) !important;
-}
-.flatpickr-months .flatpickr-month {
-  background: var(--ink) !important; color: white !important;
-}
-.flatpickr-current-month { color: white !important; }
-.flatpickr-monthDropdown-months { background: var(--ink) !important; }
-
-/* ── HERO LOGO IMG ── */
-.hero-logo-img {
-  height: 44px; width: auto; object-fit: contain;
-  border-radius: 8px;
-}
-
 /* ── RESPONSIVE ── */
 @media (max-width: 600px) {
-  .hero-inner { flex-direction: column; gap: 20px; }
+  .hero-name { font-size: 1.5rem; }
+  .hero-logo-row { flex-direction: column; align-items: flex-start; }
   .form-row { grid-template-columns: 1fr; }
-  .form-row.triple { grid-template-columns: 1fr 1fr; }
-  .steps-inner { gap: 0; }
-  .step-lbl { font-size: 0.55rem; }
-  .vehicle-grid { grid-template-columns: 1fr 1fr; }
-  .btn-row { flex-direction: column; }
-  .trust-items { gap: 20px; }
-  .admin-modal { border-radius: 14px; }
-  .company-footer-top { grid-template-columns: 1fr; gap: 28px; }
-  .cf-brand { grid-column: span 1; }
+  .company-footer-top { grid-template-columns: 1fr; gap: 26px; }
   .company-footer-bottom { flex-direction: column; text-align: center; }
   .payment-logos { gap: 6px; }
+  .steps-inner { padding: 0 8px; }
+  .step-lbl { font-size: 0.52rem; }
+  .btn-row { flex-direction: column; }
 }
+
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 2px; }
 </style>
 </head>
 <body>
 
 <!-- ── HERO ── -->
-<div class="hero">
+<div class="hero" id="adminTrigger">
   <div class="hero-bg"></div>
   <div class="hero-lines"></div>
   <div class="hero-inner">
-    <div class="hero-brand" id="adminTrigger" title="My-Easytransport.com">
-      <div class="hero-logo-row">
-        <div id="heroLogoWrap" class="hero-icon">🚗</div>
-        <div>
-          <div class="hero-name" id="heroSiteName">My-Easy<span>transport</span>.com</div>
-          <div class="hero-tagline" id="heroTagline">Car Rental with Driver · KL & Beyond</div>
-        </div>
+    <div class="hero-pill">⭐ Premium Car Rental · Kuala Lumpur</div>
+    <div class="hero-logo-row">
+      <div class="hero-icon" id="heroLogoWrap">🚗</div>
+      <div>
+        <div class="hero-name" id="heroSiteName">EZ Transport <em>Rental</em></div>
+        <div class="hero-tagline" id="heroTagline">Luxury & Economy Vehicles · Airport Transfers · City Rides</div>
       </div>
     </div>
-    <div class="hero-badges">
-      <div class="badge badge-gold">⭐ 5-Star Rated</div>
-      <div class="badge">🛡️ Insured Vehicles</div>
-      <div class="badge">24/7 Support</div>
+    <div class="hero-divider"></div>
+    <div class="hero-stats">
+      <div class="hstat"><div class="hstat-n">500+</div><div class="hstat-l">Happy Clients</div></div>
+      <div class="hstat"><div class="hstat-n">24/7</div><div class="hstat-l">Support</div></div>
+      <div class="hstat"><div class="hstat-n">KL</div><div class="hstat-l">Based</div></div>
     </div>
   </div>
 </div>
 
+<!-- ── STATUS ── -->
+<div id="db-status">
+  <span class="dot dot-offline" id="status-dot"></span>
+  <span id="status-text">Connecting to Cloud Database...</span>
+</div>
+
+<!-- ── TABS (Admin) ── -->
+<div class="tabs" id="navTabs">
+  <button class="tab-btn active" onclick="showTab('bookingSection', this)">🚗 Booking</button>
+  <button class="tab-btn" onclick="showTab('adminSection', this)">⚙️ Admin</button>
+</div>
+
 <!-- ── STEP BAR ── -->
-<div class="steps-bar">
+<div class="steps-bar" id="stepsBar">
   <div class="steps-inner">
-    <div class="step-item active" id="step1-ind">
-      <div class="step-num">1</div>
-      <div class="step-lbl">Trip Details</div>
-    </div>
-    <div class="step-item" id="step2-ind">
-      <div class="step-num">2</div>
-      <div class="step-lbl">Vehicle</div>
-    </div>
-    <div class="step-item" id="step3-ind">
-      <div class="step-num">3</div>
-      <div class="step-lbl">Extras</div>
-    </div>
-    <div class="step-item" id="step4-ind">
-      <div class="step-num">4</div>
-      <div class="step-lbl">Confirm</div>
-    </div>
+    <div class="step-item active" id="step1-ind"><div class="step-num">1</div><div class="step-lbl">Details</div></div>
+    <div class="step-item" id="step2-ind"><div class="step-num">2</div><div class="step-lbl">Vehicle</div></div>
+    <div class="step-item" id="step3-ind"><div class="step-num">3</div><div class="step-lbl">Schedule</div></div>
+    <div class="step-item" id="step4-ind"><div class="step-num">4</div><div class="step-lbl">Confirm</div></div>
   </div>
 </div>
 
 <!-- ── MAIN ── -->
 <div class="main">
 
-  <!-- STEP 1: TRIP DETAILS -->
-  <div class="form-section active" id="sec1">
-    <div class="section-card">
-      <div class="section-head">
-        <div class="section-icon">🗓️</div>
-        <div>
-          <div class="section-title">Trip Details</div>
-          <div class="section-sub">Tell us about your journey</div>
-        </div>
-      </div>
-      <div class="section-body">
-        <div class="form-row">
-          <div class="form-group">
-            <label>No. of Passengers <span class="req">*</span></label>
-            <select id="custPax">
-              <option value="">Select passengers</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>Pickup Date <span class="req">*</span></label>
-            <input type="text" id="pickupDate" placeholder="📅 Select date..." readonly style="cursor:pointer;background:white;">
-          </div>
-        </div>
-        <div class="form-row single">
-          <div class="form-group">
-            <label>Pickup Time <span class="req">*</span></label>
-            <input type="time" id="pickupTime" value="09:00">
-          </div>
-        </div>
+  <!-- ═══ BOOKING SECTION ═══ -->
+  <div id="bookingSection">
 
-        <div class="form-row">
-          <div class="form-group">
-            <label>📍 Pickup Location <span class="req">*</span></label>
-            <select id="pickupSelect" onchange="selectedPickup=this.value; updateLocPrice()">
-              <option value="">-- Select Pickup --</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>🏁 Drop-off Location <span class="req">*</span></label>
-            <select id="dropoffSelect" onchange="selectedDropoff=this.value; updateLocPrice()">
-              <option value="">-- Select Drop-off --</option>
-            </select>
+    <!-- STEP 1: CUSTOMER DETAILS -->
+    <div class="form-section active" id="sec1">
+      <div class="section-card">
+        <div class="section-head">
+          <div class="section-icon">👤</div>
+          <div>
+            <div class="section-title-text">Customer Details</div>
+            <div class="section-sub">Tell us about yourself</div>
           </div>
         </div>
-
-        <div id="locPriceDisplay" style="display:none">
-          <div class="price-display">
-            <div>
-              <div class="price-display-label">Estimated Route Price</div>
-              <div class="price-note" id="locPriceNote"></div>
+        <div class="section-body">
+          <div class="form-group">
+            <label>Country of Origin <span class="req">*</span></label>
+            <select id="custCountry"></select>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Age <span class="req">*</span></label>
+              <input type="number" id="custAge" value="25" min="18" max="99">
             </div>
-            <div class="price-display-amount" id="locPriceAmount">RM 0</div>
+            <div class="form-group">
+              <label>Profession <span class="req">*</span></label>
+              <select id="custProfession">
+                <option value="Employed">Employed</option>
+                <option value="Self Employed">Self Employed</option>
+                <option value="Tourist">Tourist</option>
+                <option value="Student">Student</option>
+              </select>
+            </div>
           </div>
         </div>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="goStep(2)">Continue to Vehicle →</button>
       </div>
     </div>
 
-    <div class="section-card">
-      <div class="section-head">
-        <div class="section-icon">💳</div>
-        <div>
-          <div class="section-title">Payment Method</div>
-          <div class="section-sub">Choose your preferred payment option</div>
+    <!-- STEP 2: VEHICLE SELECTION -->
+    <div class="form-section" id="sec2">
+      <div class="section-card">
+        <div class="section-head">
+          <div class="section-icon">🚘</div>
+          <div>
+            <div class="section-title-text">Vehicle Selection</div>
+            <div class="section-sub">Choose your preferred vehicle</div>
+          </div>
+        </div>
+        <div class="section-body">
+          <div class="car-preview">
+            <img id="displayImg" class="car-image" src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=800&q=80" alt="Vehicle">
+            <div class="car-select-wrap">
+              <select id="carSelect" onchange="updateUI()">
+                <option value="">Loading vehicles...</option>
+              </select>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="section-body">
-        <div class="payment-option selected" id="pay-qr" onclick="selectPayment('qr')">
-          <input type="radio" name="payment" value="qr" checked>
-          <div>
-            <div class="payment-label">🏦 QR / Bank Transfer</div>
-            <div class="payment-sub">Instant transfer via QR code or online banking</div>
+
+      <!-- WE ACCEPT STRIP -->
+      <div class="accept-strip">
+        <div class="accept-title">We Accept</div>
+        <div class="payment-logos">
+          <div class="pay-logo" title="Visa">
+            <svg viewBox="0 0 750 471" xmlns="http://www.w3.org/2000/svg"><rect width="750" height="471" rx="40" fill="#1434CB"/><text x="375" y="310" text-anchor="middle" font-family="Arial" font-weight="900" font-size="200" fill="white" font-style="italic">VISA</text></svg>
+          </div>
+          <div class="pay-logo" title="Mastercard">
+            <svg viewBox="0 0 152 96" xmlns="http://www.w3.org/2000/svg"><circle cx="52" cy="48" r="40" fill="#EB001B"/><circle cx="100" cy="48" r="40" fill="#F79E1B"/><path d="M76 18.6a40 40 0 010 58.8A40 40 0 0176 18.6z" fill="#FF5F00"/></svg>
+          </div>
+          <div class="pay-logo" title="PayPal" style="color:#003087;font-size:0.7rem;font-weight:900;letter-spacing:-0.5px">
+            <span style="color:#009cde">Pay</span><span style="color:#003087">Pal</span>
+          </div>
+          <div class="pay-logo" title="QRIS Indonesia" style="background:#e8f4ff;border-color:#cce4ff;">
+            <span style="color:#d42b2b;font-size:0.58rem;font-weight:900;">QRIS</span>
+          </div>
+          <div class="pay-logo" title="DuitNow QR" style="background:#fff0f0;border-color:#ffd0d0;">
+            <span style="color:#e2131a;font-size:0.58rem;font-weight:900;">DuitNow</span>
+          </div>
+          <div class="pay-logo" title="Alipay" style="background:#e8f6ff;border-color:#b3dcf5;">
+            <span style="color:#00a0e9;font-size:0.62rem;font-weight:900;">Alipay</span>
+          </div>
+          <div class="pay-logo" title="FPX Online Banking" style="background:#fff8e8;border-color:#ffe0a0;">
+            <span style="color:#f5a623;font-size:0.62rem;font-weight:900;">FPX</span>
+          </div>
+          <div class="pay-logo" title="Wise" style="background:#e8fff4;border-color:#9de8c8;">
+            <span style="color:#00b9a0;font-size:0.62rem;font-weight:900;">Wise</span>
           </div>
         </div>
-        <div class="payment-option" id="pay-paypal" onclick="selectPayment('paypal')">
-          <input type="radio" name="payment" value="paypal">
-          <div>
-            <div class="payment-label">🌐 PayPal</div>
-            <div class="payment-sub">+6% processing fee applies</div>
-          </div>
-        </div>
-        <div class="payment-option" id="pay-wise" onclick="selectPayment('wise')">
-          <input type="radio" name="payment" value="wise">
-          <div>
-            <div class="payment-label">💸 Wise Payment</div>
-            <div class="payment-sub">International transfer via Wise</div>
-          </div>
-        </div>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn btn-ghost" onclick="goStep(1)">← Back</button>
+        <button class="btn btn-primary" onclick="goStep(3)">Continue to Schedule →</button>
       </div>
     </div>
 
-    <div class="btn-row">
-      <button class="btn btn-primary" onclick="goStep(2)">
-        Continue to Vehicle Selection →
+    <!-- STEP 3: RENTAL SCHEDULE -->
+    <div class="form-section" id="sec3">
+      <div class="section-card">
+        <div class="section-head">
+          <div class="section-icon">📅</div>
+          <div>
+            <div class="section-title-text">Rental Schedule</div>
+            <div class="section-sub">Set your pickup and return dates</div>
+          </div>
+        </div>
+        <div class="section-body">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Pickup Date <span class="req">*</span></label>
+              <input type="text" id="pickupDate" placeholder="📅 Select date..." readonly style="cursor:pointer;background:white;">
+            </div>
+            <div class="form-group">
+              <label>Pickup Time</label>
+              <input type="time" id="pickupTime" value="10:00">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Pickup Location <span class="req">*</span></label>
+            <select id="pickupLoc" onchange="calculate()"></select>
+          </div>
+
+          <div class="loc-divider">↕ return</div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>Return Date <span class="req">*</span></label>
+              <input type="text" id="returnDate" placeholder="📅 Select date..." readonly style="cursor:pointer;background:white;">
+            </div>
+            <div class="form-group">
+              <label>Return Time</label>
+              <input type="time" id="returnTime" value="10:00">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Return Location <span class="req">*</span></label>
+            <select id="returnLoc" onchange="calculate()"></select>
+          </div>
+        </div>
+      </div>
+
+      <!-- PRICE SUMMARY -->
+      <div class="section-card">
+        <div class="section-head">
+          <div class="section-icon">💰</div>
+          <div>
+            <div class="section-title-text">Price Summary</div>
+            <div class="section-sub">Estimated booking cost</div>
+          </div>
+        </div>
+        <div class="section-body">
+          <div class="price-summary">
+            <div class="price-summary-head">💳 Booking Estimate</div>
+            <div class="price-row"><span>Daily Rate</span><span id="rateLabel">RM 0</span></div>
+            <div class="price-row"><span>Duration</span><span id="daysLabel" style="font-weight:700">Select Dates</span></div>
+            <div class="price-row"><span>Delivery Fee</span><span id="locationFeeLabel">RM 0.00</span></div>
+            <div class="price-row" id="discRow"><span>Discount / Surcharge</span><span id="discountLabel">- RM 0.00</span></div>
+            <div class="price-row before-deposit-row"><span>Subtotal</span><span id="subtotalLabel">RM 0.00</span></div>
+            <div class="price-row"><span>Security Deposit <span style="font-size:0.7rem;color:var(--ink-soft)">(Refundable)</span></span><span>RM 300.00</span></div>
+            <div class="total-price-box">
+              <div class="lbl">Grand Total</div>
+              <div class="amt" id="totalLabel">RM 0.00</div>
+            </div>
+          </div>
+          <div class="info-note">
+            <span>ℹ️</span>
+            <span>Price is an estimate. Final amount confirmed upon booking approval. Deposit fully refundable upon vehicle return in good condition.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn btn-ghost" onclick="goStep(2)">← Back</button>
+        <button class="btn btn-primary" onclick="goStep(4)">Review Booking →</button>
+      </div>
+    </div>
+
+    <!-- STEP 4: CONFIRM -->
+    <div class="form-section" id="sec4">
+      <div class="section-card">
+        <div class="section-head">
+          <div class="section-icon">✅</div>
+          <div>
+            <div class="section-title-text">Confirm Booking</div>
+            <div class="section-sub">Review your details before submitting</div>
+          </div>
+        </div>
+        <div class="section-body">
+          <div id="reviewContent"></div>
+        </div>
+      </div>
+
+      <div class="terms-box" id="termsBox">
+        <div class="terms-check-row">
+          <input type="checkbox" id="termsCheck" onchange="toggleButtons()">
+          <label for="termsCheck" id="termsDisplay">I agree to the Terms & Conditions.</label>
+        </div>
+        <div id="bookingLinks" class="links-container"></div>
+      </div>
+
+      <button class="btn btn-review" onclick="openReview()">🔍 View Full Booking Summary</button>
+      <button class="btn btn-wa" id="btnWa" onclick="handleSubmit('wa')" disabled>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Book via WhatsApp
       </button>
-    </div>
-  </div>
+      <button class="btn btn-email" id="btnEmail" onclick="handleSubmit('email')" disabled>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        Book via Email
+      </button>
 
-  <!-- STEP 2: VEHICLE -->
-  <div class="form-section" id="sec2">
+      <div class="btn-row">
+        <button class="btn btn-ghost" onclick="goStep(3)">← Edit Schedule</button>
+      </div>
+    </div>
+
+  </div><!-- /bookingSection -->
+
+  <!-- ═══ ADMIN SECTION ═══ -->
+  <div id="adminSection" style="display:none;">
     <div class="section-card">
-      <div class="section-head">
-        <div class="section-icon">🚘</div>
-        <div>
-          <div class="section-title">Choose Your Vehicle</div>
-          <div class="section-sub">Select the best fit for your group</div>
-        </div>
+      <div class="admin-head">
+        <h2>⚙️ Admin Panel</h2>
+        <p>Manage fleet, locations, pricing & settings</p>
       </div>
-      <div class="section-body">
-        <div class="vehicle-grid" id="vehicleGrid">
-          <div class="vehicle-empty">Loading vehicles...</div>
-        </div>
-      </div>
-    </div>
-    <!-- WE ACCEPT STRIP -->
-    <div class="accept-strip">
-      <div class="accept-title">We Accept</div>
-      <div class="payment-logos">
-        <!-- Visa -->
-        <div class="pay-logo" title="Visa">
-          <svg viewBox="0 0 750 471" xmlns="http://www.w3.org/2000/svg">
-            <rect width="750" height="471" rx="40" fill="#1434CB"/>
-            <text x="375" y="310" text-anchor="middle" font-family="Arial" font-weight="900" font-size="200" fill="white" font-style="italic">VISA</text>
-          </svg>
-        </div>
-        <!-- Mastercard -->
-        <div class="pay-logo" title="Mastercard">
-          <svg viewBox="0 0 152 96" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="52" cy="48" r="40" fill="#EB001B"/>
-            <circle cx="100" cy="48" r="40" fill="#F79E1B"/>
-            <path d="M76 18.6a40 40 0 010 58.8A40 40 0 0176 18.6z" fill="#FF5F00"/>
-          </svg>
-        </div>
-        <!-- PayPal -->
-        <div class="pay-logo" title="PayPal" style="color:#003087;font-size:0.72rem;font-weight:900;letter-spacing:-0.5px">
-          <span style="color:#009cde">Pay</span><span style="color:#003087">Pal</span>
-        </div>
-        <!-- QRIS Indonesia -->
-        <div class="pay-logo" title="QRIS Indonesia" style="background:#e8f4ff;border-color:#cce4ff;">
-          <span style="color:#d42b2b;font-size:0.6rem;font-weight:900;">QRIS</span>
-        </div>
-        <!-- DuitNow QR -->
-        <div class="pay-logo" title="DuitNow QR" style="background:#fff0f0;border-color:#ffd0d0;">
-          <span style="color:#e2131a;font-size:0.6rem;font-weight:900;">DuitNow</span>
-        </div>
-        <!-- Alipay -->
-        <div class="pay-logo" title="Alipay" style="background:#e8f6ff;border-color:#b3dcf5;">
-          <span style="color:#00a0e9;font-size:0.65rem;font-weight:900;">Alipay</span>
-        </div>
-        <!-- FPX -->
-        <div class="pay-logo" title="FPX Online Banking" style="background:#fff8e8;border-color:#ffe0a0;">
-          <span style="color:#f5a623;font-size:0.65rem;font-weight:900;">FPX</span>
-        </div>
-        <!-- Wise -->
-        <div class="pay-logo" title="Wise" style="background:#e8fff4;border-color:#9de8c8;">
-          <span style="color:#00b9a0;font-size:0.65rem;font-weight:900;">Wise</span>
-        </div>
-      </div>
-    </div>
+      <div class="admin-body">
 
-    <div class="btn-row">
-      <button class="btn btn-ghost" onclick="goStep(1)">← Back</button>
-      <button class="btn btn-primary" onclick="goStep(3)">Continue to Extras →</button>
-    </div>
-  </div>
+        <div class="admin-section-title">Branding</div>
+        <div class="admin-form-box">
+          <label>Site Name</label><input type="text" id="confSiteName" placeholder="EZ Transport Rental">
+          <label>Tagline</label><input type="text" id="confTagline" placeholder="Luxury & Economy Vehicles...">
+          <label>Logo Image URL</label><input type="text" id="confLogoUrl" placeholder="https://...">
+          <button class="btn btn-save btn-sm" onclick="saveBranding()">💾 Save Branding</button>
+        </div>
 
-  <!-- STEP 3: ADDONS -->
-  <div class="form-section" id="sec3">
-    <div class="section-card">
-      <div class="section-head">
-        <div class="section-icon">✨</div>
-        <div>
-          <div class="section-title">Add-on Services</div>
-          <div class="section-sub">Optional extras to enhance your journey</div>
+        <div class="admin-section-title">Manage Vehicles</div>
+        <div class="admin-form-box">
+          <input type="hidden" id="editCarIdx" value="">
+          <label>Model Name</label><input type="text" id="newCarName" placeholder="e.g. Toyota Vios">
+          <label>Daily Rate (RM)</label><input type="number" id="newCarPrice" placeholder="e.g. 180">
+          <label>Image URL</label><input type="text" id="newCarImg" placeholder="https://...">
+          <button class="btn btn-save btn-sm" id="btnSaveCar" onclick="saveCar()">💾 Save Vehicle</button>
+          <button class="btn btn-ghost btn-sm" id="btnCancelCar" onclick="cancelEditCar()" style="display:none;margin-top:6px">✕ Cancel</button>
         </div>
-      </div>
-      <div class="section-body">
-        <div class="addon-list" id="addonList">
-          <div class="loc-empty">No add-ons available at this time.</div>
+        <div id="adminCarList"></div>
+
+        <div class="admin-section-title">Manage Locations</div>
+        <div class="admin-form-box">
+          <input type="hidden" id="editLocIdx" value="">
+          <label>Location Name</label><input type="text" id="newLocName" placeholder="e.g. KLIA Terminal 1">
+          <label>Delivery Fee (RM)</label><input type="number" id="newLocPrice" placeholder="0 = Free">
+          <button class="btn btn-save btn-sm" id="btnSaveLoc" onclick="saveLocation()">💾 Save Location</button>
+          <button class="btn btn-ghost btn-sm" id="btnCancelLoc" onclick="cancelEditLoc()" style="display:none;margin-top:6px">✕ Cancel</button>
         </div>
-        <div class="form-group" style="margin-top:20px">
-          <label>Special Notes / Requests</label>
-          <textarea id="custNote" placeholder="Any special requirements, flight numbers, hotel names, etc."></textarea>
+        <div id="adminLocList"></div>
+
+        <div class="admin-section-title">Manage Discounts (%)</div>
+        <div class="admin-form-box">
+          <input type="hidden" id="editDiscIdx" value="">
+          <div class="flex-row">
+            <div><label>Min Days</label><input type="number" id="discMinDays" placeholder="e.g. 7"></div>
+            <div><label>Max Days</label><input type="number" id="discMaxDays" placeholder="e.g. 13"></div>
+          </div>
+          <label>Discount %</label><input type="number" id="discPerc" placeholder="e.g. 10">
+          <button class="btn btn-save btn-sm" id="btnSaveDisc" onclick="saveDiscount()">💾 Save Discount</button>
+          <button class="btn btn-ghost btn-sm" id="btnCancelDisc" onclick="cancelEditDisc()" style="display:none;margin-top:6px">✕ Cancel</button>
         </div>
+        <div id="adminDiscList"></div>
+
+        <div class="admin-section-title">Special Dates (Surcharge %)</div>
+        <div class="info-note" style="margin-bottom:10px">⚠️ If booking overlaps these dates, discount is removed and surcharge applies.</div>
+        <div class="admin-form-box">
+          <input type="hidden" id="editSpecialIdx" value="">
+          <div class="flex-row">
+            <div><label>From</label><input type="date" id="specialFrom"></div>
+            <div><label>To</label><input type="date" id="specialTo"></div>
+          </div>
+          <label>Surcharge %</label><input type="number" id="specialPerc" placeholder="e.g. 20">
+          <button class="btn btn-save btn-sm" id="btnSaveSpecial" onclick="saveSpecialDate()">💾 Save Special Date</button>
+          <button class="btn btn-ghost btn-sm" id="btnCancelSpecial" onclick="cancelEditSpecial()" style="display:none;margin-top:6px">✕ Cancel</button>
+        </div>
+        <div id="adminSpecialList"></div>
+
+        <div class="admin-section-title">T&C Links</div>
+        <div class="admin-form-box">
+          <input type="hidden" id="editLinkIdx" value="">
+          <label>Link Label</label><input type="text" id="newLinkName" placeholder="e.g. Terms & Conditions PDF">
+          <label>URL</label><input type="text" id="newLinkUrl" placeholder="https://...">
+          <button class="btn btn-save btn-sm" id="btnSaveLink" onclick="saveLink()">💾 Save Link</button>
+          <button class="btn btn-ghost btn-sm" id="btnCancelLink" onclick="cancelEditLink()" style="display:none;margin-top:6px">✕ Cancel</button>
+        </div>
+        <div id="adminLinkList"></div>
+
+        <div class="admin-section-title">General Settings</div>
+        <div class="admin-form-box">
+          <label>WhatsApp Number</label><input type="text" id="confPhone" placeholder="60182246616">
+          <label>Admin Email</label><input type="email" id="confEmail" placeholder="admin@example.com">
+          <label>Terms & Conditions Text</label><input type="text" id="confTermsText" placeholder="I agree to the Terms...">
+          <button class="btn btn-save btn-sm" onclick="saveSettings()">💾 Update Settings</button>
+        </div>
+
+        <button class="btn btn-danger btn-sm" onclick="location.reload()" style="width:100%;margin-top:10px">🔄 Refresh App</button>
       </div>
     </div>
-    <div class="btn-row">
-      <button class="btn btn-ghost" onclick="goStep(2)">← Back</button>
-      <button class="btn btn-primary" onclick="goStep(4)">Review Booking →</button>
-    </div>
-  </div>
-
-  <!-- STEP 4: CONFIRM -->
-  <div class="form-section" id="sec4">
-    <div class="summary-box">
-      <div class="summary-title">📋 Booking Summary</div>
-      <div id="summaryContent"></div>
-    </div>
-
-    <div class="terms-wrap" id="termsWrap">
-      <input type="checkbox" id="termsCheck" onchange="toggleSendBtn()">
-      <span class="terms-check-icon">✅</span>
-      <div>
-        <label for="termsCheck" id="termsLabel">I agree to the Terms & Conditions of My-Easytransport.com</label>
-        <div>
-          <a href="#" id="termsLinkEl" class="terms-link" target="_blank" style="display:none">
-            📄 Read Terms & Conditions
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <button class="btn btn-wa" id="btnSendWA" onclick="sendWA()" disabled style="width:100%; margin-bottom:10px; font-size:0.95rem; padding:16px;">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-      Send Booking via WhatsApp
-    </button>
-
-    <div class="btn-row">
-      <button class="btn btn-ghost" onclick="goStep(3)">← Edit Booking</button>
-    </div>
-  </div>
+  </div><!-- /adminSection -->
 
 </div><!-- /main -->
 
-<!-- ── TRUST STRIP ── -->
-<div class="trust-footer">
-  <div class="trust-inner">
-    <div class="trust-items">
-      <div class="trust-item"><div class="trust-icon">🚗</div><div class="trust-lbl">Professional Drivers</div></div>
-      <div class="trust-item"><div class="trust-icon">🛡️</div><div class="trust-lbl">Fully Insured</div></div>
-      <div class="trust-item"><div class="trust-icon">⏰</div><div class="trust-lbl">On-Time Guarantee</div></div>
-      <div class="trust-item"><div class="trust-icon">📞</div><div class="trust-lbl">24/7 Support</div></div>
-      <div class="trust-item"><div class="trust-icon">✅</div><div class="trust-lbl">Verified Reviews</div></div>
-    </div>
+<!-- BOOKING TRUST STRIP (only in booking) -->
+<div id="trustStrip">
+  <div class="trust-strip">
+    <div class="trust-item"><div class="trust-icon">🛡️</div><div class="trust-lbl">Fully Insured</div></div>
+    <div class="trust-item"><div class="trust-icon">✅</div><div class="trust-lbl">Verified Fleet</div></div>
+    <div class="trust-item"><div class="trust-icon">📍</div><div class="trust-lbl">KL Pickup</div></div>
+    <div class="trust-item"><div class="trust-icon">🔒</div><div class="trust-lbl">Safe Payment</div></div>
+  </div>
+  <div class="bottom-actions">
+    <a href="https://eztransportrental.com.my/car-rental-kuala-lumpur/" target="_blank" class="btn-bottom btn-back">← Back to Main Menu</a>
+    <a href="https://wa.me/60182246616" target="_blank" class="btn-bottom btn-help">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Need Help?
+    </a>
   </div>
 </div>
 
-<!-- ── COMPANY FOOTER ── -->
+<!-- COMPANY FOOTER -->
 <div class="company-footer">
   <div class="company-footer-top">
-
-    <!-- Brand Column -->
     <div class="cf-brand">
       <div class="cf-logo-row">
-        <div class="cf-icon">🚗</div>
+        <div class="cf-icon" id="cfLogoWrap">🚗</div>
         <div>
-          <div class="cf-logo-name">My-Easy<span>transport</span>.com</div>
+          <div class="cf-logo-name" id="cfSiteName">EZ Transport <em>Rental</em></div>
         </div>
       </div>
-      <div class="cf-tagline">Premium Car Rental with Driver Services across Malaysia & Beyond.</div>
-      <div class="cf-reg">Wholly Owned by<br><strong style="color:rgba(255,255,255,0.6)">Ikhlas Nineteen Resources</strong><br><span style="font-size:0.65rem;color:rgba(255,255,255,0.3)">(001561921K)</span></div>
+      <div class="cf-tagline">Premium car rental services across Malaysia & Beyond.</div>
+      <div class="cf-reg">
+        Wholly Owned by<br>
+        <strong style="color:rgba(255,255,255,0.5)">Ikhlas Nineteen Resources</strong><br>
+        <span style="font-size:0.62rem">(001561921K)</span>
+      </div>
     </div>
-
-    <!-- About Column -->
     <div>
       <div class="cf-section-title">About Us</div>
       <div class="cf-about-text">
-        <strong>eztransportrental.com.my</strong> is Wholly Owned by<br>
-        <strong>Ikhlas Nineteen Resources (001561921K)</strong><br><br>
-        We provide professional, reliable, and comfortable transportation solutions for individuals, families, and corporate clients throughout Malaysia.
+        <strong>eztransportrental.com.my</strong> is Wholly Owned by <strong>Ikhlas Nineteen Resources (001561921K)</strong>.<br><br>
+        We provide professional, reliable and comfortable transportation for individuals, families and corporate clients throughout Malaysia.
       </div>
     </div>
-
-    <!-- Contact Column -->
     <div>
       <div class="cf-section-title">Contact Us</div>
       <div class="cf-contact-item">
         <div class="cf-contact-icon">📞</div>
-        <div class="cf-contact-text">
-          <a href="tel:+60390782003">+60 3-9078 2003</a>
-        </div>
+        <div class="cf-contact-text"><a href="tel:+60390782003">+60 3-9078 2003</a></div>
       </div>
       <div class="cf-contact-item">
         <div class="cf-contact-icon">✉️</div>
-        <div class="cf-contact-text">
-          <a href="mailto:customer.care@eztransportrental.com.my">customer.care@eztransportrental.com.my</a>
-        </div>
+        <div class="cf-contact-text"><a href="mailto:customer.care@eztransportrental.com.my">customer.care@eztransportrental.com.my</a></div>
       </div>
       <div class="cf-contact-item">
         <div class="cf-contact-icon">📍</div>
-        <div class="cf-contact-text">
-          PW23-1 ONE MON'T KIARA,<br>
-          No. 1 Jalan Kiara,<br>
-          50480 Kuala Lumpur.
-        </div>
+        <div class="cf-contact-text">PW23-1 ONE MON'T KIARA,<br>No. 1 Jalan Kiara,<br>50480 Kuala Lumpur.</div>
       </div>
       <div class="cf-contact-item">
         <div class="cf-contact-icon">🌐</div>
-        <div class="cf-contact-text">
-          <a href="https://eztransportrental.com.my" target="_blank">eztransportrental.com.my</a>
-        </div>
+        <div class="cf-contact-text"><a href="https://eztransportrental.com.my" target="_blank">eztransportrental.com.my</a></div>
       </div>
     </div>
-
   </div>
-  <div style="max-width:900px;margin:0 auto;">
+  <div style="max-width:680px;margin:0 auto;">
     <div class="company-footer-bottom">
-      <div class="cf-copy">© 2025 <a href="https://eztransportrental.com.my" target="_blank">EZTransportRental.com.my</a> · All Rights Reserved · Ikhlas Nineteen Resources (001561921K)</div>
-      <div class="cf-copy">Powered by My-Easytransport.com</div>
+      <div class="cf-copy">© 2025 <a href="https://eztransportrental.com.my" target="_blank">EZTransportRental.com.my</a> · Ikhlas Nineteen Resources (001561921K)</div>
+      <div class="cf-copy">All Rights Reserved</div>
     </div>
   </div>
 </div>
 
-<!-- ── TOAST ── -->
+<!-- REVIEW MODAL -->
+<div id="reviewModal" class="modal-overlay">
+  <div class="modal-content">
+    <h3>📋 Booking Summary</h3>
+    <div id="reviewModalContent"></div>
+    <button class="btn btn-ghost" style="margin-top:18px" onclick="closeReview()">← Close & Edit</button>
+  </div>
+</div>
+
+<!-- TOAST -->
 <div class="toast" id="toast"></div>
 
-<!-- ── ADMIN PANEL ── -->
-<div id="adminPanel">
-  <div class="admin-modal">
-    <div class="admin-head">
-      <div>
-        <h2>⚙️ Admin Panel</h2>
-        <p>My-Easytransport.com · Management Console</p>
-      </div>
-      <button class="admin-close" onclick="closeAdmin()">✕</button>
-    </div>
-    <div class="admin-body">
-      <div class="admin-tabs">
-        <button class="admin-tab active" onclick="adminTab('vehicles', this)">🚘 Vehicles</button>
-        <button class="admin-tab" onclick="adminTab('locations', this)">📍 Locations</button>
-        <button class="admin-tab" onclick="adminTab('addons', this)">✨ Add-ons</button>
-        <button class="admin-tab" onclick="adminTab('settings', this)">⚙️ Settings</button>
-      </div>
-
-      <!-- VEHICLES -->
-      <div class="admin-tab-content active" id="atab-vehicles">
-        <div class="admin-form-box">
-          <input type="hidden" id="editVehId">
-          <label>Vehicle Name</label>
-          <input type="text" id="vehName" placeholder="e.g. Toyota Hiace">
-          <label>Max Passengers</label>
-          <input type="number" id="vehPax" placeholder="e.g. 12">
-          <label>Description</label>
-          <input type="text" id="vehDesc" placeholder="e.g. Spacious MPV with A/C">
-          <label>Photo URL</label>
-          <input type="text" id="vehImg" placeholder="https://...">
-          <label>Price Info (optional)</label>
-          <input type="text" id="vehPrice" placeholder="e.g. From RM 350/trip">
-          <div class="btn-row" style="margin-top:10px">
-            <button class="btn btn-primary btn-sm" onclick="saveVehicle()">💾 Save Vehicle</button>
-            <button class="btn btn-ghost btn-sm" id="btnCancelVeh" onclick="cancelVeh()" style="display:none">✕ Cancel</button>
-          </div>
-        </div>
-        <div id="adminVehList"></div>
-      </div>
-
-      <!-- LOCATIONS -->
-      <div class="admin-tab-content" id="atab-locations">
-        <div class="admin-form-box">
-          <input type="hidden" id="editLocId">
-          <label>Location Name</label>
-          <input type="text" id="locName" placeholder="e.g. KLIA Terminal 1">
-          <label>Zone / Info (optional)</label>
-          <input type="text" id="locZone" placeholder="e.g. Airport Zone">
-          <label>Price (RM) — shown to customer</label>
-          <input type="number" id="locPrice" placeholder="e.g. 150">
-          <div class="btn-row" style="margin-top:10px">
-            <button class="btn btn-primary btn-sm" onclick="saveLoc()">💾 Save Location</button>
-            <button class="btn btn-ghost btn-sm" id="btnCancelLoc" onclick="cancelLoc()" style="display:none">✕ Cancel</button>
-          </div>
-        </div>
-        <div id="adminLocList"></div>
-      </div>
-
-      <!-- ADDONS -->
-      <div class="admin-tab-content" id="atab-addons">
-        <div class="admin-form-box">
-          <input type="hidden" id="editAddonId">
-          <label>Add-on Name</label>
-          <input type="text" id="addonName" placeholder="e.g. Child Seat">
-          <label>Price (RM)</label>
-          <input type="number" id="addonPrice" placeholder="e.g. 30">
-          <label>Description</label>
-          <input type="text" id="addonDesc" placeholder="e.g. Safety-certified infant seat">
-          <div class="btn-row" style="margin-top:10px">
-            <button class="btn btn-primary btn-sm" onclick="saveAddon()">💾 Save Add-on</button>
-            <button class="btn btn-ghost btn-sm" id="btnCancelAddon" onclick="cancelAddon()" style="display:none">✕ Cancel</button>
-          </div>
-        </div>
-        <div id="adminAddonList"></div>
-      </div>
-
-      <!-- SETTINGS -->
-      <div class="admin-tab-content" id="atab-settings">
-        <div class="admin-form-box">
-          <label>Site Name (Hero Title)</label>
-          <input type="text" id="confSiteName" placeholder="My-Easytransport.com">
-          <label>Tagline (Hero Subtitle)</label>
-          <input type="text" id="confTagline" placeholder="Car Rental with Driver · KL & Beyond">
-          <label>Logo Image URL (leave blank for emoji)</label>
-          <input type="text" id="confLogoUrl" placeholder="https://your-logo.com/logo.png">
-          <label>WhatsApp Number 1</label>
-          <input type="text" id="confWA1" placeholder="60182246616">
-          <label>WhatsApp Number 2</label>
-          <input type="text" id="confWA2" placeholder="601110025084">
-          <label>Max Passengers (global)</label>
-          <input type="number" id="confMaxPax" placeholder="16">
-          <label>Terms & Conditions Text</label>
-          <textarea id="confTermsText" placeholder="I agree to the Terms & Conditions..."></textarea>
-          <label>Terms & Conditions Link URL</label>
-          <input type="text" id="confTermsLink" placeholder="https://...">
-          <div class="btn-row" style="margin-top:10px">
-            <button class="btn btn-primary btn-sm" onclick="saveSettings()">💾 Save Settings</button>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</div>
-
 <script>
-// ─────────────────────────────────────
-// FIREBASE
-// ─────────────────────────────────────
+// ── FIREBASE ──
 const firebaseConfig = {
   apiKey: "AIzaSyBJa05_OVkBGWrwaFFNFGop2Sp4w4eM_J0",
   authDomain: "car-rental-system-5f0f2.firebaseapp.com",
@@ -1307,420 +1054,530 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
 
-// ─────────────────────────────────────
-// STATE
-// ─────────────────────────────────────
+// ── CONSTANTS ──
 const ADMIN_PASS = "123iin456";
-const DEFAULT_WA1 = "60182246616";
-const DEFAULT_WA2 = "601110025084";
+const DEPOSIT = 300;
+const MIN_DAYS = 2;
 
-let settings = {}, vehicles = {}, locations = {}, addons = {};
-let selectedPickup = null, selectedDropoff = null, selectedVehicle = null;
-let addonQtys = {};
-let waTurn = 1;
+// ── STATE ──
+let inventory = {}, locations = {}, discounts = {}, specialDates = {}, links = {}, settings = {};
+let currentTotals = { days: 0, rentalCost: 0, locFee: 0, discVal: 0, preDeposit: 0, grand: 0, isSpecial: false, specialRate: 0 };
 let currentStep = 1;
 let adminClicks = 0;
+let fpPickup = null, fpReturn = null;
 
-// ─────────────────────────────────────
-// INIT
-// ─────────────────────────────────────
-// ─────────────────────────────────────
-// PAYMENT METHOD
-// ─────────────────────────────────────
-let selectedPayment = 'qr';
-function selectPayment(val) {
-  selectedPayment = val;
-  ['qr','paypal','wise'].forEach(p => {
-    const el = document.getElementById('pay-' + p);
-    el.classList.toggle('selected', p === val);
-    el.querySelector('input').checked = (p === val);
-  });
-}
+// ── COUNTRIES ──
+const countries = ["Malaysia","Singapore","Brunei","Indonesia","Thailand","Afghanistan","Albania","Algeria","Andorra","Angola","Antigua and Barbuda","Argentina","Armenia","Australia","Austria","Azerbaijan","Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bhutan","Bolivia","Bosnia and Herzegovina","Botswana","Brazil","Bulgaria","Burkina Faso","Burundi","Cabo Verde","Cambodia","Cameroon","Canada","Central African Republic","Chad","Chile","China","Colombia","Comoros","Congo","Costa Rica","Croatia","Cuba","Cyprus","Czech Republic","Denmark","Djibouti","Dominica","Dominican Republic","Ecuador","Egypt","El Salvador","Equatorial Guinea","Eritrea","Estonia","Eswatini","Ethiopia","Fiji","Finland","France","Gabon","Gambia","Georgia","Germany","Ghana","Greece","Grenada","Guatemala","Guinea","Guinea-Bissau","Guyana","Haiti","Honduras","Hungary","Iceland","India","Iran","Iraq","Ireland","Israel","Italy","Jamaica","Japan","Jordan","Kazakhstan","Kenya","Kiribati","Korea (North)","Korea (South)","Kuwait","Kyrgyzstan","Laos","Latvia","Lebanon","Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg","Madagascar","Malawi","Maldives","Mali","Malta","Marshall Islands","Mauritania","Mauritius","Mexico","Micronesia","Moldova","Monaco","Mongolia","Montenegro","Morocco","Mozambique","Myanmar","Namibia","Nauru","Nepal","Netherlands","New Zealand","Nicaragua","Niger","Nigeria","North Macedonia","Norway","Oman","Pakistan","Palau","Palestine","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Poland","Portugal","Qatar","Romania","Russia","Rwanda","Saint Kitts and Nevis","Saint Lucia","Saint Vincent and the Grenadines","Samoa","San Marino","Sao Tome and Principe","Saudi Arabia","Senegal","Serbia","Seychelles","Sierra Leone","Slovakia","Slovenia","Solomon Islands","Somalia","South Africa","South Sudan","Spain","Sri Lanka","Sudan","Suriname","Sweden","Switzerland","Syria","Taiwan","Tajikistan","Tanzania","Togo","Tonga","Trinidad and Tobago","Tunisia","Turkey","Turkmenistan","Tuvalu","Uganda","Ukraine","United Arab Emirates","United Kingdom","United States","Uruguay","Uzbekistan","Vanuatu","Vatican City","Venezuela","Vietnam","Yemen","Zambia","Zimbabwe"];
 
-// ─────────────────────────────────────
-// DATE — FLATPICKR CALENDAR
-// ─────────────────────────────────────
-let fpInstance = null;
-function initFlatpickr() {
-  fpInstance = flatpickr('#pickupDate', {
-    dateFormat: 'd/m/Y',
-    minDate: 'today',
-    disableMobile: false,
+// ── INIT ──
+function initApp() {
+  document.getElementById('custCountry').innerHTML = countries.map(c => `<option value="${c}" ${c==='Malaysia'?'selected':''}>${c}</option>`).join('');
+
+  // Flatpickr for dates
+  fpPickup = flatpickr('#pickupDate', {
+    dateFormat: 'd/m/Y', minDate: 'today', disableMobile: false,
     locale: { firstDayOfWeek: 1 },
-    onChange: function(selectedDates, dateStr) {
-      // nothing extra needed
-    }
+    onChange: () => calculate()
+  });
+  fpReturn = flatpickr('#returnDate', {
+    dateFormat: 'd/m/Y', minDate: 'today', disableMobile: false,
+    locale: { firstDayOfWeek: 1 },
+    onChange: () => calculate()
+  });
+
+  db.ref('ez_settings').on('value', snap => {
+    settings = snap.val() || { termsText: "I agree to the Terms & Conditions.", adminEmail: "customer.care@eztransportrental.com.my", adminPhone: "60182246616" };
+    document.getElementById('termsDisplay').innerText = settings.termsText || "I agree to the Terms & Conditions.";
+    if (document.getElementById('confTermsText')) document.getElementById('confTermsText').value = settings.termsText || "";
+    if (document.getElementById('confEmail')) document.getElementById('confEmail').value = settings.adminEmail || "";
+    if (document.getElementById('confPhone')) document.getElementById('confPhone').value = settings.adminPhone || "";
+    if (document.getElementById('confSiteName')) document.getElementById('confSiteName').value = settings.siteName || "";
+    if (document.getElementById('confTagline')) document.getElementById('confTagline').value = settings.tagline || "";
+    if (document.getElementById('confLogoUrl')) document.getElementById('confLogoUrl').value = settings.logoUrl || "";
+    applyBranding();
+  });
+
+  db.ref('ez_inventory').on('value', snap => { inventory = snap.val() || {}; renderCarOptions(); renderAdminCars(); updateUI(); });
+  db.ref('ez_locations').on('value', snap => { locations = snap.val() || {}; renderLocOptions(); renderAdminLocs(); calculate(); });
+  db.ref('ez_discounts').on('value', snap => { discounts = snap.val() || {}; renderAdminDiscs(); calculate(); });
+  db.ref('ez_special_dates').on('value', snap => { specialDates = snap.val() || {}; renderAdminSpecial(); calculate(); });
+  db.ref('ez_links').on('value', snap => { links = snap.val() || {}; renderAdminLinks(); renderBookingLinks(); });
+
+  db.ref(".info/connected").on("value", snap => {
+    const dot = document.getElementById('status-dot');
+    const txt = document.getElementById('status-text');
+    if (snap.val()) { dot.className = "dot dot-online"; txt.innerText = "Cloud Synced ✓"; }
+    else { dot.className = "dot dot-offline"; txt.innerText = "Offline - Connecting..."; }
   });
 }
-function isValidDate(str) {
-  if (!str) return false;
-  const p = str.split('/');
-  if (p.length !== 3 || p[2].length !== 4) return false;
-  const d = parseInt(p[0]), m = parseInt(p[1]), y = parseInt(p[2]);
-  if (d < 1 || d > 31 || m < 1 || m > 12 || y < 2024) return false;
-  return true;
-}
 
-// ─────────────────────────────────────
-// HERO BRANDING
-// ─────────────────────────────────────
-function applyHeroBranding() {
-  const name = settings.siteName || 'My-Easytransport.com';
-  const tag  = settings.tagline  || 'Car Rental with Driver · KL & Beyond';
+// ── BRANDING ──
+function applyBranding() {
+  const name = settings.siteName || 'EZ Transport Rental';
+  const tag  = settings.tagline  || 'Luxury & Economy Vehicles · Airport Transfers · City Rides';
   const logo = settings.logoUrl  || '';
 
-  // Site name
   const nameEl = document.getElementById('heroSiteName');
-  if (nameEl) nameEl.textContent = name;
+  if (nameEl) nameEl.innerHTML = name.includes(' ') ? name.replace(/(\S+)\s(.+)/, '$1 <em>$2</em>') : name;
 
-  // Tagline
   const tagEl = document.getElementById('heroTagline');
   if (tagEl) tagEl.textContent = tag;
 
-  // Logo
-  const logoWrap = document.getElementById('heroLogoWrap');
-  if (logoWrap) {
-    if (logo) {
-      logoWrap.innerHTML = `<img src="${logo}" class="hero-logo-img" alt="Logo" onerror="this.parentElement.innerHTML='🚗'">`;
-      logoWrap.style.background = 'transparent';
-      logoWrap.style.boxShadow  = 'none';
+  ['heroLogoWrap','cfLogoWrap'].forEach(id => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    if (logo) { el.innerHTML = `<img src="${logo}" class="${id === 'heroLogoWrap' ? 'hero-logo-img' : 'cf-logo-img'}" alt="Logo" onerror="this.parentElement.innerHTML='🚗'">`; el.style.background = 'transparent'; el.style.boxShadow = 'none'; }
+    else { el.innerHTML = '🚗'; el.style.background = ''; el.style.boxShadow = ''; }
+  });
+
+  const cfName = document.getElementById('cfSiteName');
+  if (cfName) cfName.innerHTML = name.includes(' ') ? name.replace(/(\S+)\s(.+)/, '$1 <em>$2</em>') : name;
+}
+
+// ── RENDER CAR OPTIONS ──
+function renderCarOptions() {
+  const sel = document.getElementById('carSelect');
+  const cur = sel.value;
+  sel.innerHTML = Object.keys(inventory).map(id =>
+    `<option value="${id}">${inventory[id].name} — RM ${inventory[id].price}/day</option>`
+  ).join('') || '<option value="">No vehicles available</option>';
+  if (inventory[cur]) sel.value = cur;
+}
+
+// ── RENDER LOC OPTIONS ──
+function renderLocOptions() {
+  const html = Object.keys(locations).map(id =>
+    `<option value="${id}">${locations[id].name} (RM ${locations[id].price})</option>`
+  ).join('') || '<option value="">No locations</option>';
+  document.getElementById('pickupLoc').innerHTML = html;
+  document.getElementById('returnLoc').innerHTML = html;
+  calculate();
+}
+
+// ── UPDATE UI ──
+function updateUI() {
+  const carId = document.getElementById('carSelect').value;
+  if (inventory[carId]) {
+    document.getElementById('displayImg').src = inventory[carId].img || "https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=800&q=80";
+  }
+  calculate();
+}
+
+// ── CALCULATE ──
+function calculate() {
+  const carId = document.getElementById('carSelect').value;
+  if (!inventory[carId]) return;
+  const car = inventory[carId];
+
+  const d1str = document.getElementById('pickupDate').value;
+  const d2str = document.getElementById('returnDate').value;
+  const pLocId = document.getElementById('pickupLoc').value;
+  const rLocId = document.getElementById('returnLoc').value;
+  const locFees = (locations[pLocId]?.price || 0) + (locations[rLocId]?.price || 0);
+
+  if (d1str && d2str) {
+    // Parse DD/MM/YYYY from flatpickr
+    const parseDate = str => { const p = str.split('/'); return new Date(p[2], p[1]-1, p[0]); };
+    const start = parseDate(d1str);
+    const end   = parseDate(d2str);
+    const days  = Math.ceil((end - start) / (1000 * 60 * 60 * 24));
+
+    if (days < MIN_DAYS) {
+      document.getElementById('daysLabel').innerText = `Min. ${MIN_DAYS} Days Required`;
+      document.getElementById('daysLabel').style.color = "var(--red)";
+      document.getElementById('totalLabel').innerText = "RM 0.00";
+      currentTotals.grand = 0; toggleButtons(); return;
+    }
+
+    document.getElementById('daysLabel').innerText = `${days} Days`;
+    document.getElementById('daysLabel').style.color = "var(--ink)";
+
+    const rentalBase = days * parseFloat(car.price);
+    let discVal = 0, surchargeVal = 0, isSpecial = false, specialPercent = 0;
+
+    // Check special dates
+    Object.values(specialDates).forEach(sd => {
+      const sFrom = new Date(sd.from); const sTo = new Date(sd.to);
+      if ((start <= sTo && start >= sFrom) || (end <= sTo && end >= sFrom) || (start <= sFrom && end >= sTo)) {
+        isSpecial = true; specialPercent = sd.percent;
+      }
+    });
+
+    if (isSpecial) {
+      surchargeVal = (specialPercent / 100) * rentalBase;
+      document.getElementById('discountLabel').innerHTML = `<span style="color:var(--red)">+ RM ${surchargeVal.toFixed(2)} (+${specialPercent}%)</span>`;
     } else {
-      logoWrap.innerHTML = '🚗';
-      logoWrap.style.background = '';
-      logoWrap.style.boxShadow  = '';
+      let bestDisc = 0;
+      Object.values(discounts).forEach(d => { if (days >= d.min && days <= d.max && d.percent > bestDisc) bestDisc = d.percent; });
+      discVal = (bestDisc / 100) * rentalBase;
+      document.getElementById('discountLabel').innerHTML = `- RM ${discVal.toFixed(2)} (${bestDisc}%)`;
     }
+
+    const subtotal = rentalBase + locFees + surchargeVal - discVal;
+    const grand = subtotal + DEPOSIT;
+    currentTotals = { days, rentalCost: rentalBase, locFee: locFees, discVal: isSpecial ? -surchargeVal : discVal, preDeposit: subtotal, grand, isSpecial, specialRate: specialPercent };
+
+    document.getElementById('rateLabel').innerText = `RM ${parseFloat(car.price).toFixed(2)}`;
+    document.getElementById('locationFeeLabel').innerText = `RM ${locFees.toFixed(2)}`;
+    document.getElementById('subtotalLabel').innerText = `RM ${subtotal.toFixed(2)}`;
+    document.getElementById('totalLabel').innerText = `RM ${grand.toFixed(2)}`;
   }
+  toggleButtons();
 }
 
-// ─────────────────────────────────────
-// LOCATION PRICE DISPLAY
-// ─────────────────────────────────────
-function updateLocPrice() {
-  const pId = document.getElementById('pickupSelect').value;
-  const dId = document.getElementById('dropoffSelect').value;
-  const box = document.getElementById('locPriceDisplay');
-  if (pId && dId && locations[pId] && locations[dId]) {
-    const pPrice = parseFloat(locations[pId].price || 0);
-    const dPrice = parseFloat(locations[dId].price || 0);
-    const total = pPrice + dPrice;
-    document.getElementById('locPriceAmount').innerText = total > 0 ? 'RM ' + total.toFixed(2) : 'Contact for Quote';
-    document.getElementById('locPriceNote').innerText = locations[pId].name + ' → ' + locations[dId].name;
-    box.style.display = 'block';
-    selectedPickup = pId;
-    selectedDropoff = dId;
-  } else {
-    box.style.display = 'none';
-  }
-}
-
-function initApp() {
-  // Init calendar picker
-  initFlatpickr();
-
-  db.ref('ez_settings').on('value', snap => {
-    settings = snap.val() || { wa1: DEFAULT_WA1, wa2: DEFAULT_WA2, maxPax: 16, termsText: "I agree to the Terms & Conditions of My-Easytransport.com", termsLink: "" };
-    renderPassengerOptions();
-    document.getElementById('termsLabel').innerText = settings.termsText || "I agree to the Terms & Conditions of My-Easytransport.com";
-    // Terms link
-    const linkEl = document.getElementById('termsLinkEl');
-    if (settings.termsLink) { linkEl.href = settings.termsLink; linkEl.style.display = 'inline-flex'; }
-    else { linkEl.style.display = 'none'; }
-    // Apply hero branding
-    applyHeroBranding();
-    // Sync admin fields
-    if (document.getElementById('confWA1')) {
-      document.getElementById('confWA1').value = settings.wa1 || DEFAULT_WA1;
-      document.getElementById('confWA2').value = settings.wa2 || DEFAULT_WA2;
-      document.getElementById('confMaxPax').value = settings.maxPax || 16;
-      document.getElementById('confTermsText').value = settings.termsText || "";
-      document.getElementById('confTermsLink').value = settings.termsLink || "";
-      document.getElementById('confSiteName').value = settings.siteName || "";
-      document.getElementById('confTagline').value = settings.tagline || "";
-      document.getElementById('confLogoUrl').value = settings.logoUrl || "";
-    }
-  });
-
-  db.ref('ez_vehicles').on('value', snap => {
-    vehicles = snap.val() || {};
-    renderVehicleGrid();
-    renderAdminVehicles();
-  });
-
-  db.ref('ez_locations').on('value', snap => {
-    locations = snap.val() || {};
-    renderLocationGrids();
-    renderAdminLocations();
-  });
-
-  db.ref('ez_addons').on('value', snap => {
-    addons = snap.val() || {};
-    renderAddonList();
-    renderAdminAddons();
-  });
-}
-
-// ─────────────────────────────────────
-// PASSENGER OPTIONS
-// ─────────────────────────────────────
-function renderPassengerOptions() {
-  const sel = document.getElementById('custPax');
-  const prev = sel.value;
-  sel.innerHTML = '<option value="">Select passengers</option>';
-  const max = parseInt(settings.maxPax || 16);
-  for (let i = 1; i <= max; i++) {
-    sel.innerHTML += `<option value="${i}" ${prev == i ? 'selected' : ''}>${i} Passenger${i > 1 ? 's' : ''}</option>`;
-  }
-}
-
-// ─────────────────────────────────────
-// LOCATION DROPDOWNS
-// ─────────────────────────────────────
-function renderLocationGrids() {
-  const keys = Object.keys(locations);
-  const baseOpts = '<option value="">-- Select --</option>';
-  const opts = keys.map(id => {
-    const l = locations[id];
-    const priceStr = l.price && parseFloat(l.price) > 0 ? ` (RM ${parseFloat(l.price).toFixed(2)})` : '';
-    return `<option value="${id}">${l.name}${priceStr}</option>`;
-  }).join('');
-
-  const ps = document.getElementById('pickupSelect');
-  const ds = document.getElementById('dropoffSelect');
-  if (ps) { ps.innerHTML = baseOpts + opts; if (selectedPickup) ps.value = selectedPickup; }
-  if (ds) { ds.innerHTML = baseOpts + opts; if (selectedDropoff) ds.value = selectedDropoff; }
-  updateLocPrice();
-}
-
-// ─────────────────────────────────────
-// VEHICLE GRID
-// ─────────────────────────────────────
-function renderVehicleGrid() {
-  const grid = document.getElementById('vehicleGrid');
-  const keys = Object.keys(vehicles);
-  if (!keys.length) { grid.innerHTML = '<div class="vehicle-empty">No vehicles available yet.</div>'; return; }
-
-  grid.innerHTML = keys.map(id => {
-    const v = vehicles[id];
-    return `<div class="vehicle-card ${selectedVehicle === id ? 'selected' : ''}" onclick="selectVehicle('${id}')">
-      <div class="vehicle-img-wrap">
-        ${v.img ? `<img src="${v.img}" alt="${v.name}" onerror="this.style.display='none'">` : ''}
-        <div class="vehicle-img-placeholder">🚗</div>
-        <div class="vehicle-badge-sel">✓ Selected</div>
-      </div>
-      <div class="vehicle-info">
-        <div class="vehicle-name">${v.name}</div>
-        <div class="vehicle-pax">👥 Up to ${v.pax || '?'} passengers</div>
-        ${v.price ? `<div class="vehicle-price">${v.price}</div>` : ''}
-        ${v.desc ? `<div class="vehicle-desc">${v.desc}</div>` : ''}
-      </div>
-    </div>`;
-  }).join('');
-}
-
-function selectVehicle(id) {
-  selectedVehicle = id;
-  renderVehicleGrid();
-}
-
-// ─────────────────────────────────────
-// ADDON LIST
-// ─────────────────────────────────────
-function renderAddonList() {
-  const list = document.getElementById('addonList');
-  const keys = Object.keys(addons);
-  if (!keys.length) { list.innerHTML = '<div class="loc-empty">No add-ons available at this time.</div>'; return; }
-
-  list.innerHTML = keys.map(id => {
-    const a = addons[id];
-    const qty = addonQtys[id] || 0;
-    return `<div class="addon-item">
-      <div class="addon-info">
-        <div class="addon-name">${a.name}</div>
-        ${a.price ? `<div class="addon-price">RM ${parseFloat(a.price).toFixed(2)} each</div>` : ''}
-        ${a.desc ? `<div class="addon-desc">${a.desc}</div>` : ''}
-      </div>
-      <div class="addon-qty">
-        <button class="qty-btn" onclick="changeQty('${id}',-1)">−</button>
-        <div class="qty-num" id="qty-${id}">${qty}</div>
-        <button class="qty-btn" onclick="changeQty('${id}',1)">+</button>
-      </div>
-    </div>`;
-  }).join('');
-}
-
-function changeQty(id, delta) {
-  addonQtys[id] = Math.max(0, (addonQtys[id] || 0) + delta);
-  const el = document.getElementById(`qty-${id}`);
-  if (el) el.innerText = addonQtys[id];
-}
-
-// ─────────────────────────────────────
-// STEP NAVIGATION
-// ─────────────────────────────────────
+// ── STEP NAVIGATION ──
 function goStep(n) {
-  // Validate step 1
+  // Validate step 1 → 2
   if (n > 1) {
-    const pax = document.getElementById('custPax').value;
-    const date = document.getElementById('pickupDate').value;
-    if (!pax) { showToast('⚠️ Please select number of passengers'); return; }
-    if (!date || !isValidDate(date)) { showToast('⚠️ Please enter a valid date (DD/MM/YYYY)'); return; }
-    if (!selectedPickup) { showToast('⚠️ Please select a pickup location'); return; }
-    if (!selectedDropoff) { showToast('⚠️ Please select a drop-off location'); return; }
+    if (!document.getElementById('custCountry').value) { showToast('⚠️ Please select country'); return; }
+    if (!document.getElementById('custAge').value) { showToast('⚠️ Please enter age'); return; }
   }
-  // Validate step 2
-  if (n > 2 && !selectedVehicle) {
-    showToast('⚠️ Please select a vehicle'); return;
+  // Validate step 2 → 3
+  if (n > 2) {
+    if (!document.getElementById('carSelect').value) { showToast('⚠️ Please select a vehicle'); return; }
+  }
+  // Validate step 3 → 4
+  if (n > 3) {
+    if (!document.getElementById('pickupDate').value) { showToast('⚠️ Please select pickup date'); return; }
+    if (!document.getElementById('returnDate').value) { showToast('⚠️ Please select return date'); return; }
+    if (currentTotals.days < MIN_DAYS) { showToast(`⚠️ Minimum ${MIN_DAYS} days rental`); return; }
+    renderReview();
   }
 
   currentStep = n;
-  document.querySelectorAll('.form-section').forEach((s, i) => {
-    s.classList.toggle('active', i + 1 === n);
-  });
+  document.querySelectorAll('.form-section').forEach((s, i) => s.classList.toggle('active', i + 1 === n));
   document.querySelectorAll('.step-item').forEach((s, i) => {
     s.classList.remove('active', 'done');
     if (i + 1 < n) s.classList.add('done');
     if (i + 1 === n) s.classList.add('active');
   });
-
-  if (n === 4) renderSummary();
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-// ─────────────────────────────────────
-// SUMMARY
-// ─────────────────────────────────────
-function calcTotal() {
-  const pLocPrice = parseFloat(locations[selectedPickup]?.price || 0);
-  const dLocPrice = parseFloat(locations[selectedDropoff]?.price || 0);
-  let base = pLocPrice + dLocPrice;
-  // Add vehicle base price if numeric
-  const vPrice = vehicles[selectedVehicle]?.priceNum || 0;
-  base += vPrice;
-  // Addons
-  Object.keys(addonQtys).forEach(id => {
-    if (addonQtys[id] > 0 && addons[id]?.price) base += parseFloat(addons[id].price) * addonQtys[id];
-  });
-  // Payment surcharge
-  let tax = 0;
-  if (selectedPayment === 'paypal') tax = base * 0.06;
-  return { base, tax, total: base + tax };
-}
+// ── RENDER REVIEW (inline in step 4) ──
+function renderReview() {
+  const car = inventory[document.getElementById('carSelect').value];
+  const country = document.getElementById('custCountry').value;
+  const age = document.getElementById('custAge').value;
+  const profession = document.getElementById('custProfession').value;
+  const pickupL = locations[document.getElementById('pickupLoc').value]?.name || '-';
+  const returnL = locations[document.getElementById('returnLoc').value]?.name || '-';
 
-function renderSummary() {
-  const pickup = locations[selectedPickup]?.name || 'N/A';
-  const dropoff = locations[selectedDropoff]?.name || 'N/A';
-  const vehicle = vehicles[selectedVehicle]?.name || 'N/A';
-  const date = document.getElementById('pickupDate').value;
-  const time = document.getElementById('pickupTime').value;
-  const pax = document.getElementById('custPax').value;
-  const note = document.getElementById('custNote').value;
-  const payLabels = { qr: '🏦 QR / Bank Transfer', paypal: '🌐 PayPal (+6% fee)', wise: '💸 Wise Payment' };
+  document.getElementById('reviewContent').innerHTML = `
+    <div class="review-row"><span>Country</span><span>${country}</span></div>
+    <div class="review-row"><span>Age</span><span>${age} yrs · ${profession}</span></div>
+    <div class="review-row"><span>Vehicle</span><span>${car.name}</span></div>
+    <div class="review-row"><span>Pickup</span><span>${document.getElementById('pickupDate').value} · ${document.getElementById('pickupTime').value}</span></div>
+    <div class="review-row"><span>Return</span><span>${document.getElementById('returnDate').value} · ${document.getElementById('returnTime').value}</span></div>
+    <div class="review-row"><span>Pickup Loc</span><span>${pickupL}</span></div>
+    <div class="review-row"><span>Return Loc</span><span>${returnL}</span></div>
+    <div class="review-row"><span>Duration</span><span>${currentTotals.days} Days</span></div>
+    <div class="review-row"><span>Delivery Fee</span><span>RM ${currentTotals.locFee.toFixed(2)}</span></div>
+    <div class="review-row"><span>${currentTotals.isSpecial ? 'Surcharge' : 'Discount'}</span><span>RM ${Math.abs(currentTotals.discVal).toFixed(2)}</span></div>
+    <div class="review-row"><span>Subtotal</span><span>RM ${currentTotals.preDeposit.toFixed(2)}</span></div>
+    <div class="review-row"><span>Deposit</span><span>RM ${DEPOSIT.toFixed(2)}</span></div>
+    <div class="review-row" style="border-top:2px solid var(--gold);margin-top:8px;padding-top:12px">
+      <span style="color:var(--ink);font-weight:800;font-size:0.9rem">GRAND TOTAL</span>
+      <span style="color:var(--gold);font-family:Fraunces,serif;font-size:1.3rem;font-weight:700">RM ${currentTotals.grand.toFixed(2)}</span>
+    </div>`;
 
-  // Addons lines
-  const addonLines = Object.keys(addonQtys)
-    .filter(id => addonQtys[id] > 0)
-    .map(id => {
-      const cost = addonQtys[id] * parseFloat(addons[id]?.price || 0);
-      return `<div class="sum-row"><span class="sum-label">✨ ${addons[id]?.name} x${addonQtys[id]}</span><span class="sum-val">${cost > 0 ? 'RM ' + cost.toFixed(2) : addonQtys[id] + 'x'}</span></div>`;
-    }).join('');
-
-  const totals = calcTotal();
-  const pLocPrice = parseFloat(locations[selectedPickup]?.price || 0);
-  const dLocPrice = parseFloat(locations[selectedDropoff]?.price || 0);
-  const routePrice = pLocPrice + dLocPrice;
-
-  document.getElementById('summaryContent').innerHTML = `
-    <div class="sum-row"><span class="sum-label">👥 Passengers</span><span class="sum-val">${pax}</span></div>
-    <div class="sum-row"><span class="sum-label">📅 Date & Time</span><span class="sum-val gold">${date} · ${time}</span></div>
-    <div class="sum-row"><span class="sum-label">📍 Pickup</span><span class="sum-val">${pickup}</span></div>
-    <div class="sum-row"><span class="sum-label">🏁 Drop-off</span><span class="sum-val">${dropoff}</span></div>
-    ${routePrice > 0 ? `<div class="sum-row"><span class="sum-label">🛣️ Route Price</span><span class="sum-val">RM ${routePrice.toFixed(2)}</span></div>` : ''}
-    <div class="sum-row"><span class="sum-label">🚘 Vehicle</span><span class="sum-val gold">${vehicle}</span></div>
-    ${addonLines}
-    <div class="sum-row"><span class="sum-label">💳 Payment</span><span class="sum-val">${payLabels[selectedPayment] || 'QR / Bank Transfer'}</span></div>
-    ${totals.tax > 0 ? `<div class="sum-row"><span class="sum-label">📊 PayPal Fee (6%)</span><span class="sum-val">RM ${totals.tax.toFixed(2)}</span></div>` : ''}
-    ${totals.total > 0 ? `<div class="sum-row" style="border-top:1px solid rgba(255,255,255,0.15);margin-top:8px;padding-top:12px"><span class="sum-label" style="color:var(--gold-light);font-size:0.8rem">💰 ESTIMATED TOTAL</span><span class="sum-val" style="color:var(--gold-light);font-family:Fraunces,serif;font-size:1.2rem">RM ${totals.total.toFixed(2)}</span></div>` : ''}
-    ${note ? `<div class="sum-row"><span class="sum-label">📝 Notes</span><span class="sum-val">${note}</span></div>` : ''}
-  `;
   document.getElementById('termsCheck').checked = false;
-  document.getElementById('termsWrap').classList.remove('agreed');
-  toggleSendBtn();
+  document.getElementById('termsBox').classList.remove('agreed');
+  toggleButtons();
 }
 
-function toggleSendBtn() {
+// ── TOGGLE BUTTONS ──
+function toggleButtons() {
   const checked = document.getElementById('termsCheck').checked;
-  document.getElementById('btnSendWA').disabled = !checked;
-  document.getElementById('termsWrap').classList.toggle('agreed', checked);
+  const valid = currentTotals.grand > 0 && currentTotals.days >= MIN_DAYS;
+  document.getElementById('btnWa').disabled = !(checked && valid);
+  document.getElementById('btnEmail').disabled = !(checked && valid);
+  document.getElementById('termsBox').classList.toggle('agreed', checked);
 }
 
-// ─────────────────────────────────────
-// SEND WHATSAPP (ROUND ROBIN)
-// ─────────────────────────────────────
-function sendWA() {
-  const num = waTurn === 1 ? (settings.wa1 || DEFAULT_WA1) : (settings.wa2 || DEFAULT_WA2);
-  waTurn = waTurn === 1 ? 2 : 1;
+// ── OPEN REVIEW MODAL ──
+function openReview() {
+  const car = inventory[document.getElementById('carSelect').value];
+  const country = document.getElementById('custCountry').value;
+  const age = document.getElementById('custAge').value;
+  const profession = document.getElementById('custProfession').value;
+  const pickupL = locations[document.getElementById('pickupLoc').value]?.name || '-';
+  const returnL = locations[document.getElementById('returnLoc').value]?.name || '-';
 
-  const pickup = locations[selectedPickup]?.name || 'N/A';
-  const dropoff = locations[selectedDropoff]?.name || 'N/A';
-  const vehicle = vehicles[selectedVehicle]?.name || 'N/A';
-  const date = document.getElementById('pickupDate').value;
-  const time = document.getElementById('pickupTime').value;
-  const pax = document.getElementById('custPax').value;
-  const payLabels = { qr: 'QR / Bank Transfer', paypal: 'PayPal (+6% fee)', wise: 'Wise Payment' };
+  document.getElementById('reviewModalContent').innerHTML = `
+    <div class="review-row"><span>Country</span><span>${country}</span></div>
+    <div class="review-row"><span>Age</span><span>${age} yrs · ${profession}</span></div>
+    <div class="review-row"><span>Vehicle</span><span>${car?.name || '-'}</span></div>
+    <div class="review-row"><span>Pickup</span><span>${document.getElementById('pickupDate').value} · ${document.getElementById('pickupTime').value}</span></div>
+    <div class="review-row"><span>Return</span><span>${document.getElementById('returnDate').value} · ${document.getElementById('returnTime').value}</span></div>
+    <div class="review-row"><span>Pickup Loc</span><span>${pickupL}</span></div>
+    <div class="review-row"><span>Return Loc</span><span>${returnL}</span></div>
+    <div class="review-row"><span>Duration</span><span>${currentTotals.days} Days</span></div>
+    <div class="review-row"><span>Delivery Fee</span><span>RM ${currentTotals.locFee.toFixed(2)}</span></div>
+    <div class="review-row"><span>${currentTotals.isSpecial ? 'Surcharge' : 'Discount'}</span><span>RM ${Math.abs(currentTotals.discVal).toFixed(2)}</span></div>
+    <div class="review-row"><span>Subtotal</span><span>RM ${currentTotals.preDeposit.toFixed(2)}</span></div>
+    <div class="review-row"><span>Deposit (Refundable)</span><span>RM ${DEPOSIT.toFixed(2)}</span></div>
+    <div class="review-row" style="border-top:2px solid var(--gold);margin-top:8px;padding-top:12px">
+      <span style="color:var(--ink);font-weight:800">GRAND TOTAL</span>
+      <span style="color:var(--gold);font-family:Fraunces,serif;font-size:1.3rem;font-weight:700">RM ${currentTotals.grand.toFixed(2)}</span>
+    </div>`;
+  document.getElementById('reviewModal').style.display = 'flex';
+}
+function closeReview() { document.getElementById('reviewModal').style.display = 'none'; }
 
-  const pLocPrice = parseFloat(locations[selectedPickup]?.price || 0);
-  const dLocPrice = parseFloat(locations[selectedDropoff]?.price || 0);
-  const routePrice = pLocPrice + dLocPrice;
+// ── HANDLE SUBMIT ──
+function handleSubmit(method) {
+  const car = inventory[document.getElementById('carSelect').value];
+  const country = document.getElementById('custCountry').value;
+  const pickupL = locations[document.getElementById('pickupLoc').value]?.name || '-';
+  const returnL = locations[document.getElementById('returnLoc').value]?.name || '-';
 
-  const addonText = Object.keys(addonQtys)
-    .filter(id => addonQtys[id] > 0)
-    .map(id => {
-      const cost = addonQtys[id] * parseFloat(addons[id]?.price || 0);
-      return `   • ${addonQtys[id]}x ${addons[id]?.name}${cost > 0 ? ' (RM ' + cost.toFixed(2) + ')' : ''}`;
-    }).join('\n');
+  let msg = `*EZ TRANSPORT RENTAL — NEW BOOKING*\n`;
+  msg += `━━━━━━━━━━━━━━━━━━━━━━━━\n`;
+  msg += `👤 *CUSTOMER:* ${country} (${document.getElementById('custAge').value} yrs, ${document.getElementById('custProfession').value})\n`;
+  msg += `🚗 *VEHICLE:* ${car.name}\n`;
+  msg += `━━━━━━━━━━━━━━━━━━━━━━━━\n`;
+  msg += `📅 *PICKUP:* ${document.getElementById('pickupDate').value} (${document.getElementById('pickupTime').value})\n`;
+  msg += `📍 *PICKUP LOC:* ${pickupL}\n`;
+  msg += `📅 *RETURN:* ${document.getElementById('returnDate').value} (${document.getElementById('returnTime').value})\n`;
+  msg += `📍 *RETURN LOC:* ${returnL}\n`;
+  msg += `⏳ *DURATION:* ${currentTotals.days} Days\n`;
+  msg += `━━━━━━━━━━━━━━━━━━━━━━━━\n`;
+  msg += `💳 *PRICING*\n`;
+  msg += `   Daily Rate: RM ${parseFloat(car.price).toFixed(2)}\n`;
+  msg += `   Delivery Fee: RM ${currentTotals.locFee.toFixed(2)}\n`;
+  if (currentTotals.isSpecial) {
+    msg += `   Seasonal Surcharge: +RM ${Math.abs(currentTotals.discVal).toFixed(2)} (${currentTotals.specialRate}%)\n`;
+  } else {
+    msg += `   Discount: -RM ${currentTotals.discVal.toFixed(2)}\n`;
+  }
+  msg += `   Subtotal: RM ${currentTotals.preDeposit.toFixed(2)}\n`;
+  msg += `   Deposit: RM ${DEPOSIT.toFixed(2)} (Refundable)\n`;
+  msg += `━━━━━━━━━━━━━━━━━━━━━━━━\n`;
+  msg += `💰 *GRAND TOTAL: RM ${currentTotals.grand.toFixed(2)}*\n`;
 
-  const totals = calcTotal();
-
-  const msg =
-`🚗 *NEW BOOKING — My-Easytransport.com*
-━━━━━━━━━━━━━━━━━━━━━━━━
-
-👥 Passengers: ${pax}
-
-📅 *Trip Details*
-   Date: ${date}
-   Time: ${time}
-   Pickup: ${pickup}
-   Drop-off: ${dropoff}
-${routePrice > 0 ? `   Route Price: RM ${routePrice.toFixed(2)}` : ''}
-
-🚘 *Vehicle*
-   ${vehicle}
-${addonText ? `\n✨ *Add-ons*\n${addonText}` : ''}
-💳 *Payment Method*
-   ${payLabels[selectedPayment] || 'QR / Bank Transfer'}
-${totals.tax > 0 ? `   PayPal Fee (6%): RM ${totals.tax.toFixed(2)}` : ''}
-${totals.total > 0 ? `\n💰 *ESTIMATED TOTAL: RM ${totals.total.toFixed(2)}*` : ''}
-
-📝 *Notes*
-   ${document.getElementById('custNote').value || 'None'}
-
-━━━━━━━━━━━━━━━━━━━━━━━━
-Sent via My-Easytransport.com Booking Form`;
-
-  window.open(`https://wa.me/${num}?text=${encodeURIComponent(msg)}`, '_blank');
+  if (method === 'wa') window.open(`https://wa.me/${settings.adminPhone}?text=${encodeURIComponent(msg)}`, '_blank');
+  else window.location.href = `mailto:${settings.adminEmail}?subject=Car Rental Booking&body=${encodeURIComponent(msg)}`;
 }
 
-// ─────────────────────────────────────
-// ADMIN PANEL
-// ─────────────────────────────────────
+// ── RENDER BOOKING LINKS ──
+function renderBookingLinks() {
+  document.getElementById('bookingLinks').innerHTML = Object.keys(links).map(id =>
+    `<a href="${links[id].url}" target="_blank" class="terms-link-item">📄 ${links[id].name}</a>`
+  ).join('');
+}
+
+// ── ADMIN RENDERS ──
+function renderAdminCars() {
+  document.getElementById('adminCarList').innerHTML = Object.keys(inventory).map(id => `
+    <div class="admin-item">
+      <div class="admin-item-info"><strong>${inventory[id].name}</strong><span>RM ${inventory[id].price}/day</span></div>
+      <div class="admin-btns">
+        <button class="btn btn-edit btn-sm" onclick="setEditCar('${id}')">Edit</button>
+        <button class="btn btn-danger btn-sm" onclick="deleteItem('ez_inventory/${id}')">✕</button>
+      </div>
+    </div>`).join('') || '<p style="color:var(--ink-soft);font-size:0.78rem;text-align:center;padding:10px">No vehicles yet.</p>';
+}
+function renderAdminLocs() {
+  document.getElementById('adminLocList').innerHTML = Object.keys(locations).map(id => `
+    <div class="admin-item">
+      <div class="admin-item-info"><strong>${locations[id].name}</strong><span>RM ${locations[id].price}</span></div>
+      <div class="admin-btns">
+        <button class="btn btn-edit btn-sm" onclick="setEditLoc('${id}')">Edit</button>
+        <button class="btn btn-danger btn-sm" onclick="deleteItem('ez_locations/${id}')">✕</button>
+      </div>
+    </div>`).join('') || '<p style="color:var(--ink-soft);font-size:0.78rem;text-align:center;padding:10px">No locations yet.</p>';
+}
+function renderAdminDiscs() {
+  document.getElementById('adminDiscList').innerHTML = Object.keys(discounts).map(id => `
+    <div class="admin-item">
+      <div class="admin-item-info"><strong>${discounts[id].min}–${discounts[id].max} Days</strong><span>${discounts[id].percent}% Discount</span></div>
+      <div class="admin-btns">
+        <button class="btn btn-edit btn-sm" onclick="setEditDisc('${id}')">Edit</button>
+        <button class="btn btn-danger btn-sm" onclick="deleteItem('ez_discounts/${id}')">✕</button>
+      </div>
+    </div>`).join('') || '<p style="color:var(--ink-soft);font-size:0.78rem;text-align:center;padding:10px">No discounts yet.</p>';
+}
+function renderAdminSpecial() {
+  document.getElementById('adminSpecialList').innerHTML = Object.keys(specialDates).map(id => `
+    <div class="admin-item">
+      <div class="admin-item-info"><strong>${specialDates[id].from} → ${specialDates[id].to}</strong><span>+${specialDates[id].percent}% Surcharge</span></div>
+      <div class="admin-btns">
+        <button class="btn btn-edit btn-sm" onclick="setEditSpecial('${id}')">Edit</button>
+        <button class="btn btn-danger btn-sm" onclick="deleteItem('ez_special_dates/${id}')">✕</button>
+      </div>
+    </div>`).join('') || '<p style="color:var(--ink-soft);font-size:0.78rem;text-align:center;padding:10px">No special dates yet.</p>';
+}
+function renderAdminLinks() {
+  document.getElementById('adminLinkList').innerHTML = Object.keys(links).map(id => `
+    <div class="admin-item">
+      <div class="admin-item-info"><strong>${links[id].name}</strong><span>${(links[id].url||'').substring(0,35)}...</span></div>
+      <div class="admin-btns">
+        <button class="btn btn-edit btn-sm" onclick="setEditLink('${id}')">Edit</button>
+        <button class="btn btn-danger btn-sm" onclick="deleteItem('ez_links/${id}')">✕</button>
+      </div>
+    </div>`).join('') || '<p style="color:var(--ink-soft);font-size:0.78rem;text-align:center;padding:10px">No links yet.</p>';
+}
+
+// ── CRUD VEHICLES ──
+function saveCar() {
+  const id = document.getElementById('editCarIdx').value || Date.now();
+  const name = document.getElementById('newCarName').value.trim();
+  const price = parseFloat(document.getElementById('newCarPrice').value);
+  if (!name || isNaN(price)) { showToast('⚠️ Fill in vehicle name & price'); return; }
+  db.ref('ez_inventory/' + id).set({ name, price, img: document.getElementById('newCarImg').value }).then(() => { cancelEditCar(); showToast('✅ Vehicle saved'); });
+}
+function setEditCar(id) {
+  const c = inventory[id];
+  document.getElementById('editCarIdx').value = id;
+  document.getElementById('newCarName').value = c.name;
+  document.getElementById('newCarPrice').value = c.price;
+  document.getElementById('newCarImg').value = c.img || '';
+  document.getElementById('btnSaveCar').innerText = '✏️ Update Vehicle';
+  document.getElementById('btnCancelCar').style.display = 'block';
+}
+function cancelEditCar() {
+  ['editCarIdx','newCarName','newCarPrice','newCarImg'].forEach(k => document.getElementById(k).value = '');
+  document.getElementById('btnSaveCar').innerText = '💾 Save Vehicle';
+  document.getElementById('btnCancelCar').style.display = 'none';
+}
+
+// ── CRUD LOCATIONS ──
+function saveLocation() {
+  const id = document.getElementById('editLocIdx').value || Date.now();
+  const name = document.getElementById('newLocName').value.trim();
+  const price = parseFloat(document.getElementById('newLocPrice').value) || 0;
+  if (!name) { showToast('⚠️ Enter location name'); return; }
+  db.ref('ez_locations/' + id).set({ name, price }).then(() => { cancelEditLoc(); showToast('✅ Location saved'); });
+}
+function setEditLoc(id) {
+  const l = locations[id];
+  document.getElementById('editLocIdx').value = id;
+  document.getElementById('newLocName').value = l.name;
+  document.getElementById('newLocPrice').value = l.price;
+  document.getElementById('btnSaveLoc').innerText = '✏️ Update Location';
+  document.getElementById('btnCancelLoc').style.display = 'block';
+}
+function cancelEditLoc() {
+  ['editLocIdx','newLocName','newLocPrice'].forEach(k => document.getElementById(k).value = '');
+  document.getElementById('btnSaveLoc').innerText = '💾 Save Location';
+  document.getElementById('btnCancelLoc').style.display = 'none';
+}
+
+// ── CRUD DISCOUNTS ──
+function saveDiscount() {
+  const id = document.getElementById('editDiscIdx').value || Date.now();
+  const min = parseInt(document.getElementById('discMinDays').value);
+  const max = parseInt(document.getElementById('discMaxDays').value);
+  const percent = parseInt(document.getElementById('discPerc').value);
+  if (isNaN(min) || isNaN(max) || isNaN(percent)) { showToast('⚠️ Fill all discount fields'); return; }
+  db.ref('ez_discounts/' + id).set({ min, max, percent }).then(() => { cancelEditDisc(); showToast('✅ Discount saved'); });
+}
+function setEditDisc(id) {
+  const d = discounts[id];
+  document.getElementById('editDiscIdx').value = id;
+  document.getElementById('discMinDays').value = d.min;
+  document.getElementById('discMaxDays').value = d.max;
+  document.getElementById('discPerc').value = d.percent;
+  document.getElementById('btnSaveDisc').innerText = '✏️ Update Discount';
+  document.getElementById('btnCancelDisc').style.display = 'block';
+}
+function cancelEditDisc() {
+  ['editDiscIdx','discMinDays','discMaxDays','discPerc'].forEach(k => document.getElementById(k).value = '');
+  document.getElementById('btnSaveDisc').innerText = '💾 Save Discount';
+  document.getElementById('btnCancelDisc').style.display = 'none';
+}
+
+// ── CRUD SPECIAL DATES ──
+function saveSpecialDate() {
+  const id = document.getElementById('editSpecialIdx').value || Date.now();
+  const from = document.getElementById('specialFrom').value;
+  const to   = document.getElementById('specialTo').value;
+  const percent = parseInt(document.getElementById('specialPerc').value);
+  if (!from || !to || isNaN(percent)) { showToast('⚠️ Fill all special date fields'); return; }
+  db.ref('ez_special_dates/' + id).set({ from, to, percent }).then(() => { cancelEditSpecial(); showToast('✅ Special date saved'); });
+}
+function setEditSpecial(id) {
+  const s = specialDates[id];
+  document.getElementById('editSpecialIdx').value = id;
+  document.getElementById('specialFrom').value = s.from;
+  document.getElementById('specialTo').value = s.to;
+  document.getElementById('specialPerc').value = s.percent;
+  document.getElementById('btnSaveSpecial').innerText = '✏️ Update Special Date';
+  document.getElementById('btnCancelSpecial').style.display = 'block';
+}
+function cancelEditSpecial() {
+  ['editSpecialIdx','specialFrom','specialTo','specialPerc'].forEach(k => document.getElementById(k).value = '');
+  document.getElementById('btnSaveSpecial').innerText = '💾 Save Special Date';
+  document.getElementById('btnCancelSpecial').style.display = 'none';
+}
+
+// ── CRUD LINKS ──
+function saveLink() {
+  const id = document.getElementById('editLinkIdx').value || Date.now();
+  const name = document.getElementById('newLinkName').value.trim();
+  const url  = document.getElementById('newLinkUrl').value.trim();
+  if (!name || !url) { showToast('⚠️ Enter link name and URL'); return; }
+  db.ref('ez_links/' + id).set({ name, url }).then(() => { cancelEditLink(); showToast('✅ Link saved'); });
+}
+function setEditLink(id) {
+  const l = links[id];
+  document.getElementById('editLinkIdx').value = id;
+  document.getElementById('newLinkName').value = l.name;
+  document.getElementById('newLinkUrl').value = l.url;
+  document.getElementById('btnSaveLink').innerText = '✏️ Update Link';
+  document.getElementById('btnCancelLink').style.display = 'block';
+}
+function cancelEditLink() {
+  ['editLinkIdx','newLinkName','newLinkUrl'].forEach(k => document.getElementById(k).value = '');
+  document.getElementById('btnSaveLink').innerText = '💾 Save Link';
+  document.getElementById('btnCancelLink').style.display = 'none';
+}
+
+// ── SETTINGS ──
+function saveSettings() {
+  db.ref('ez_settings').update({
+    termsText: document.getElementById('confTermsText').value,
+    adminEmail: document.getElementById('confEmail').value,
+    adminPhone: document.getElementById('confPhone').value
+  }).then(() => showToast('✅ Settings updated'));
+}
+function saveBranding() {
+  db.ref('ez_settings').update({
+    siteName: document.getElementById('confSiteName').value.trim(),
+    tagline:  document.getElementById('confTagline').value.trim(),
+    logoUrl:  document.getElementById('confLogoUrl').value.trim()
+  }).then(() => showToast('✅ Branding updated'));
+}
+
+// ── DELETE ──
+function deleteItem(path) { if (confirm('Delete this item?')) db.ref(path).remove(); }
+
+// ── SHOW/HIDE TABS ──
+function showTab(tabId, btn) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  if (tabId === 'bookingSection') {
+    document.getElementById('bookingSection').style.display = 'block';
+    document.getElementById('adminSection').style.display = 'none';
+    document.getElementById('stepsBar').style.display = 'block';
+    document.getElementById('trustStrip').style.display = 'block';
+  } else {
+    document.getElementById('bookingSection').style.display = 'none';
+    document.getElementById('adminSection').style.display = 'block';
+    document.getElementById('stepsBar').style.display = 'none';
+    document.getElementById('trustStrip').style.display = 'none';
+  }
+}
+
+// ── ADMIN TRIGGER ──
 document.getElementById('adminTrigger').addEventListener('click', () => {
   adminClicks++;
   if (adminClicks >= 5) {
     adminClicks = 0;
-    const pass = prompt('🔐 Admin Access:');
+    const pass = prompt('🔐 Admin Password:');
     if (pass === ADMIN_PASS) {
-      document.getElementById('adminPanel').classList.add('open');
+      document.getElementById('navTabs').classList.add('visible');
     } else if (pass !== null) {
       showToast('❌ Incorrect password');
     }
@@ -1728,167 +1585,13 @@ document.getElementById('adminTrigger').addEventListener('click', () => {
   setTimeout(() => adminClicks = 0, 2500);
 });
 
-function closeAdmin() { document.getElementById('adminPanel').classList.remove('open'); }
-
-function adminTab(tab, btn) {
-  document.querySelectorAll('.admin-tab').forEach(b => b.classList.remove('active'));
-  document.querySelectorAll('.admin-tab-content').forEach(c => c.classList.remove('active'));
-  btn.classList.add('active');
-  document.getElementById('atab-' + tab).classList.add('active');
-}
-
-// VEHICLES CRUD
-function saveVehicle() {
-  const id = document.getElementById('editVehId').value || Date.now();
-  const name = document.getElementById('vehName').value.trim();
-  if (!name) { showToast('⚠️ Vehicle name required'); return; }
-  db.ref('ez_vehicles/' + id).set({
-    name,
-    pax: document.getElementById('vehPax').value || '',
-    desc: document.getElementById('vehDesc').value || '',
-    img: document.getElementById('vehImg').value || '',
-    price: document.getElementById('vehPrice').value || ''
-  }).then(() => { cancelVeh(); showToast('✅ Vehicle saved'); });
-}
-function editVehicle(id) {
-  const v = vehicles[id];
-  document.getElementById('editVehId').value = id;
-  document.getElementById('vehName').value = v.name || '';
-  document.getElementById('vehPax').value = v.pax || '';
-  document.getElementById('vehDesc').value = v.desc || '';
-  document.getElementById('vehImg').value = v.img || '';
-  document.getElementById('vehPrice').value = v.price || '';
-  document.getElementById('btnCancelVeh').style.display = 'flex';
-}
-function cancelVeh() {
-  ['editVehId','vehName','vehPax','vehDesc','vehImg','vehPrice'].forEach(id => document.getElementById(id).value = '');
-  document.getElementById('btnCancelVeh').style.display = 'none';
-}
-function deleteItem(path) { if (confirm('Delete this item?')) db.ref(path).remove(); }
-
-function renderAdminVehicles() {
-  const list = document.getElementById('adminVehList');
-  const keys = Object.keys(vehicles);
-  if (!keys.length) { list.innerHTML = '<p style="text-align:center;color:var(--ink-soft);font-size:0.8rem;padding:12px">No vehicles yet.</p>'; return; }
-  list.innerHTML = keys.map(id => `
-    <div class="admin-item">
-      <div class="admin-item-info">
-        <strong>${vehicles[id].name}</strong>
-        <span>Max ${vehicles[id].pax || '?'} pax · ${vehicles[id].price || 'No price set'}</span>
-      </div>
-      <div class="admin-btns">
-        <button class="btn btn-edit btn-sm" onclick="editVehicle('${id}')">Edit</button>
-        <button class="btn btn-danger btn-sm" onclick="deleteItem('ez_vehicles/${id}')">✕</button>
-      </div>
-    </div>`).join('');
-}
-
-// LOCATIONS CRUD
-function saveLoc() {
-  const id = document.getElementById('editLocId').value || Date.now();
-  const name = document.getElementById('locName').value.trim();
-  if (!name) { showToast('⚠️ Location name required'); return; }
-  db.ref('ez_locations/' + id).set({
-    name,
-    zone: document.getElementById('locZone').value || '',
-    price: parseFloat(document.getElementById('locPrice').value) || 0
-  }).then(() => { cancelLoc(); showToast('✅ Location saved'); });
-}
-function editLoc(id) {
-  const l = locations[id];
-  document.getElementById('editLocId').value = id;
-  document.getElementById('locName').value = l.name || '';
-  document.getElementById('locZone').value = l.zone || '';
-  document.getElementById('locPrice').value = l.price || '';
-  document.getElementById('btnCancelLoc').style.display = 'flex';
-}
-function cancelLoc() {
-  ['editLocId','locName','locZone','locPrice'].forEach(id => document.getElementById(id).value = '');
-  document.getElementById('btnCancelLoc').style.display = 'none';
-}
-function renderAdminLocations() {
-  const list = document.getElementById('adminLocList');
-  const keys = Object.keys(locations);
-  if (!keys.length) { list.innerHTML = '<p style="text-align:center;color:var(--ink-soft);font-size:0.8rem;padding:12px">No locations yet.</p>'; return; }
-  list.innerHTML = keys.map(id => `
-    <div class="admin-item">
-      <div class="admin-item-info">
-        <strong>${locations[id].name}</strong>
-        <span>${locations[id].zone || ''} ${locations[id].price ? '· RM ' + parseFloat(locations[id].price).toFixed(2) : ''}</span>
-      </div>
-      <div class="admin-btns">
-        <button class="btn btn-edit btn-sm" onclick="editLoc('${id}')">Edit</button>
-        <button class="btn btn-danger btn-sm" onclick="deleteItem('ez_locations/${id}')">✕</button>
-      </div>
-    </div>`).join('');
-}
-
-// ADDONS CRUD
-function saveAddon() {
-  const id = document.getElementById('editAddonId').value || Date.now();
-  const name = document.getElementById('addonName').value.trim();
-  if (!name) { showToast('⚠️ Add-on name required'); return; }
-  db.ref('ez_addons/' + id).set({
-    name,
-    price: document.getElementById('addonPrice').value || '',
-    desc: document.getElementById('addonDesc').value || ''
-  }).then(() => { cancelAddon(); showToast('✅ Add-on saved'); });
-}
-function editAddon(id) {
-  const a = addons[id];
-  document.getElementById('editAddonId').value = id;
-  document.getElementById('addonName').value = a.name || '';
-  document.getElementById('addonPrice').value = a.price || '';
-  document.getElementById('addonDesc').value = a.desc || '';
-  document.getElementById('btnCancelAddon').style.display = 'flex';
-}
-function cancelAddon() {
-  ['editAddonId','addonName','addonPrice','addonDesc'].forEach(id => document.getElementById(id).value = '');
-  document.getElementById('btnCancelAddon').style.display = 'none';
-}
-function renderAdminAddons() {
-  const list = document.getElementById('adminAddonList');
-  const keys = Object.keys(addons);
-  if (!keys.length) { list.innerHTML = '<p style="text-align:center;color:var(--ink-soft);font-size:0.8rem;padding:12px">No add-ons yet.</p>'; return; }
-  list.innerHTML = keys.map(id => `
-    <div class="admin-item">
-      <div class="admin-item-info">
-        <strong>${addons[id].name}</strong>
-        <span>${addons[id].price ? 'RM ' + addons[id].price : 'Free'} · ${addons[id].desc || ''}</span>
-      </div>
-      <div class="admin-btns">
-        <button class="btn btn-edit btn-sm" onclick="editAddon('${id}')">Edit</button>
-        <button class="btn btn-danger btn-sm" onclick="deleteItem('ez_addons/${id}')">✕</button>
-      </div>
-    </div>`).join('');
-}
-
-// SETTINGS
-function saveSettings() {
-  db.ref('ez_settings').set({
-    wa1: document.getElementById('confWA1').value.trim() || DEFAULT_WA1,
-    wa2: document.getElementById('confWA2').value.trim() || DEFAULT_WA2,
-    maxPax: parseInt(document.getElementById('confMaxPax').value) || 16,
-    termsText: document.getElementById('confTermsText').value.trim() || "I agree to the Terms & Conditions of My-Easytransport.com",
-    termsLink: document.getElementById('confTermsLink').value.trim() || "",
-    siteName: document.getElementById('confSiteName').value.trim() || "",
-    tagline:  document.getElementById('confTagline').value.trim()  || "",
-    logoUrl:  document.getElementById('confLogoUrl').value.trim()  || ""
-  }).then(() => showToast('✅ Settings updated'));
-}
-
-// ─────────────────────────────────────
-// TOAST
-// ─────────────────────────────────────
+// ── TOAST ──
 function showToast(msg) {
   const t = document.getElementById('toast');
   t.innerText = msg; t.classList.add('show');
   setTimeout(() => t.classList.remove('show'), 2800);
 }
 
-// ─────────────────────────────────────
-// START
-// ─────────────────────────────────────
 window.onload = initApp;
 </script>
 </body>
