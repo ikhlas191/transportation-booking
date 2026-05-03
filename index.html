@@ -11,6 +11,7 @@
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
 <style>
+/* ── THEME VARIABLES (overridden by JS) ── */
 :root {
   --ink: #0a0f1e;
   --ink-mid: #2d3650;
@@ -25,6 +26,9 @@
   --red: #e03434;
   --green: #1a7a4a;
   --blue: #1a4fa0;
+  --accent: #c9a84c;
+  --accent-light: #e8c97a;
+  --accent-pale: #fdf6e3;
   --shadow-sm: 0 2px 8px rgba(10,15,30,0.07);
   --shadow-md: 0 8px 32px rgba(10,15,30,0.11);
   --shadow-lg: 0 20px 60px rgba(10,15,30,0.15);
@@ -34,7 +38,6 @@
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
-
 body {
   font-family: 'Plus Jakarta Sans', sans-serif;
   background: #f0f0ea;
@@ -45,10 +48,8 @@ body {
 /* ── HERO ── */
 .hero {
   background: var(--ink);
-  position: relative;
-  overflow: hidden;
-  cursor: pointer;
-  user-select: none;
+  position: relative; overflow: hidden;
+  cursor: pointer; user-select: none;
 }
 .hero-bg {
   position: absolute; inset: 0;
@@ -66,18 +67,16 @@ body {
 .hero-inner {
   position: relative; z-index: 2;
   max-width: 680px; margin: 0 auto;
-  padding: 40px 24px 48px;
-  text-align: center;
+  padding: 40px 24px 48px; text-align: center;
 }
 .hero-pill {
   display: inline-flex; align-items: center; gap: 6px;
   background: rgba(255,255,255,0.08);
   border: 1px solid rgba(255,255,255,0.15);
-  color: var(--gold-light);
+  color: var(--accent-light);
   font-size: 0.62rem; font-weight: 700;
   letter-spacing: 2px; text-transform: uppercase;
-  padding: 5px 14px; border-radius: 20px;
-  margin-bottom: 18px;
+  padding: 5px 14px; border-radius: 20px; margin-bottom: 18px;
 }
 .hero-logo-row {
   display: flex; align-items: center; justify-content: center;
@@ -85,37 +84,32 @@ body {
 }
 .hero-icon {
   width: 56px; height: 56px;
-  background: linear-gradient(135deg, var(--gold), var(--gold-light));
+  background: linear-gradient(135deg, var(--accent), var(--accent-light));
   border-radius: 14px;
   display: flex; align-items: center; justify-content: center;
   font-size: 1.8rem;
   box-shadow: 0 4px 20px rgba(201,168,76,0.4);
-  flex-shrink: 0;
-  overflow: hidden;
+  flex-shrink: 0; overflow: hidden;
 }
 .hero-logo-img { width: 100%; height: 100%; object-fit: cover; border-radius: 14px; }
 .hero-name {
   font-family: 'Fraunces', serif;
   font-size: 2rem; font-weight: 700;
-  color: var(--white); line-height: 1.1;
-  text-align: left;
+  color: var(--white); line-height: 1.1; text-align: left;
 }
-.hero-name em { color: var(--gold-light); font-style: italic; font-weight: 400; }
+.hero-name em { color: var(--accent-light); font-style: italic; font-weight: 400; }
 .hero-tagline {
   color: rgba(255,255,255,0.45);
-  font-size: 0.78rem; letter-spacing: 1px;
-  margin-top: 6px; text-align: left;
+  font-size: 0.78rem; letter-spacing: 1px; margin-top: 6px; text-align: left;
 }
 .hero-divider {
   width: 60px; height: 2px;
   background: linear-gradient(90deg, transparent, rgba(201,168,76,0.5), transparent);
   margin: 18px auto;
 }
-.hero-stats {
-  display: flex; justify-content: center; gap: 32px;
-}
+.hero-stats { display: flex; justify-content: center; gap: 32px; }
 .hstat { text-align: center; }
-.hstat-n { font-family: 'Fraunces', serif; font-size: 1.3rem; color: var(--gold-light); font-weight: 700; }
+.hstat-n { font-family: 'Fraunces', serif; font-size: 1.3rem; color: var(--accent-light); font-weight: 700; }
 .hstat-l { font-size: 0.58rem; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 1.5px; margin-top: 2px; }
 
 /* ── STATUS BAR ── */
@@ -129,7 +123,7 @@ body {
 .dot-online { background: #25d366; box-shadow: 0 0 5px #25d366; }
 .dot-offline { background: var(--red); }
 
-/* ── TABS ── */
+/* ── TABS (Admin) ── */
 .tabs { display: none; padding: 10px 16px 0; background: var(--white); border-bottom: 1px solid var(--border); }
 .tabs.visible { display: flex; gap: 4px; }
 .tab-btn {
@@ -141,13 +135,12 @@ body {
   cursor: pointer; transition: all 0.2s;
   border-radius: 8px 8px 0 0;
 }
-.tab-btn.active { color: var(--ink); border-bottom-color: var(--gold); background: var(--gold-pale); }
+.tab-btn.active { color: var(--ink); border-bottom-color: var(--accent); background: var(--accent-pale); }
 
 /* ── STEP BAR ── */
 .steps-bar {
   background: var(--white); border-bottom: 1px solid var(--border);
-  position: sticky; top: 0; z-index: 100;
-  box-shadow: var(--shadow-sm);
+  position: sticky; top: 0; z-index: 100; box-shadow: var(--shadow-sm);
 }
 .steps-inner {
   max-width: 680px; margin: 0 auto;
@@ -164,7 +157,7 @@ body {
   background: var(--border); transition: background 0.3s;
 }
 .step-item:last-child::after { display: none; }
-.step-item.done::after { background: var(--gold); }
+.step-item.done::after { background: var(--accent); }
 .step-num {
   width: 30px; height: 30px; border-radius: 50%;
   background: var(--border); color: var(--ink-soft);
@@ -172,16 +165,16 @@ body {
   font-size: 0.78rem; font-weight: 800;
   transition: all 0.3s; margin-bottom: 5px; position: relative; z-index: 1;
 }
-.step-item.active .step-num { background: var(--ink); color: var(--gold-light); box-shadow: 0 0 0 4px rgba(201,168,76,0.2); }
-.step-item.done .step-num { background: var(--gold); color: var(--ink); }
+.step-item.active .step-num { background: var(--ink); color: var(--accent-light); box-shadow: 0 0 0 4px rgba(201,168,76,0.2); }
+.step-item.done .step-num { background: var(--accent); color: var(--ink); }
 .step-lbl { font-size: 0.6rem; font-weight: 700; color: var(--ink-soft); text-transform: uppercase; letter-spacing: 0.8px; text-align: center; }
 .step-item.active .step-lbl { color: var(--ink); }
-.step-item.done .step-lbl { color: var(--gold); }
+.step-item.done .step-lbl { color: var(--accent); }
 
 /* ── MAIN ── */
 .main { max-width: 680px; margin: 0 auto; padding: 24px 16px 80px; }
 
-/* ── BOOKING FORM ── */
+/* ── FORM SECTIONS ── */
 .form-section { display: none; animation: fadeSlide 0.35s ease; }
 .form-section.active { display: block; }
 @keyframes fadeSlide {
@@ -205,10 +198,7 @@ body {
   border-radius: 10px; display: flex; align-items: center;
   justify-content: center; font-size: 1rem; flex-shrink: 0;
 }
-.section-title-text {
-  font-family: 'Fraunces', serif;
-  font-size: 1.05rem; font-weight: 700; color: var(--ink);
-}
+.section-title-text { font-family: 'Fraunces', serif; font-size: 1.05rem; font-weight: 700; color: var(--ink); }
 .section-sub { font-size: 0.72rem; color: var(--ink-soft); margin-top: 2px; }
 .section-body { padding: 20px 22px; }
 
@@ -222,7 +212,7 @@ label {
   text-transform: uppercase; letter-spacing: 0.8px;
   margin-bottom: 6px; display: flex; align-items: center; gap: 4px;
 }
-label .req { color: var(--gold); }
+label .req { color: var(--accent); }
 input, select, textarea {
   font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 0.88rem; color: var(--ink);
@@ -233,7 +223,7 @@ input, select, textarea {
   appearance: none; -webkit-appearance: none;
 }
 input:focus, select:focus, textarea:focus {
-  border-color: var(--gold); background: var(--white);
+  border-color: var(--accent); background: var(--white);
   box-shadow: 0 0 0 3px rgba(201,168,76,0.15);
 }
 input::placeholder, textarea::placeholder { color: var(--ink-soft); font-weight: 400; }
@@ -243,29 +233,44 @@ select {
   padding-right: 38px; cursor: pointer;
 }
 textarea { resize: vertical; min-height: 70px; line-height: 1.6; }
-input[type="date"]::-webkit-calendar-picker-indicator { opacity: 0.4; cursor: pointer; }
-input[type="time"]::-webkit-calendar-picker-indicator { opacity: 0.4; cursor: pointer; }
 
 /* ── CAR PREVIEW ── */
 .car-preview {
   border: 1.5px solid var(--border); border-radius: var(--radius);
-  overflow: hidden; margin-bottom: 14px;
-  background: var(--cream);
+  overflow: hidden; margin-bottom: 14px; background: var(--cream);
+}
+.car-image-wrap {
+  width: 100%; height: 200px; overflow: hidden;
+  background: linear-gradient(135deg,#f0f0ea,#e8e8e0);
+  display: flex; align-items: center; justify-content: center;
 }
 .car-image {
-  width: 100%; height: 200px; object-fit: cover; display: block;
-  transition: transform 0.4s ease;
+  width: 100%; height: 100%; object-fit: cover; object-position: center;
+  display: block; transition: transform 0.4s ease;
 }
 .car-preview:hover .car-image { transform: scale(1.03); }
-.car-select-wrap { padding: 10px 12px; background: var(--white); border-top: 1px solid var(--border); }
+.car-select-wrap {
+  padding: 10px 12px; background: var(--white);
+  border-top: 1px solid var(--border);
+}
 .car-select-wrap select { background: var(--cream); }
 
 /* ── INFO NOTE ── */
 .info-note {
-  background: var(--gold-pale); border: 1px solid #e8d98a;
+  background: var(--accent-pale); border: 1px solid #e8d98a;
   border-radius: var(--radius-sm); padding: 11px 14px;
   font-size: 0.76rem; color: #7a6020;
   display: flex; gap: 8px; align-items: flex-start; margin-bottom: 14px;
+}
+
+/* ── LOC DIVIDER ── */
+.loc-divider {
+  display: flex; align-items: center; gap: 10px;
+  color: var(--ink-soft); font-size: 0.68rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 1px; margin: 4px 0 14px;
+}
+.loc-divider::before, .loc-divider::after {
+  content: ''; flex: 1; height: 1px; background: var(--border);
 }
 
 /* ── PRICE SUMMARY ── */
@@ -286,11 +291,7 @@ input[type="time"]::-webkit-calendar-picker-indicator { opacity: 0.4; cursor: po
 }
 .price-row span:first-child { color: var(--ink-soft); }
 .price-row span:last-child { font-weight: 600; color: var(--ink); }
-.discount-row span:last-child { color: var(--green) !important; }
-.special-row span:last-child { color: var(--red) !important; }
-.before-deposit-row {
-  border-top: 1.5px dashed var(--border); margin-top: 10px; padding-top: 10px;
-}
+.before-deposit-row { border-top: 1.5px dashed var(--border); margin-top: 10px; padding-top: 10px; }
 .before-deposit-row span { font-weight: 700 !important; }
 .total-price-box {
   background: var(--ink); border-radius: var(--radius-sm);
@@ -303,7 +304,37 @@ input[type="time"]::-webkit-calendar-picker-indicator { opacity: 0.4; cursor: po
 }
 .total-price-box .amt {
   font-family: 'Fraunces', serif; font-size: 1.6rem;
-  color: var(--gold-light); font-weight: 700;
+  color: var(--accent-light); font-weight: 700;
+}
+
+/* ── EXTRAS ITEMS ── */
+.extras-list { display: flex; flex-direction: column; gap: 10px; }
+.extra-item {
+  display: flex; align-items: center; justify-content: space-between;
+  border: 1.5px solid var(--border-dark);
+  border-radius: var(--radius-sm);
+  padding: 14px 16px;
+  background: var(--cream); gap: 12px;
+  transition: border-color 0.2s;
+}
+.extra-item:hover { border-color: var(--accent); }
+.extra-info { flex: 1; }
+.extra-name { font-size: 0.88rem; font-weight: 700; color: var(--ink); }
+.extra-pricing { font-size: 0.74rem; color: var(--accent); font-weight: 600; margin-top: 2px; }
+.extra-desc { font-size: 0.72rem; color: var(--ink-soft); margin-top: 2px; }
+.extra-qty { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+.qty-btn {
+  width: 30px; height: 30px; border-radius: 50%;
+  border: 1.5px solid var(--border-dark);
+  background: var(--white); color: var(--ink);
+  font-size: 1rem; font-weight: 700;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  transition: all 0.15s; line-height: 1;
+}
+.qty-btn:hover { border-color: var(--accent); background: var(--accent-pale); }
+.qty-num {
+  font-size: 0.9rem; font-weight: 700;
+  color: var(--ink); min-width: 20px; text-align: center;
 }
 
 /* ── TERMS ── */
@@ -311,13 +342,11 @@ input[type="time"]::-webkit-calendar-picker-indicator { opacity: 0.4; cursor: po
   background: #fffdf0; border: 1.5px solid #e8d98a;
   border-radius: var(--radius-sm); padding: 14px; margin-bottom: 16px;
 }
-.terms-box.agreed {
-  background: #f0fdf4; border-color: #86efac;
-}
+.terms-box.agreed { background: #f0fdf4; border-color: #86efac; }
 .terms-check-row { display: flex; align-items: flex-start; gap: 10px; }
 .terms-check-row input[type="checkbox"] {
   width: 18px; height: 18px; margin-top: 1px;
-  accent-color: var(--gold); flex-shrink: 0; cursor: pointer;
+  accent-color: var(--accent); flex-shrink: 0; cursor: pointer;
 }
 .terms-check-row label {
   font-size: 0.78rem; color: #7a6020; cursor: pointer;
@@ -336,125 +365,30 @@ input[type="time"]::-webkit-calendar-picker-indicator { opacity: 0.4; cursor: po
   border-radius: 20px; font-weight: 600; transition: all 0.15s;
   display: inline-flex; align-items: center; gap: 4px;
 }
-.terms-link-item:hover { background: var(--gold-pale); border-color: var(--gold); color: var(--ink); }
+.terms-link-item:hover { background: var(--accent-pale); border-color: var(--accent); color: var(--ink); }
 
-/* ── LOC DIVIDER ── */
-.loc-divider {
-  display: flex; align-items: center; gap: 10px;
-  color: var(--ink-soft); font-size: 0.68rem; font-weight: 700;
-  text-transform: uppercase; letter-spacing: 1px; margin: 4px 0 14px;
+/* ── GALLERY ── */
+.gallery-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 8px; padding: 12px;
 }
-.loc-divider::before, .loc-divider::after {
-  content: ''; flex: 1; height: 1px; background: var(--border);
+.gallery-img-wrap {
+  aspect-ratio: 4/3; border-radius: 10px;
+  overflow: hidden; background: var(--border);
+  border: 1px solid var(--border);
 }
-
-/* ── BUTTONS ── */
-.btn {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-weight: 700; font-size: 0.88rem;
-  padding: 14px 20px; border-radius: var(--radius-sm);
-  border: none; cursor: pointer;
-  display: flex; align-items: center; gap: 8px;
-  transition: all 0.2s; text-decoration: none;
-  letter-spacing: 0.3px; white-space: nowrap;
-  width: 100%; justify-content: center; margin-bottom: 10px;
+.gallery-img-wrap img {
+  width: 100%; height: 100%; object-fit: cover;
+  display: block; transition: transform 0.3s;
 }
-.btn:disabled { opacity: 0.35; cursor: not-allowed; }
-.btn:active:not(:disabled) { transform: scale(0.97); }
-.btn-row { display: flex; gap: 12px; margin-top: 20px; }
-.btn-row .btn { margin-bottom: 0; }
-
-.btn-review {
-  background: transparent; color: var(--ink);
-  border: 1.5px solid var(--border-dark);
-}
-.btn-review:hover { background: var(--cream); border-color: var(--ink-mid); }
-.btn-wa {
-  background: linear-gradient(135deg, #25d366, #1aad52);
-  color: white; box-shadow: 0 4px 14px rgba(37,211,102,0.3);
-}
-.btn-wa:hover:not(:disabled) { box-shadow: 0 8px 24px rgba(37,211,102,0.4); transform: translateY(-1px); }
-.btn-email {
-  background: linear-gradient(135deg, #ea4335, #c0392b);
-  color: white; box-shadow: 0 4px 14px rgba(234,67,53,0.3);
-}
-.btn-email:hover:not(:disabled) { transform: translateY(-1px); }
-.btn-primary {
-  background: var(--ink); color: var(--gold-light);
-  box-shadow: var(--shadow-sm);
-}
-.btn-primary:hover:not(:disabled) { background: #1a2035; transform: translateY(-1px); }
-.btn-ghost {
-  background: transparent; color: var(--ink-mid);
-  border: 1.5px solid var(--border-dark);
-}
-.btn-ghost:hover { background: var(--cream); }
-.btn-save {
-  background: linear-gradient(135deg, var(--gold), var(--gold-light));
-  color: var(--ink); box-shadow: 0 4px 14px rgba(201,168,76,0.3);
-}
-.btn-save:hover { transform: translateY(-1px); }
-.btn-sm { padding: 6px 12px; font-size: 0.72rem; width: auto; border-radius: var(--radius-sm); margin-bottom: 0; }
-.btn-danger { background: var(--red); color: white; }
-.btn-edit { background: var(--blue); color: white; }
-
-/* ── PAYMENT ACCEPT STRIP ── */
-.accept-strip {
-  background: var(--white); border: 1px solid var(--border);
-  border-radius: var(--radius); padding: 16px 20px; margin-top: 16px;
-}
-.accept-title {
-  font-size: 0.6rem; text-transform: uppercase; letter-spacing: 2px;
-  color: var(--ink-soft); font-weight: 700; margin-bottom: 12px;
-  display: flex; align-items: center; gap: 8px;
-}
-.accept-title::before { content:''; width:3px; height:12px; background:var(--gold); border-radius:2px; }
-.payment-logos { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
-.pay-logo {
-  height: 30px; padding: 4px 10px;
-  background: var(--cream); border: 1px solid var(--border);
-  border-radius: 6px; display: flex; align-items: center; justify-content: center;
-  font-size: 0.62rem; font-weight: 800; color: var(--ink-mid);
-  white-space: nowrap; transition: border-color 0.2s;
-}
-.pay-logo:hover { border-color: var(--gold); }
-.pay-logo svg { height: 16px; width: auto; }
-
-/* ── TRUST STRIP ── */
-.trust-strip {
-  display: flex; gap: 8px; padding: 14px 16px;
-  background: var(--gold-pale); border-top: 1px solid var(--border);
-}
-.trust-item {
-  flex: 1; text-align: center; background: var(--white);
-  border-radius: 12px; padding: 10px 6px; border: 1px solid var(--border);
-}
-.trust-icon { font-size: 1.1rem; margin-bottom: 3px; }
-.trust-lbl { font-size: 0.56rem; color: var(--ink-soft); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
-
-/* ── BOTTOM ACTIONS ── */
-.bottom-actions {
-  display: flex; gap: 10px; padding: 14px 16px 18px;
-  background: var(--white); border-top: 1px solid var(--border);
-}
-.btn-bottom {
-  flex: 1; border: none; padding: 13px 10px; border-radius: var(--radius-sm);
-  cursor: pointer; font-size: 0.8rem; font-weight: 700;
+.gallery-img-wrap:hover img { transform: scale(1.06); }
+.gallery-placeholder {
+  width: 100%; height: 100%;
   display: flex; align-items: center; justify-content: center;
-  gap: 6px; text-decoration: none;
-  font-family: 'Plus Jakarta Sans', sans-serif; transition: all 0.2s;
-}
-.btn-back {
-  background: var(--cream); color: var(--ink);
-  border: 1.5px solid var(--border-dark);
-}
-.btn-back:hover { background: var(--border); }
-.btn-help {
-  background: linear-gradient(135deg, #25d366, #1aad52);
-  color: white; box-shadow: 0 4px 12px rgba(37,211,102,0.3);
+  color: var(--ink-soft); font-size: 1.5rem;
 }
 
-/* ── MODAL ── */
+/* ── REVIEW MODAL ── */
 .modal-overlay {
   position: fixed; top: 0; left: 0; width: 100%; height: 100%;
   background: rgba(10,15,30,0.8); backdrop-filter: blur(4px);
@@ -477,15 +411,121 @@ input[type="time"]::-webkit-calendar-picker-indicator { opacity: 0.4; cursor: po
 .review-row span:first-child { color: var(--ink-soft); font-weight: 600; flex-shrink: 0; }
 .review-row span:last-child { color: var(--ink); font-weight: 700; text-align: right; }
 
-/* ── ADMIN ── */
-.admin-head {
-  background: var(--ink); padding: 22px 24px;
+/* ── BUTTONS ── */
+.btn {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700; font-size: 0.88rem;
+  padding: 14px 20px; border-radius: var(--radius-sm);
+  border: none; cursor: pointer;
+  display: flex; align-items: center; gap: 8px;
+  transition: all 0.2s; text-decoration: none;
+  letter-spacing: 0.3px; white-space: nowrap;
+  width: 100%; justify-content: center; margin-bottom: 10px;
 }
-.admin-head h2 { font-family: 'Fraunces', serif; color: var(--gold-light); font-size: 1.2rem; font-weight: 700; }
+.btn:disabled { opacity: 0.35; cursor: not-allowed; }
+.btn:active:not(:disabled) { transform: scale(0.97); }
+.btn-row { display: flex; gap: 12px; margin-top: 20px; }
+.btn-row .btn { margin-bottom: 0; }
+.btn-wa {
+  background: linear-gradient(135deg, #25d366, #1aad52);
+  color: white; box-shadow: 0 4px 14px rgba(37,211,102,0.3);
+}
+.btn-wa:hover:not(:disabled) { box-shadow: 0 8px 24px rgba(37,211,102,0.4); transform: translateY(-1px); }
+.btn-email {
+  background: linear-gradient(135deg, #ea4335, #c0392b);
+  color: white; box-shadow: 0 4px 14px rgba(234,67,53,0.3);
+}
+.btn-email:hover:not(:disabled) { transform: translateY(-1px); }
+.btn-primary {
+  background: var(--ink); color: var(--accent-light); box-shadow: var(--shadow-sm);
+}
+.btn-primary:hover:not(:disabled) { background: #1a2035; transform: translateY(-1px); }
+.btn-ghost {
+  background: transparent; color: var(--ink-mid);
+  border: 1.5px solid var(--border-dark);
+}
+.btn-ghost:hover { background: var(--cream); }
+.btn-save {
+  background: linear-gradient(135deg, var(--accent), var(--accent-light));
+  color: var(--ink); box-shadow: 0 4px 14px rgba(201,168,76,0.3);
+}
+.btn-save:hover { transform: translateY(-1px); }
+.btn-sm { padding: 6px 12px; font-size: 0.72rem; width: auto; border-radius: var(--radius-sm); margin-bottom: 0; }
+.btn-danger { background: var(--red); color: white; }
+.btn-edit { background: var(--blue); color: white; }
+
+/* ── PAYMENT ACCEPT STRIP ── */
+.accept-strip {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 16px 20px; margin-top: 16px;
+}
+.accept-title {
+  font-size: 0.6rem; text-transform: uppercase; letter-spacing: 2px;
+  color: var(--ink-soft); font-weight: 700; margin-bottom: 12px;
+  display: flex; align-items: center; gap: 8px;
+}
+.accept-title::before { content:''; width:3px; height:12px; background:var(--accent); border-radius:2px; }
+.payment-logos { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.pay-logo {
+  height: 30px; padding: 4px 10px;
+  background: var(--cream); border: 1px solid var(--border);
+  border-radius: 6px; display: flex; align-items: center; justify-content: center;
+  font-size: 0.62rem; font-weight: 800; color: var(--ink-mid);
+  white-space: nowrap; transition: border-color 0.2s;
+}
+.pay-logo:hover { border-color: var(--accent); }
+.pay-logo svg { height: 16px; width: auto; }
+
+/* ── TRUST STRIP ── */
+.trust-strip {
+  display: flex; gap: 8px; padding: 14px 16px;
+  background: var(--accent-pale); border-top: 1px solid var(--border);
+}
+.trust-item {
+  flex: 1; text-align: center; background: var(--white);
+  border-radius: 12px; padding: 10px 6px; border: 1px solid var(--border);
+}
+.trust-icon { font-size: 1.1rem; margin-bottom: 3px; }
+.trust-lbl { font-size: 0.56rem; color: var(--ink-soft); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+
+/* ── GALLERY SECTION ── */
+.gallery-section {
+  background: var(--white); border-top: 1px solid var(--border);
+}
+.gallery-section-head {
+  display: flex; align-items: center; gap: 8px;
+  padding: 14px 16px 0;
+  font-size: 0.6rem; text-transform: uppercase; letter-spacing: 2px;
+  color: var(--ink-soft); font-weight: 700;
+}
+.gallery-section-head::before { content:''; width:3px; height:12px; background:var(--accent); border-radius:2px; }
+
+/* ── BOTTOM ACTIONS ── */
+.bottom-actions {
+  display: flex; gap: 10px; padding: 14px 16px 18px;
+  background: var(--white); border-top: 1px solid var(--border);
+}
+.btn-bottom {
+  flex: 1; border: none; padding: 13px 10px; border-radius: var(--radius-sm);
+  cursor: pointer; font-size: 0.8rem; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  gap: 6px; text-decoration: none;
+  font-family: 'Plus Jakarta Sans', sans-serif; transition: all 0.2s;
+}
+.btn-back { background: var(--cream); color: var(--ink); border: 1.5px solid var(--border-dark); }
+.btn-back:hover { background: var(--border); }
+.btn-help {
+  background: linear-gradient(135deg, #25d366, #1aad52);
+  color: white; box-shadow: 0 4px 12px rgba(37,211,102,0.3);
+}
+
+/* ── ADMIN ── */
+.admin-head { background: var(--ink); padding: 22px 24px; }
+.admin-head h2 { font-family: 'Fraunces', serif; color: var(--accent-light); font-size: 1.2rem; font-weight: 700; }
 .admin-head p { color: rgba(255,255,255,0.4); font-size: 0.74rem; margin-top: 4px; }
 .admin-section-title {
   font-size: 0.6rem; text-transform: uppercase; letter-spacing: 2px;
-  color: var(--gold); font-weight: 800; margin: 22px 0 12px;
+  color: var(--accent); font-weight: 800; margin: 22px 0 12px;
   display: flex; align-items: center; gap: 8px;
 }
 .admin-section-title::after { content: ''; flex: 1; height: 1px; background: rgba(201,168,76,0.2); }
@@ -506,19 +546,50 @@ input[type="time"]::-webkit-calendar-picker-indicator { opacity: 0.4; cursor: po
   border-radius: var(--radius-sm); border: 1px solid var(--border);
   gap: 10px; transition: border-color 0.2s;
 }
-.admin-item:hover { border-color: var(--gold); }
+.admin-item:hover { border-color: var(--accent); }
 .admin-item-info { flex: 1; font-size: 0.8rem; }
 .admin-item-info strong { display: block; color: var(--ink); margin-bottom: 2px; }
 .admin-item-info span { color: var(--ink-soft); font-size: 0.74rem; }
 .admin-btns { display: flex; gap: 6px; flex-shrink: 0; }
 .admin-body { padding: 22px; }
 
-/* ── FLATPICKR ── */
-.flatpickr-calendar { font-family: 'Plus Jakarta Sans', sans-serif !important; border-radius: 12px !important; box-shadow: var(--shadow-lg) !important; border: 1px solid var(--border) !important; }
-.flatpickr-day.selected, .flatpickr-day.selected:hover { background: var(--ink) !important; border-color: var(--ink) !important; color: var(--gold-light) !important; }
-.flatpickr-day:hover { background: var(--gold-pale) !important; border-color: var(--gold) !important; }
-.flatpickr-months .flatpickr-month { background: var(--ink) !important; color: white !important; }
-.flatpickr-current-month { color: white !important; }
+/* ── ADMIN TABS ── */
+.admin-inner-tabs {
+  display: flex; gap: 4px; background: var(--cream);
+  border-radius: var(--radius-sm); padding: 4px; margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+.admin-inner-tab {
+  flex: 1; padding: 8px 6px; border: none; background: transparent;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.68rem; font-weight: 700; color: var(--ink-soft);
+  cursor: pointer; border-radius: 6px; transition: all 0.2s;
+  text-transform: uppercase; letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+.admin-inner-tab.active { background: var(--ink); color: var(--accent-light); }
+.admin-inner-content { display: none; }
+.admin-inner-content.active { display: block; }
+
+/* ── COLOR THEME PICKER ── */
+.theme-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 10px; margin-bottom: 10px;
+}
+.theme-swatch {
+  border: 2px solid var(--border-dark); border-radius: 10px;
+  padding: 10px 6px; cursor: pointer; text-align: center;
+  transition: all 0.2s; background: var(--white);
+}
+.theme-swatch:hover, .theme-swatch.active { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(201,168,76,0.2); }
+.theme-swatch-color {
+  width: 32px; height: 32px; border-radius: 50%;
+  margin: 0 auto 6px; display: flex; align-items: center; justify-content: center;
+}
+.theme-swatch-label { font-size: 0.6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--ink-soft); }
+
+/* ── FOOTER EDIT FIELDS ── */
+.footer-edit-section { display: flex; flex-direction: column; gap: 8px; }
 
 /* ── COMPANY FOOTER ── */
 .company-footer { background: linear-gradient(180deg, #0d1220 0%, #070b14 100%); }
@@ -531,14 +602,14 @@ input[type="time"]::-webkit-calendar-picker-indicator { opacity: 0.4; cursor: po
 .cf-logo-row { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
 .cf-icon {
   width: 42px; height: 42px; border-radius: 10px;
-  background: linear-gradient(135deg, var(--gold), var(--gold-light));
+  background: linear-gradient(135deg, var(--accent), var(--accent-light));
   display: flex; align-items: center; justify-content: center;
-  font-size: 1.3rem; flex-shrink: 0; box-shadow: 0 4px 14px rgba(201,168,76,0.3);
-  overflow: hidden;
+  font-size: 1.3rem; flex-shrink: 0;
+  box-shadow: 0 4px 14px rgba(201,168,76,0.3); overflow: hidden;
 }
 .cf-logo-img { width: 100%; height: 100%; object-fit: cover; }
 .cf-logo-name { font-family: 'Fraunces', serif; color: white; font-size: 1rem; font-weight: 700; }
-.cf-logo-name em { color: var(--gold-light); font-style: italic; font-weight: 400; }
+.cf-logo-name em { color: var(--accent-light); font-style: italic; font-weight: 400; }
 .cf-tagline { font-size: 0.72rem; color: rgba(255,255,255,0.3); line-height: 1.6; margin-top: 4px; }
 .cf-reg {
   margin-top: 10px; font-size: 0.68rem; color: rgba(255,255,255,0.25);
@@ -547,7 +618,7 @@ input[type="time"]::-webkit-calendar-picker-indicator { opacity: 0.4; cursor: po
 }
 .cf-section-title {
   font-size: 0.6rem; text-transform: uppercase; letter-spacing: 2px;
-  color: var(--gold); font-weight: 700; margin-bottom: 14px;
+  color: var(--accent); font-weight: 700; margin-bottom: 14px;
   padding-bottom: 8px; border-bottom: 1px solid rgba(201,168,76,0.2);
 }
 .cf-about-text { font-size: 0.76rem; color: rgba(255,255,255,0.4); line-height: 1.8; }
@@ -560,7 +631,7 @@ input[type="time"]::-webkit-calendar-picker-indicator { opacity: 0.4; cursor: po
   font-size: 0.8rem; flex-shrink: 0;
 }
 .cf-contact-text { font-size: 0.75rem; color: rgba(255,255,255,0.45); line-height: 1.5; }
-.cf-contact-text a { color: var(--gold-light); text-decoration: none; }
+.cf-contact-text a { color: var(--accent-light); text-decoration: none; }
 .cf-contact-text a:hover { text-decoration: underline; }
 .company-footer-bottom {
   border-top: 1px solid rgba(255,255,255,0.06);
@@ -571,10 +642,17 @@ input[type="time"]::-webkit-calendar-picker-indicator { opacity: 0.4; cursor: po
 .cf-copy { font-size: 0.66rem; color: rgba(255,255,255,0.2); }
 .cf-copy a { color: rgba(255,255,255,0.35); text-decoration: none; }
 
+/* ── FLATPICKR ── */
+.flatpickr-calendar { font-family: 'Plus Jakarta Sans', sans-serif !important; border-radius: 12px !important; box-shadow: var(--shadow-lg) !important; border: 1px solid var(--border) !important; }
+.flatpickr-day.selected, .flatpickr-day.selected:hover { background: var(--ink) !important; border-color: var(--ink) !important; color: var(--accent-light) !important; }
+.flatpickr-day:hover { background: var(--accent-pale) !important; border-color: var(--accent) !important; }
+.flatpickr-months .flatpickr-month { background: var(--ink) !important; color: white !important; }
+.flatpickr-current-month { color: white !important; }
+
 /* ── TOAST ── */
 .toast {
   position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
-  background: var(--ink); color: var(--gold-light);
+  background: var(--ink); color: var(--accent-light);
   padding: 11px 22px; border-radius: 30px;
   font-size: 0.82rem; font-weight: 700; box-shadow: var(--shadow-lg);
   z-index: 99999; opacity: 0; transition: opacity 0.3s;
@@ -593,11 +671,15 @@ input[type="time"]::-webkit-calendar-picker-indicator { opacity: 0.4; cursor: po
   .steps-inner { padding: 0 8px; }
   .step-lbl { font-size: 0.52rem; }
   .btn-row { flex-direction: column; }
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+  .theme-grid { grid-template-columns: repeat(3, 1fr); }
+  .admin-inner-tabs { gap: 2px; }
+  .admin-inner-tab { font-size: 0.6rem; padding: 7px 4px; }
 }
 
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 2px; }
+::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
 </style>
 </head>
 <body>
@@ -641,7 +723,7 @@ input[type="time"]::-webkit-calendar-picker-indicator { opacity: 0.4; cursor: po
   <div class="steps-inner">
     <div class="step-item active" id="step1-ind"><div class="step-num">1</div><div class="step-lbl">Details</div></div>
     <div class="step-item" id="step2-ind"><div class="step-num">2</div><div class="step-lbl">Vehicle</div></div>
-    <div class="step-item" id="step3-ind"><div class="step-num">3</div><div class="step-lbl">Schedule</div></div>
+    <div class="step-item" id="step3-ind"><div class="step-num">3</div><div class="step-lbl">Extras</div></div>
     <div class="step-item" id="step4-ind"><div class="step-num">4</div><div class="step-lbl">Confirm</div></div>
   </div>
 </div>
@@ -689,8 +771,9 @@ input[type="time"]::-webkit-calendar-picker-indicator { opacity: 0.4; cursor: po
       </div>
     </div>
 
-    <!-- STEP 2: VEHICLE SELECTION -->
+    <!-- STEP 2: VEHICLE + SCHEDULE (merged) -->
     <div class="form-section" id="sec2">
+      <!-- VEHICLE -->
       <div class="section-card">
         <div class="section-head">
           <div class="section-icon">🚘</div>
@@ -701,7 +784,9 @@ input[type="time"]::-webkit-calendar-picker-indicator { opacity: 0.4; cursor: po
         </div>
         <div class="section-body">
           <div class="car-preview">
-            <img id="displayImg" class="car-image" src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=800&q=80" alt="Vehicle">
+            <div class="car-image-wrap">
+              <img id="displayImg" class="car-image" src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=800&q=80" alt="Vehicle">
+            </div>
             <div class="car-select-wrap">
               <select id="carSelect" onchange="updateUI()">
                 <option value="">Loading vehicles...</option>
@@ -711,45 +796,7 @@ input[type="time"]::-webkit-calendar-picker-indicator { opacity: 0.4; cursor: po
         </div>
       </div>
 
-      <!-- WE ACCEPT STRIP -->
-      <div class="accept-strip">
-        <div class="accept-title">We Accept</div>
-        <div class="payment-logos">
-          <div class="pay-logo" title="Visa">
-            <svg viewBox="0 0 750 471" xmlns="http://www.w3.org/2000/svg"><rect width="750" height="471" rx="40" fill="#1434CB"/><text x="375" y="310" text-anchor="middle" font-family="Arial" font-weight="900" font-size="200" fill="white" font-style="italic">VISA</text></svg>
-          </div>
-          <div class="pay-logo" title="Mastercard">
-            <svg viewBox="0 0 152 96" xmlns="http://www.w3.org/2000/svg"><circle cx="52" cy="48" r="40" fill="#EB001B"/><circle cx="100" cy="48" r="40" fill="#F79E1B"/><path d="M76 18.6a40 40 0 010 58.8A40 40 0 0176 18.6z" fill="#FF5F00"/></svg>
-          </div>
-          <div class="pay-logo" title="PayPal" style="color:#003087;font-size:0.7rem;font-weight:900;letter-spacing:-0.5px">
-            <span style="color:#009cde">Pay</span><span style="color:#003087">Pal</span>
-          </div>
-          <div class="pay-logo" title="QRIS Indonesia" style="background:#e8f4ff;border-color:#cce4ff;">
-            <span style="color:#d42b2b;font-size:0.58rem;font-weight:900;">QRIS</span>
-          </div>
-          <div class="pay-logo" title="DuitNow QR" style="background:#fff0f0;border-color:#ffd0d0;">
-            <span style="color:#e2131a;font-size:0.58rem;font-weight:900;">DuitNow</span>
-          </div>
-          <div class="pay-logo" title="Alipay" style="background:#e8f6ff;border-color:#b3dcf5;">
-            <span style="color:#00a0e9;font-size:0.62rem;font-weight:900;">Alipay</span>
-          </div>
-          <div class="pay-logo" title="FPX Online Banking" style="background:#fff8e8;border-color:#ffe0a0;">
-            <span style="color:#f5a623;font-size:0.62rem;font-weight:900;">FPX</span>
-          </div>
-          <div class="pay-logo" title="Wise" style="background:#e8fff4;border-color:#9de8c8;">
-            <span style="color:#00b9a0;font-size:0.62rem;font-weight:900;">Wise</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="btn-row">
-        <button class="btn btn-ghost" onclick="goStep(1)">← Back</button>
-        <button class="btn btn-primary" onclick="goStep(3)">Continue to Schedule →</button>
-      </div>
-    </div>
-
-    <!-- STEP 3: RENTAL SCHEDULE -->
-    <div class="form-section" id="sec3">
+      <!-- SCHEDULE (merged into step 2) -->
       <div class="section-card">
         <div class="section-head">
           <div class="section-icon">📅</div>
@@ -773,9 +820,7 @@ input[type="time"]::-webkit-calendar-picker-indicator { opacity: 0.4; cursor: po
             <label>Pickup Location <span class="req">*</span></label>
             <select id="pickupLoc" onchange="calculate()"></select>
           </div>
-
           <div class="loc-divider">↕ return</div>
-
           <div class="form-row">
             <div class="form-group">
               <label>Return Date <span class="req">*</span></label>
@@ -823,6 +868,69 @@ input[type="time"]::-webkit-calendar-picker-indicator { opacity: 0.4; cursor: po
         </div>
       </div>
 
+      <!-- WE ACCEPT STRIP -->
+      <div class="accept-strip">
+        <div class="accept-title">We Accept</div>
+        <div class="payment-logos">
+          <div class="pay-logo" title="Visa">
+            <svg viewBox="0 0 750 471" xmlns="http://www.w3.org/2000/svg"><rect width="750" height="471" rx="40" fill="#1434CB"/><text x="375" y="310" text-anchor="middle" font-family="Arial" font-weight="900" font-size="200" fill="white" font-style="italic">VISA</text></svg>
+          </div>
+          <div class="pay-logo" title="Mastercard">
+            <svg viewBox="0 0 152 96" xmlns="http://www.w3.org/2000/svg"><circle cx="52" cy="48" r="40" fill="#EB001B"/><circle cx="100" cy="48" r="40" fill="#F79E1B"/><path d="M76 18.6a40 40 0 010 58.8A40 40 0 0176 18.6z" fill="#FF5F00"/></svg>
+          </div>
+          <div class="pay-logo" title="PayPal" style="color:#003087;font-size:0.7rem;font-weight:900;letter-spacing:-0.5px">
+            <span style="color:#009cde">Pay</span><span style="color:#003087">Pal</span>
+          </div>
+          <div class="pay-logo" title="QRIS" style="background:#e8f4ff;border-color:#cce4ff;">
+            <span style="color:#d42b2b;font-size:0.58rem;font-weight:900;">QRIS</span>
+          </div>
+          <div class="pay-logo" title="DuitNow QR" style="background:#fff0f0;border-color:#ffd0d0;">
+            <span style="color:#e2131a;font-size:0.58rem;font-weight:900;">DuitNow</span>
+          </div>
+          <div class="pay-logo" title="Alipay" style="background:#e8f6ff;border-color:#b3dcf5;">
+            <span style="color:#00a0e9;font-size:0.62rem;font-weight:900;">Alipay</span>
+          </div>
+          <div class="pay-logo" title="FPX" style="background:#fff8e8;border-color:#ffe0a0;">
+            <span style="color:#f5a623;font-size:0.62rem;font-weight:900;">FPX</span>
+          </div>
+          <div class="pay-logo" title="Wise" style="background:#e8fff4;border-color:#9de8c8;">
+            <span style="color:#00b9a0;font-size:0.62rem;font-weight:900;">Wise</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn btn-ghost" onclick="goStep(1)">← Back</button>
+        <button class="btn btn-primary" onclick="goStep(3)">Continue to Extras →</button>
+      </div>
+    </div>
+
+    <!-- STEP 3: EXTRAS -->
+    <div class="form-section" id="sec3">
+      <div class="section-card">
+        <div class="section-head">
+          <div class="section-icon">✨</div>
+          <div>
+            <div class="section-title-text">Add-on Extras</div>
+            <div class="section-sub">Optional services to enhance your rental</div>
+          </div>
+        </div>
+        <div class="section-body">
+          <div class="extras-list" id="extrasList">
+            <div style="color:var(--ink-soft);font-size:0.82rem;text-align:center;padding:20px">Loading extras...</div>
+          </div>
+          <div class="form-group" style="margin-top:20px">
+            <label>Special Notes / Requests</label>
+            <textarea id="custNote" placeholder="Any special requirements, flight numbers, hotel names, etc."></textarea>
+          </div>
+        </div>
+      </div>
+      <!-- EXTRAS PRICE PREVIEW -->
+      <div class="section-card" id="extrasPriceCard" style="display:none">
+        <div class="section-body" style="padding:16px 22px">
+          <div class="price-row"><span>Extras Total</span><span id="extrasTotalLabel" style="color:var(--accent);font-weight:700">RM 0.00</span></div>
+        </div>
+      </div>
       <div class="btn-row">
         <button class="btn btn-ghost" onclick="goStep(2)">← Back</button>
         <button class="btn btn-primary" onclick="goStep(4)">Review Booking →</button>
@@ -852,7 +960,6 @@ input[type="time"]::-webkit-calendar-picker-indicator { opacity: 0.4; cursor: po
         <div id="bookingLinks" class="links-container"></div>
       </div>
 
-      <button class="btn btn-review" onclick="openReview()">🔍 View Full Booking Summary</button>
       <button class="btn btn-wa" id="btnWa" onclick="handleSubmit('wa')" disabled>
         <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
         Book via WhatsApp
@@ -861,9 +968,8 @@ input[type="time"]::-webkit-calendar-picker-indicator { opacity: 0.4; cursor: po
         <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
         Book via Email
       </button>
-
       <div class="btn-row">
-        <button class="btn btn-ghost" onclick="goStep(3)">← Edit Schedule</button>
+        <button class="btn btn-ghost" onclick="goStep(3)">← Edit Extras</button>
       </div>
     </div>
 
@@ -874,92 +980,231 @@ input[type="time"]::-webkit-calendar-picker-indicator { opacity: 0.4; cursor: po
     <div class="section-card">
       <div class="admin-head">
         <h2>⚙️ Admin Panel</h2>
-        <p>Manage fleet, locations, pricing & settings</p>
+        <p>Manage fleet, locations, extras, pricing & settings</p>
       </div>
       <div class="admin-body">
 
-        <div class="admin-section-title">Branding</div>
-        <div class="admin-form-box">
-          <label>Site Name</label><input type="text" id="confSiteName" placeholder="EZ Transport Rental">
-          <label>Tagline</label><input type="text" id="confTagline" placeholder="Luxury & Economy Vehicles...">
-          <label>Logo Image URL</label><input type="text" id="confLogoUrl" placeholder="https://...">
-          <button class="btn btn-save btn-sm" onclick="saveBranding()">💾 Save Branding</button>
+        <!-- INNER ADMIN TABS -->
+        <div class="admin-inner-tabs">
+          <button class="admin-inner-tab active" onclick="adminInnerTab('aVehicles',this)">🚘 Vehicles</button>
+          <button class="admin-inner-tab" onclick="adminInnerTab('aLocations',this)">📍 Locations</button>
+          <button class="admin-inner-tab" onclick="adminInnerTab('aExtras',this)">✨ Extras</button>
+          <button class="admin-inner-tab" onclick="adminInnerTab('aDiscounts',this)">💸 Discounts</button>
+          <button class="admin-inner-tab" onclick="adminInnerTab('aSpecial',this)">📆 Special</button>
+          <button class="admin-inner-tab" onclick="adminInnerTab('aGallery',this)">🖼️ Gallery</button>
+          <button class="admin-inner-tab" onclick="adminInnerTab('aFooter',this)">🏢 Footer</button>
+          <button class="admin-inner-tab" onclick="adminInnerTab('aSettings',this)">⚙️ Settings</button>
         </div>
 
-        <div class="admin-section-title">Manage Vehicles</div>
-        <div class="admin-form-box">
-          <input type="hidden" id="editCarIdx" value="">
-          <label>Model Name</label><input type="text" id="newCarName" placeholder="e.g. Toyota Vios">
-          <label>Daily Rate (RM)</label><input type="number" id="newCarPrice" placeholder="e.g. 180">
-          <label>Image URL</label><input type="text" id="newCarImg" placeholder="https://...">
-          <button class="btn btn-save btn-sm" id="btnSaveCar" onclick="saveCar()">💾 Save Vehicle</button>
-          <button class="btn btn-ghost btn-sm" id="btnCancelCar" onclick="cancelEditCar()" style="display:none;margin-top:6px">✕ Cancel</button>
-        </div>
-        <div id="adminCarList"></div>
-
-        <div class="admin-section-title">Manage Locations</div>
-        <div class="admin-form-box">
-          <input type="hidden" id="editLocIdx" value="">
-          <label>Location Name</label><input type="text" id="newLocName" placeholder="e.g. KLIA Terminal 1">
-          <label>Delivery Fee (RM)</label><input type="number" id="newLocPrice" placeholder="0 = Free">
-          <button class="btn btn-save btn-sm" id="btnSaveLoc" onclick="saveLocation()">💾 Save Location</button>
-          <button class="btn btn-ghost btn-sm" id="btnCancelLoc" onclick="cancelEditLoc()" style="display:none;margin-top:6px">✕ Cancel</button>
-        </div>
-        <div id="adminLocList"></div>
-
-        <div class="admin-section-title">Manage Discounts (%)</div>
-        <div class="admin-form-box">
-          <input type="hidden" id="editDiscIdx" value="">
-          <div class="flex-row">
-            <div><label>Min Days</label><input type="number" id="discMinDays" placeholder="e.g. 7"></div>
-            <div><label>Max Days</label><input type="number" id="discMaxDays" placeholder="e.g. 13"></div>
+        <!-- VEHICLES -->
+        <div class="admin-inner-content active" id="aVehicles">
+          <div class="admin-form-box">
+            <input type="hidden" id="editCarIdx" value="">
+            <label>Model Name</label><input type="text" id="newCarName" placeholder="e.g. Toyota Vios">
+            <label>Daily Rate (RM)</label><input type="number" id="newCarPrice" placeholder="e.g. 180">
+            <label>Image URL</label><input type="text" id="newCarImg" placeholder="https://...">
+            <button class="btn btn-save btn-sm" id="btnSaveCar" onclick="saveCar()">💾 Save Vehicle</button>
+            <button class="btn btn-ghost btn-sm" id="btnCancelCar" onclick="cancelEditCar()" style="display:none;margin-top:6px">✕ Cancel</button>
           </div>
-          <label>Discount %</label><input type="number" id="discPerc" placeholder="e.g. 10">
-          <button class="btn btn-save btn-sm" id="btnSaveDisc" onclick="saveDiscount()">💾 Save Discount</button>
-          <button class="btn btn-ghost btn-sm" id="btnCancelDisc" onclick="cancelEditDisc()" style="display:none;margin-top:6px">✕ Cancel</button>
+          <div id="adminCarList"></div>
         </div>
-        <div id="adminDiscList"></div>
 
-        <div class="admin-section-title">Special Dates (Surcharge %)</div>
-        <div class="info-note" style="margin-bottom:10px">⚠️ If booking overlaps these dates, discount is removed and surcharge applies.</div>
-        <div class="admin-form-box">
-          <input type="hidden" id="editSpecialIdx" value="">
-          <div class="flex-row">
-            <div><label>From</label><input type="date" id="specialFrom"></div>
-            <div><label>To</label><input type="date" id="specialTo"></div>
+        <!-- LOCATIONS -->
+        <div class="admin-inner-content" id="aLocations">
+          <div class="admin-form-box">
+            <input type="hidden" id="editLocIdx" value="">
+            <label>Location Name</label><input type="text" id="newLocName" placeholder="e.g. KLIA Terminal 1">
+            <label>Delivery Fee (RM)</label><input type="number" id="newLocPrice" placeholder="0 = Free">
+            <button class="btn btn-save btn-sm" id="btnSaveLoc" onclick="saveLocation()">💾 Save Location</button>
+            <button class="btn btn-ghost btn-sm" id="btnCancelLoc" onclick="cancelEditLoc()" style="display:none;margin-top:6px">✕ Cancel</button>
           </div>
-          <label>Surcharge %</label><input type="number" id="specialPerc" placeholder="e.g. 20">
-          <button class="btn btn-save btn-sm" id="btnSaveSpecial" onclick="saveSpecialDate()">💾 Save Special Date</button>
-          <button class="btn btn-ghost btn-sm" id="btnCancelSpecial" onclick="cancelEditSpecial()" style="display:none;margin-top:6px">✕ Cancel</button>
-        </div>
-        <div id="adminSpecialList"></div>
-
-        <div class="admin-section-title">T&C Links</div>
-        <div class="admin-form-box">
-          <input type="hidden" id="editLinkIdx" value="">
-          <label>Link Label</label><input type="text" id="newLinkName" placeholder="e.g. Terms & Conditions PDF">
-          <label>URL</label><input type="text" id="newLinkUrl" placeholder="https://...">
-          <button class="btn btn-save btn-sm" id="btnSaveLink" onclick="saveLink()">💾 Save Link</button>
-          <button class="btn btn-ghost btn-sm" id="btnCancelLink" onclick="cancelEditLink()" style="display:none;margin-top:6px">✕ Cancel</button>
-        </div>
-        <div id="adminLinkList"></div>
-
-        <div class="admin-section-title">General Settings</div>
-        <div class="admin-form-box">
-          <label>WhatsApp Number</label><input type="text" id="confPhone" placeholder="60182246616">
-          <label>Admin Email</label><input type="email" id="confEmail" placeholder="admin@example.com">
-          <label>Terms & Conditions Text</label><input type="text" id="confTermsText" placeholder="I agree to the Terms...">
-          <button class="btn btn-save btn-sm" onclick="saveSettings()">💾 Update Settings</button>
+          <div id="adminLocList"></div>
         </div>
 
-        <button class="btn btn-danger btn-sm" onclick="location.reload()" style="width:100%;margin-top:10px">🔄 Refresh App</button>
+        <!-- EXTRAS -->
+        <div class="admin-inner-content" id="aExtras">
+          <div class="admin-form-box">
+            <input type="hidden" id="editExtraIdx" value="">
+            <label>Item Name</label>
+            <input type="text" id="newExtraName" placeholder="e.g. Child Seat, Touch & Go, CDW Insurance">
+            <label>Description</label>
+            <input type="text" id="newExtraDesc" placeholder="e.g. Safety-certified infant seat">
+            <div class="flex-row">
+              <div>
+                <label>Price (RM)</label>
+                <input type="number" id="newExtraPrice" placeholder="e.g. 30">
+              </div>
+              <div>
+                <label>Price Type</label>
+                <select id="newExtraPriceType" style="margin-bottom:0">
+                  <option value="daily">Per Day</option>
+                  <option value="onetime">One-Time</option>
+                </select>
+              </div>
+            </div>
+            <label>Discount % (0 = none)</label>
+            <input type="number" id="newExtraDiscount" placeholder="e.g. 10" min="0" max="100">
+            <button class="btn btn-save btn-sm" id="btnSaveExtra" onclick="saveExtra()">💾 Save Extra</button>
+            <button class="btn btn-ghost btn-sm" id="btnCancelExtra" onclick="cancelEditExtra()" style="display:none;margin-top:6px">✕ Cancel</button>
+          </div>
+          <div id="adminExtraList"></div>
+        </div>
+
+        <!-- DISCOUNTS -->
+        <div class="admin-inner-content" id="aDiscounts">
+          <div class="admin-form-box">
+            <input type="hidden" id="editDiscIdx" value="">
+            <div class="flex-row">
+              <div><label>Min Days</label><input type="number" id="discMinDays" placeholder="e.g. 7"></div>
+              <div><label>Max Days</label><input type="number" id="discMaxDays" placeholder="e.g. 13"></div>
+            </div>
+            <label>Discount %</label><input type="number" id="discPerc" placeholder="e.g. 10">
+            <button class="btn btn-save btn-sm" id="btnSaveDisc" onclick="saveDiscount()">💾 Save Discount</button>
+            <button class="btn btn-ghost btn-sm" id="btnCancelDisc" onclick="cancelEditDisc()" style="display:none;margin-top:6px">✕ Cancel</button>
+          </div>
+          <div id="adminDiscList"></div>
+        </div>
+
+        <!-- SPECIAL DATES -->
+        <div class="admin-inner-content" id="aSpecial">
+          <div class="info-note" style="margin-bottom:10px">⚠️ If booking overlaps these dates, discount is removed and surcharge applies.</div>
+          <div class="admin-form-box">
+            <input type="hidden" id="editSpecialIdx" value="">
+            <div class="flex-row">
+              <div><label>From</label><input type="date" id="specialFrom"></div>
+              <div><label>To</label><input type="date" id="specialTo"></div>
+            </div>
+            <label>Surcharge %</label><input type="number" id="specialPerc" placeholder="e.g. 20">
+            <button class="btn btn-save btn-sm" id="btnSaveSpecial" onclick="saveSpecialDate()">💾 Save Special Date</button>
+            <button class="btn btn-ghost btn-sm" id="btnCancelSpecial" onclick="cancelEditSpecial()" style="display:none;margin-top:6px">✕ Cancel</button>
+          </div>
+          <div id="adminSpecialList"></div>
+        </div>
+
+        <!-- GALLERY -->
+        <div class="admin-inner-content" id="aGallery">
+          <p style="font-size:0.78rem;color:var(--ink-soft);margin-bottom:12px">Add up to 6 gallery images shown below the payment section.</p>
+          <div id="adminGalleryList"></div>
+          <div class="admin-form-box" id="galleryAddBox">
+            <label>Image URL</label>
+            <input type="text" id="newGalleryUrl" placeholder="https://...">
+            <label>Caption (optional)</label>
+            <input type="text" id="newGalleryCaption" placeholder="e.g. Toyota Vios Interior">
+            <button class="btn btn-save btn-sm" onclick="saveGalleryItem()">➕ Add Image</button>
+          </div>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="admin-inner-content" id="aFooter">
+          <div class="admin-form-box">
+            <label>Company Name (Line 1)</label>
+            <input type="text" id="ftrCompanyName" placeholder="e.g. EZ Transport Rental">
+            <label>Tagline</label>
+            <input type="text" id="ftrTagline" placeholder="e.g. Premium car rental services across Malaysia...">
+            <label>Reg. Label</label>
+            <input type="text" id="ftrRegLabel" placeholder="e.g. Wholly Owned by">
+            <label>Company Legal Name</label>
+            <input type="text" id="ftrLegalName" placeholder="e.g. Ikhlas Nineteen Resources">
+            <label>Company Reg. No</label>
+            <input type="text" id="ftrRegNo" placeholder="e.g. (001561921K)">
+            <label>About Text</label>
+            <textarea id="ftrAboutText" placeholder="Short about us paragraph..."></textarea>
+            <label>Phone</label>
+            <input type="text" id="ftrPhone" placeholder="+60 3-9078 2003">
+            <label>Email</label>
+            <input type="text" id="ftrEmail" placeholder="customer.care@example.com">
+            <label>Address</label>
+            <textarea id="ftrAddress" placeholder="Full address..." style="min-height:60px"></textarea>
+            <label>Website URL</label>
+            <input type="text" id="ftrWebsite" placeholder="https://eztransportrental.com.my">
+            <label>Copyright Text</label>
+            <input type="text" id="ftrCopyright" placeholder="© 2025 EZTransportRental.com.my · All Rights Reserved">
+            <button class="btn btn-save btn-sm" onclick="saveFooter()">💾 Save Footer</button>
+          </div>
+        </div>
+
+        <!-- SETTINGS -->
+        <div class="admin-inner-content" id="aSettings">
+          <!-- BRANDING -->
+          <div class="admin-section-title">Branding</div>
+          <div class="admin-form-box">
+            <label>Site Name</label><input type="text" id="confSiteName" placeholder="EZ Transport Rental">
+            <label>Tagline</label><input type="text" id="confTagline" placeholder="Luxury & Economy Vehicles...">
+            <label>Logo Image URL</label><input type="text" id="confLogoUrl" placeholder="https://...">
+            <button class="btn btn-save btn-sm" onclick="saveBranding()">💾 Save Branding</button>
+          </div>
+
+          <!-- T&C LINKS -->
+          <div class="admin-section-title">T&C Links</div>
+          <div class="admin-form-box">
+            <input type="hidden" id="editLinkIdx" value="">
+            <label>Link Label</label><input type="text" id="newLinkName" placeholder="e.g. Terms & Conditions PDF">
+            <label>URL</label><input type="text" id="newLinkUrl" placeholder="https://...">
+            <button class="btn btn-save btn-sm" id="btnSaveLink" onclick="saveLink()">💾 Save Link</button>
+            <button class="btn btn-ghost btn-sm" id="btnCancelLink" onclick="cancelEditLink()" style="display:none;margin-top:6px">✕ Cancel</button>
+          </div>
+          <div id="adminLinkList"></div>
+
+          <!-- GENERAL -->
+          <div class="admin-section-title">General Settings</div>
+          <div class="admin-form-box">
+            <label>WhatsApp Number</label><input type="text" id="confPhone" placeholder="60182246616">
+            <label>Admin Email</label><input type="email" id="confEmail" placeholder="admin@example.com">
+            <label>Terms & Conditions Text</label><input type="text" id="confTermsText" placeholder="I agree to the Terms...">
+            <button class="btn btn-save btn-sm" onclick="saveSettings()">💾 Update Settings</button>
+          </div>
+
+          <!-- COLOR THEME -->
+          <div class="admin-section-title">Color Theme</div>
+          <div class="admin-form-box">
+            <p style="font-size:0.76rem;color:var(--ink-soft);margin-bottom:12px">Choose a color accent for the booking form.</p>
+            <div class="theme-grid" id="themeGrid">
+              <div class="theme-swatch active" onclick="applyTheme('gold',this)" data-theme="gold">
+                <div class="theme-swatch-color" style="background:linear-gradient(135deg,#c9a84c,#e8c97a)"></div>
+                <div class="theme-swatch-label">Gold</div>
+              </div>
+              <div class="theme-swatch" onclick="applyTheme('blue',this)" data-theme="blue">
+                <div class="theme-swatch-color" style="background:linear-gradient(135deg,#1a4fa0,#4a7fd4)"></div>
+                <div class="theme-swatch-label">Navy Blue</div>
+              </div>
+              <div class="theme-swatch" onclick="applyTheme('green',this)" data-theme="green">
+                <div class="theme-swatch-color" style="background:linear-gradient(135deg,#1a7a4a,#2ecc71)"></div>
+                <div class="theme-swatch-label">Forest</div>
+              </div>
+              <div class="theme-swatch" onclick="applyTheme('red',this)" data-theme="red">
+                <div class="theme-swatch-color" style="background:linear-gradient(135deg,#c0392b,#e74c3c)"></div>
+                <div class="theme-swatch-label">Ruby</div>
+              </div>
+              <div class="theme-swatch" onclick="applyTheme('purple',this)" data-theme="purple">
+                <div class="theme-swatch-color" style="background:linear-gradient(135deg,#6c3483,#a569bd)"></div>
+                <div class="theme-swatch-label">Purple</div>
+              </div>
+              <div class="theme-swatch" onclick="applyTheme('teal',this)" data-theme="teal">
+                <div class="theme-swatch-color" style="background:linear-gradient(135deg,#0e6655,#48c9b0)"></div>
+                <div class="theme-swatch-label">Teal</div>
+              </div>
+              <div class="theme-swatch" onclick="applyTheme('orange',this)" data-theme="orange">
+                <div class="theme-swatch-color" style="background:linear-gradient(135deg,#ca6f1e,#f39c12)"></div>
+                <div class="theme-swatch-label">Orange</div>
+              </div>
+              <div class="theme-swatch" onclick="applyTheme('slate',this)" data-theme="slate">
+                <div class="theme-swatch-color" style="background:linear-gradient(135deg,#2c3e50,#5d6d7e)"></div>
+                <div class="theme-swatch-label">Slate</div>
+              </div>
+            </div>
+            <button class="btn btn-save btn-sm" onclick="saveTheme()">💾 Save Theme</button>
+          </div>
+
+          <button class="btn btn-danger btn-sm" onclick="location.reload()" style="width:100%;margin-top:10px">🔄 Refresh App</button>
+        </div>
+
       </div>
     </div>
   </div><!-- /adminSection -->
 
 </div><!-- /main -->
 
-<!-- BOOKING TRUST STRIP (only in booking) -->
+<!-- TRUST STRIP -->
 <div id="trustStrip">
   <div class="trust-strip">
     <div class="trust-item"><div class="trust-icon">🛡️</div><div class="trust-lbl">Fully Insured</div></div>
@@ -967,9 +1212,16 @@ input[type="time"]::-webkit-calendar-picker-indicator { opacity: 0.4; cursor: po
     <div class="trust-item"><div class="trust-icon">📍</div><div class="trust-lbl">KL Pickup</div></div>
     <div class="trust-item"><div class="trust-icon">🔒</div><div class="trust-lbl">Safe Payment</div></div>
   </div>
+
+  <!-- GALLERY -->
+  <div class="gallery-section" id="gallerySection">
+    <div class="gallery-section-head">Our Fleet & Facilities</div>
+    <div class="gallery-grid" id="galleryGrid"></div>
+  </div>
+
   <div class="bottom-actions">
     <a href="https://eztransportrental.com.my/car-rental-kuala-lumpur/" target="_blank" class="btn-bottom btn-back">← Back to Main Menu</a>
-    <a href="https://wa.me/60182246616" target="_blank" class="btn-bottom btn-help">
+    <a href="#" id="waHelpBtn" target="_blank" class="btn-bottom btn-help">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
       Need Help?
     </a>
@@ -986,16 +1238,16 @@ input[type="time"]::-webkit-calendar-picker-indicator { opacity: 0.4; cursor: po
           <div class="cf-logo-name" id="cfSiteName">EZ Transport <em>Rental</em></div>
         </div>
       </div>
-      <div class="cf-tagline">Premium car rental services across Malaysia & Beyond.</div>
-      <div class="cf-reg">
+      <div class="cf-tagline" id="cfTagline">Premium car rental services across Malaysia & Beyond.</div>
+      <div class="cf-reg" id="cfReg">
         Wholly Owned by<br>
-        <strong style="color:rgba(255,255,255,0.5)">Ikhlas Nineteen Resources</strong><br>
-        <span style="font-size:0.62rem">(001561921K)</span>
+        <strong style="color:rgba(255,255,255,0.5)" id="cfLegalName">Ikhlas Nineteen Resources</strong><br>
+        <span style="font-size:0.62rem" id="cfRegNo">(001561921K)</span>
       </div>
     </div>
     <div>
       <div class="cf-section-title">About Us</div>
-      <div class="cf-about-text">
+      <div class="cf-about-text" id="cfAboutText">
         <strong>eztransportrental.com.my</strong> is Wholly Owned by <strong>Ikhlas Nineteen Resources (001561921K)</strong>.<br><br>
         We provide professional, reliable and comfortable transportation for individuals, families and corporate clients throughout Malaysia.
       </div>
@@ -1004,36 +1256,27 @@ input[type="time"]::-webkit-calendar-picker-indicator { opacity: 0.4; cursor: po
       <div class="cf-section-title">Contact Us</div>
       <div class="cf-contact-item">
         <div class="cf-contact-icon">📞</div>
-        <div class="cf-contact-text"><a href="tel:+60390782003">+60 3-9078 2003</a></div>
+        <div class="cf-contact-text" id="cfPhone"><a href="tel:+60390782003">+60 3-9078 2003</a></div>
       </div>
       <div class="cf-contact-item">
         <div class="cf-contact-icon">✉️</div>
-        <div class="cf-contact-text"><a href="mailto:customer.care@eztransportrental.com.my">customer.care@eztransportrental.com.my</a></div>
+        <div class="cf-contact-text" id="cfEmail"><a href="mailto:customer.care@eztransportrental.com.my">customer.care@eztransportrental.com.my</a></div>
       </div>
       <div class="cf-contact-item">
         <div class="cf-contact-icon">📍</div>
-        <div class="cf-contact-text">PW23-1 ONE MON'T KIARA,<br>No. 1 Jalan Kiara,<br>50480 Kuala Lumpur.</div>
+        <div class="cf-contact-text" id="cfAddress">PW23-1 ONE MON'T KIARA,<br>No. 1 Jalan Kiara,<br>50480 Kuala Lumpur.</div>
       </div>
       <div class="cf-contact-item">
         <div class="cf-contact-icon">🌐</div>
-        <div class="cf-contact-text"><a href="https://eztransportrental.com.my" target="_blank">eztransportrental.com.my</a></div>
+        <div class="cf-contact-text" id="cfWebsite"><a href="https://eztransportrental.com.my" target="_blank">eztransportrental.com.my</a></div>
       </div>
     </div>
   </div>
   <div style="max-width:680px;margin:0 auto;">
     <div class="company-footer-bottom">
-      <div class="cf-copy">© 2025 <a href="https://eztransportrental.com.my" target="_blank">EZTransportRental.com.my</a> · Ikhlas Nineteen Resources (001561921K)</div>
+      <div class="cf-copy" id="cfCopyright">© 2025 <a href="https://eztransportrental.com.my" target="_blank">EZTransportRental.com.my</a> · Ikhlas Nineteen Resources (001561921K)</div>
       <div class="cf-copy">All Rights Reserved</div>
     </div>
-  </div>
-</div>
-
-<!-- REVIEW MODAL -->
-<div id="reviewModal" class="modal-overlay">
-  <div class="modal-content">
-    <h3>📋 Booking Summary</h3>
-    <div id="reviewModalContent"></div>
-    <button class="btn btn-ghost" style="margin-top:18px" onclick="closeReview()">← Close & Edit</button>
   </div>
 </div>
 
@@ -1058,35 +1301,72 @@ const db = firebase.database();
 const ADMIN_PASS = "123iin456";
 const DEPOSIT = 300;
 const MIN_DAYS = 2;
+const DEFAULT_KLIA_KEY = '__klia__';
+
+// ── THEME DEFINITIONS ──
+const THEMES = {
+  gold:   { accent:'#c9a84c', accentLight:'#e8c97a', accentPale:'#fdf6e3' },
+  blue:   { accent:'#1a4fa0', accentLight:'#4a7fd4', accentPale:'#e8f0fc' },
+  green:  { accent:'#1a7a4a', accentLight:'#2ecc71', accentPale:'#e8f8ef' },
+  red:    { accent:'#c0392b', accentLight:'#e74c3c', accentPale:'#fde8e8' },
+  purple: { accent:'#6c3483', accentLight:'#a569bd', accentPale:'#f5eafb' },
+  teal:   { accent:'#0e6655', accentLight:'#48c9b0', accentPale:'#e8f8f5' },
+  orange: { accent:'#ca6f1e', accentLight:'#f39c12', accentPale:'#fef5e7' },
+  slate:  { accent:'#2c3e50', accentLight:'#5d6d7e', accentPale:'#eaecee' }
+};
 
 // ── STATE ──
-let inventory = {}, locations = {}, discounts = {}, specialDates = {}, links = {}, settings = {};
-let currentTotals = { days: 0, rentalCost: 0, locFee: 0, discVal: 0, preDeposit: 0, grand: 0, isSpecial: false, specialRate: 0 };
+let inventory = {}, locations = {}, discounts = {}, specialDates = {}, links = {}, settings = {}, extras = {}, gallery = {}, footerData = {};
+let extraQtys = {};
+let currentTotals = { days: 0, rentalCost: 0, locFee: 0, discVal: 0, preDeposit: 0, grand: 0, isSpecial: false, specialRate: 0, extrasCost: 0 };
 let currentStep = 1;
 let adminClicks = 0;
 let fpPickup = null, fpReturn = null;
+let currentTheme = 'gold';
 
 // ── COUNTRIES ──
 const countries = ["Malaysia","Singapore","Brunei","Indonesia","Thailand","Afghanistan","Albania","Algeria","Andorra","Angola","Antigua and Barbuda","Argentina","Armenia","Australia","Austria","Azerbaijan","Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bhutan","Bolivia","Bosnia and Herzegovina","Botswana","Brazil","Bulgaria","Burkina Faso","Burundi","Cabo Verde","Cambodia","Cameroon","Canada","Central African Republic","Chad","Chile","China","Colombia","Comoros","Congo","Costa Rica","Croatia","Cuba","Cyprus","Czech Republic","Denmark","Djibouti","Dominica","Dominican Republic","Ecuador","Egypt","El Salvador","Equatorial Guinea","Eritrea","Estonia","Eswatini","Ethiopia","Fiji","Finland","France","Gabon","Gambia","Georgia","Germany","Ghana","Greece","Grenada","Guatemala","Guinea","Guinea-Bissau","Guyana","Haiti","Honduras","Hungary","Iceland","India","Iran","Iraq","Ireland","Israel","Italy","Jamaica","Japan","Jordan","Kazakhstan","Kenya","Kiribati","Korea (North)","Korea (South)","Kuwait","Kyrgyzstan","Laos","Latvia","Lebanon","Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg","Madagascar","Malawi","Maldives","Mali","Malta","Marshall Islands","Mauritania","Mauritius","Mexico","Micronesia","Moldova","Monaco","Mongolia","Montenegro","Morocco","Mozambique","Myanmar","Namibia","Nauru","Nepal","Netherlands","New Zealand","Nicaragua","Niger","Nigeria","North Macedonia","Norway","Oman","Pakistan","Palau","Palestine","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Poland","Portugal","Qatar","Romania","Russia","Rwanda","Saint Kitts and Nevis","Saint Lucia","Saint Vincent and the Grenadines","Samoa","San Marino","Sao Tome and Principe","Saudi Arabia","Senegal","Serbia","Seychelles","Sierra Leone","Slovakia","Slovenia","Solomon Islands","Somalia","South Africa","South Sudan","Spain","Sri Lanka","Sudan","Suriname","Sweden","Switzerland","Syria","Taiwan","Tajikistan","Tanzania","Togo","Tonga","Trinidad and Tobago","Tunisia","Turkey","Turkmenistan","Tuvalu","Uganda","Ukraine","United Arab Emirates","United Kingdom","United States","Uruguay","Uzbekistan","Vanuatu","Vatican City","Venezuela","Vietnam","Yemen","Zambia","Zimbabwe"];
+
+// ── APPLY THEME ──
+function applyTheme(name, swatch) {
+  const t = THEMES[name];
+  if (!t) return;
+  currentTheme = name;
+  document.documentElement.style.setProperty('--accent', t.accent);
+  document.documentElement.style.setProperty('--accent-light', t.accentLight);
+  document.documentElement.style.setProperty('--accent-pale', t.accentPale);
+  // Also update gold vars for hero/footers that use them
+  document.documentElement.style.setProperty('--gold', t.accent);
+  document.documentElement.style.setProperty('--gold-light', t.accentLight);
+  document.documentElement.style.setProperty('--gold-pale', t.accentPale);
+  // Update swatch active state
+  document.querySelectorAll('.theme-swatch').forEach(s => s.classList.remove('active'));
+  if (swatch) swatch.classList.add('active');
+  else {
+    const sw = document.querySelector(`.theme-swatch[data-theme="${name}"]`);
+    if (sw) sw.classList.add('active');
+  }
+}
+
+function saveTheme() {
+  db.ref('ez_settings').update({ colorTheme: currentTheme }).then(() => showToast('✅ Theme saved'));
+}
 
 // ── INIT ──
 function initApp() {
   document.getElementById('custCountry').innerHTML = countries.map(c => `<option value="${c}" ${c==='Malaysia'?'selected':''}>${c}</option>`).join('');
 
-  // Flatpickr for dates
   fpPickup = flatpickr('#pickupDate', {
     dateFormat: 'd/m/Y', minDate: 'today', disableMobile: false,
-    locale: { firstDayOfWeek: 1 },
-    onChange: () => calculate()
+    locale: { firstDayOfWeek: 1 }, onChange: () => calculate()
   });
   fpReturn = flatpickr('#returnDate', {
     dateFormat: 'd/m/Y', minDate: 'today', disableMobile: false,
-    locale: { firstDayOfWeek: 1 },
-    onChange: () => calculate()
+    locale: { firstDayOfWeek: 1 }, onChange: () => calculate()
   });
 
   db.ref('ez_settings').on('value', snap => {
-    settings = snap.val() || { termsText: "I agree to the Terms & Conditions.", adminEmail: "customer.care@eztransportrental.com.my", adminPhone: "60182246616" };
+    settings = snap.val() || { termsText:"I agree to the Terms & Conditions.", adminEmail:"customer.care@eztransportrental.com.my", adminPhone:"60182246616" };
     document.getElementById('termsDisplay').innerText = settings.termsText || "I agree to the Terms & Conditions.";
     if (document.getElementById('confTermsText')) document.getElementById('confTermsText').value = settings.termsText || "";
     if (document.getElementById('confEmail')) document.getElementById('confEmail').value = settings.adminEmail || "";
@@ -1094,14 +1374,28 @@ function initApp() {
     if (document.getElementById('confSiteName')) document.getElementById('confSiteName').value = settings.siteName || "";
     if (document.getElementById('confTagline')) document.getElementById('confTagline').value = settings.tagline || "";
     if (document.getElementById('confLogoUrl')) document.getElementById('confLogoUrl').value = settings.logoUrl || "";
+    // Apply saved theme
+    if (settings.colorTheme) applyTheme(settings.colorTheme, null);
+    // Update WA help button
+    document.getElementById('waHelpBtn').href = `https://wa.me/${settings.adminPhone || '60182246616'}`;
     applyBranding();
   });
 
   db.ref('ez_inventory').on('value', snap => { inventory = snap.val() || {}; renderCarOptions(); renderAdminCars(); updateUI(); });
-  db.ref('ez_locations').on('value', snap => { locations = snap.val() || {}; renderLocOptions(); renderAdminLocs(); calculate(); });
+  db.ref('ez_locations').on('value', snap => {
+    locations = snap.val() || {};
+    // Ensure KLIA default exists
+    if (!Object.values(locations).find(l => l.name && l.name.toLowerCase().includes('klia'))) {
+      ensureKliaDefault();
+    }
+    renderLocOptions(); renderAdminLocs(); calculate();
+  });
   db.ref('ez_discounts').on('value', snap => { discounts = snap.val() || {}; renderAdminDiscs(); calculate(); });
   db.ref('ez_special_dates').on('value', snap => { specialDates = snap.val() || {}; renderAdminSpecial(); calculate(); });
   db.ref('ez_links').on('value', snap => { links = snap.val() || {}; renderAdminLinks(); renderBookingLinks(); });
+  db.ref('ez_extras').on('value', snap => { extras = snap.val() || {}; renderExtrasList(); renderAdminExtras(); });
+  db.ref('ez_gallery').on('value', snap => { gallery = snap.val() || {}; renderGallery(); renderAdminGallery(); });
+  db.ref('ez_footer').on('value', snap => { footerData = snap.val() || {}; renderFooter(); syncFooterAdmin(); });
 
   db.ref(".info/connected").on("value", snap => {
     const dot = document.getElementById('status-dot');
@@ -1109,6 +1403,14 @@ function initApp() {
     if (snap.val()) { dot.className = "dot dot-online"; txt.innerText = "Cloud Synced ✓"; }
     else { dot.className = "dot dot-offline"; txt.innerText = "Offline - Connecting..."; }
   });
+}
+
+// ── ENSURE KLIA DEFAULT ──
+function ensureKliaDefault() {
+  // Only add if completely empty
+  if (Object.keys(locations).length === 0) {
+    db.ref('ez_locations/' + DEFAULT_KLIA_KEY).set({ name: 'KLIA Terminal 1', price: 0 });
+  }
 }
 
 // ── BRANDING ──
@@ -1126,12 +1428,244 @@ function applyBranding() {
   ['heroLogoWrap','cfLogoWrap'].forEach(id => {
     const el = document.getElementById(id);
     if (!el) return;
-    if (logo) { el.innerHTML = `<img src="${logo}" class="${id === 'heroLogoWrap' ? 'hero-logo-img' : 'cf-logo-img'}" alt="Logo" onerror="this.parentElement.innerHTML='🚗'">`; el.style.background = 'transparent'; el.style.boxShadow = 'none'; }
-    else { el.innerHTML = '🚗'; el.style.background = ''; el.style.boxShadow = ''; }
+    if (logo) {
+      el.innerHTML = `<img src="${logo}" class="${id==='heroLogoWrap'?'hero-logo-img':'cf-logo-img'}" alt="Logo" onerror="this.parentElement.innerHTML='🚗'">`;
+      el.style.background = 'transparent'; el.style.boxShadow = 'none';
+    } else {
+      el.innerHTML = '🚗'; el.style.background = ''; el.style.boxShadow = '';
+    }
   });
 
   const cfName = document.getElementById('cfSiteName');
   if (cfName) cfName.innerHTML = name.includes(' ') ? name.replace(/(\S+)\s(.+)/, '$1 <em>$2</em>') : name;
+}
+
+// ── RENDER FOOTER ──
+function renderFooter() {
+  const f = footerData;
+  if (!f || Object.keys(f).length === 0) return;
+  if (f.tagline) document.getElementById('cfTagline').textContent = f.tagline;
+  if (f.legalName) document.getElementById('cfLegalName').textContent = f.legalName;
+  if (f.regNo) document.getElementById('cfRegNo').textContent = f.regNo;
+  if (f.aboutText) document.getElementById('cfAboutText').innerHTML = f.aboutText;
+  if (f.phone) document.getElementById('cfPhone').innerHTML = `<a href="tel:${f.phone}">${f.phone}</a>`;
+  if (f.email) document.getElementById('cfEmail').innerHTML = `<a href="mailto:${f.email}">${f.email}</a>`;
+  if (f.address) document.getElementById('cfAddress').innerHTML = (f.address || '').replace(/\n/g,'<br>');
+  if (f.website) document.getElementById('cfWebsite').innerHTML = `<a href="${f.website}" target="_blank">${f.website.replace('https://','')}</a>`;
+  if (f.copyright) document.getElementById('cfCopyright').innerHTML = f.copyright;
+}
+
+function syncFooterAdmin() {
+  const f = footerData;
+  if (!f) return;
+  const fields = { ftrTagline:'tagline', ftrRegLabel:'regLabel', ftrLegalName:'legalName', ftrRegNo:'regNo', ftrAboutText:'aboutText', ftrPhone:'phone', ftrEmail:'email', ftrAddress:'address', ftrWebsite:'website', ftrCopyright:'copyright', ftrCompanyName:'companyName' };
+  Object.entries(fields).forEach(([elId, key]) => {
+    const el = document.getElementById(elId);
+    if (el) el.value = f[key] || '';
+  });
+}
+
+function saveFooter() {
+  const data = {
+    companyName: document.getElementById('ftrCompanyName').value.trim(),
+    tagline:     document.getElementById('ftrTagline').value.trim(),
+    regLabel:    document.getElementById('ftrRegLabel').value.trim(),
+    legalName:   document.getElementById('ftrLegalName').value.trim(),
+    regNo:       document.getElementById('ftrRegNo').value.trim(),
+    aboutText:   document.getElementById('ftrAboutText').value.trim(),
+    phone:       document.getElementById('ftrPhone').value.trim(),
+    email:       document.getElementById('ftrEmail').value.trim(),
+    address:     document.getElementById('ftrAddress').value.trim(),
+    website:     document.getElementById('ftrWebsite').value.trim(),
+    copyright:   document.getElementById('ftrCopyright').value.trim()
+  };
+  db.ref('ez_footer').set(data).then(() => showToast('✅ Footer updated'));
+}
+
+// ── GALLERY ──
+function renderGallery() {
+  const grid = document.getElementById('galleryGrid');
+  const keys = Object.keys(gallery);
+  if (!keys.length) {
+    grid.innerHTML = '';
+    document.getElementById('gallerySection').style.display = 'none';
+    return;
+  }
+  document.getElementById('gallerySection').style.display = 'block';
+  grid.innerHTML = keys.slice(0,6).map(id => {
+    const g = gallery[id];
+    return `<div class="gallery-img-wrap">
+      <img src="${g.url}" alt="${g.caption||''}" loading="lazy" onerror="this.parentElement.innerHTML='<div class=\\'gallery-placeholder\\'>📷</div>'">
+    </div>`;
+  }).join('');
+}
+
+function renderAdminGallery() {
+  const list = document.getElementById('adminGalleryList');
+  const keys = Object.keys(gallery);
+  const addBox = document.getElementById('galleryAddBox');
+  addBox.style.display = keys.length >= 6 ? 'none' : 'block';
+  if (!keys.length) {
+    list.innerHTML = '<p style="color:var(--ink-soft);font-size:0.78rem;text-align:center;padding:8px 0;margin-bottom:10px">No gallery images yet.</p>';
+    return;
+  }
+  list.innerHTML = keys.map(id => {
+    const g = gallery[id];
+    return `<div class="admin-item">
+      <div style="display:flex;gap:10px;align-items:center;flex:1">
+        <img src="${g.url}" style="width:50px;height:38px;object-fit:cover;border-radius:6px;border:1px solid var(--border)" onerror="this.style.display='none'">
+        <div class="admin-item-info">
+          <strong style="font-size:0.74rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:160px;display:block">${g.caption || 'Image'}</strong>
+          <span>${g.url.substring(0,35)}...</span>
+        </div>
+      </div>
+      <div class="admin-btns">
+        <button class="btn btn-danger btn-sm" onclick="deleteItem('ez_gallery/${id}')">✕</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function saveGalleryItem() {
+  const url = document.getElementById('newGalleryUrl').value.trim();
+  const caption = document.getElementById('newGalleryCaption').value.trim();
+  if (!url) { showToast('⚠️ Enter image URL'); return; }
+  if (Object.keys(gallery).length >= 6) { showToast('⚠️ Max 6 images'); return; }
+  db.ref('ez_gallery/' + Date.now()).set({ url, caption }).then(() => {
+    document.getElementById('newGalleryUrl').value = '';
+    document.getElementById('newGalleryCaption').value = '';
+    showToast('✅ Image added');
+  });
+}
+
+// ── EXTRAS ──
+function renderExtrasList() {
+  const list = document.getElementById('extrasList');
+  const keys = Object.keys(extras);
+  if (!keys.length) {
+    list.innerHTML = '<div style="color:var(--ink-soft);font-size:0.82rem;text-align:center;padding:20px">No extras available.</div>';
+    document.getElementById('extrasPriceCard').style.display = 'none';
+    return;
+  }
+  list.innerHTML = keys.map(id => {
+    const e = extras[id];
+    const qty = extraQtys[id] || 0;
+    const disc = parseFloat(e.discount || 0);
+    const price = parseFloat(e.price || 0);
+    const discPrice = disc > 0 ? price * (1 - disc/100) : price;
+    const typeLabel = e.priceType === 'onetime' ? 'one-time' : 'per day';
+    const discBadge = disc > 0 ? `<span style="background:var(--accent);color:white;font-size:0.6rem;font-weight:800;padding:1px 6px;border-radius:10px;margin-left:6px">${disc}% OFF</span>` : '';
+    const priceDisplay = disc > 0
+      ? `<span style="text-decoration:line-through;color:var(--ink-soft);font-size:0.68rem">RM ${price.toFixed(2)}</span> <span style="color:var(--accent);font-weight:700">RM ${discPrice.toFixed(2)}</span>`
+      : `<span style="color:var(--accent);font-weight:700">RM ${price.toFixed(2)}</span>`;
+    return `<div class="extra-item">
+      <div class="extra-info">
+        <div class="extra-name">${e.name}${discBadge}</div>
+        <div class="extra-pricing">${priceDisplay} · ${typeLabel}</div>
+        ${e.desc ? `<div class="extra-desc">${e.desc}</div>` : ''}
+      </div>
+      <div class="extra-qty">
+        <button class="qty-btn" onclick="changeExtraQty('${id}',-1)">−</button>
+        <div class="qty-num" id="eqty-${id}">${qty}</div>
+        <button class="qty-btn" onclick="changeExtraQty('${id}',1)">+</button>
+      </div>
+    </div>`;
+  }).join('');
+  updateExtrasTotal();
+}
+
+function changeExtraQty(id, delta) {
+  extraQtys[id] = Math.max(0, (extraQtys[id] || 0) + delta);
+  const el = document.getElementById(`eqty-${id}`);
+  if (el) el.innerText = extraQtys[id];
+  updateExtrasTotal();
+}
+
+function updateExtrasTotal() {
+  const days = currentTotals.days || 1;
+  let total = 0;
+  Object.keys(extraQtys).forEach(id => {
+    if (extraQtys[id] > 0 && extras[id]) {
+      const price = parseFloat(extras[id].price || 0);
+      const disc = parseFloat(extras[id].discount || 0);
+      const discPrice = disc > 0 ? price * (1 - disc/100) : price;
+      const isDaily = extras[id].priceType !== 'onetime';
+      total += discPrice * extraQtys[id] * (isDaily ? days : 1);
+    }
+  });
+  currentTotals.extrasCost = total;
+  const card = document.getElementById('extrasPriceCard');
+  const lbl = document.getElementById('extrasTotalLabel');
+  if (total > 0) { card.style.display = 'block'; lbl.innerText = 'RM ' + total.toFixed(2); }
+  else { card.style.display = 'none'; }
+}
+
+function calcExtrasForDays(days) {
+  let total = 0;
+  Object.keys(extraQtys).forEach(id => {
+    if (extraQtys[id] > 0 && extras[id]) {
+      const price = parseFloat(extras[id].price || 0);
+      const disc = parseFloat(extras[id].discount || 0);
+      const discPrice = disc > 0 ? price * (1 - disc/100) : price;
+      const isDaily = extras[id].priceType !== 'onetime';
+      total += discPrice * extraQtys[id] * (isDaily ? days : 1);
+    }
+  });
+  return total;
+}
+
+function renderAdminExtras() {
+  const list = document.getElementById('adminExtraList');
+  const keys = Object.keys(extras);
+  if (!keys.length) {
+    list.innerHTML = '<p style="color:var(--ink-soft);font-size:0.78rem;text-align:center;padding:10px">No extras yet.</p>';
+    return;
+  }
+  list.innerHTML = keys.map(id => {
+    const e = extras[id];
+    return `<div class="admin-item">
+      <div class="admin-item-info">
+        <strong>${e.name}</strong>
+        <span>RM ${e.price} ${e.priceType==='onetime'?'(one-time)':'/ day'} ${e.discount?'· '+e.discount+'% off':''}</span>
+      </div>
+      <div class="admin-btns">
+        <button class="btn btn-edit btn-sm" onclick="setEditExtra('${id}')">Edit</button>
+        <button class="btn btn-danger btn-sm" onclick="deleteItem('ez_extras/${id}')">✕</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function saveExtra() {
+  const id = document.getElementById('editExtraIdx').value || Date.now();
+  const name = document.getElementById('newExtraName').value.trim();
+  if (!name) { showToast('⚠️ Enter extra name'); return; }
+  db.ref('ez_extras/' + id).set({
+    name,
+    desc: document.getElementById('newExtraDesc').value.trim(),
+    price: parseFloat(document.getElementById('newExtraPrice').value) || 0,
+    priceType: document.getElementById('newExtraPriceType').value,
+    discount: parseFloat(document.getElementById('newExtraDiscount').value) || 0
+  }).then(() => { cancelEditExtra(); showToast('✅ Extra saved'); });
+}
+
+function setEditExtra(id) {
+  const e = extras[id];
+  document.getElementById('editExtraIdx').value = id;
+  document.getElementById('newExtraName').value = e.name || '';
+  document.getElementById('newExtraDesc').value = e.desc || '';
+  document.getElementById('newExtraPrice').value = e.price || '';
+  document.getElementById('newExtraPriceType').value = e.priceType || 'daily';
+  document.getElementById('newExtraDiscount').value = e.discount || '';
+  document.getElementById('btnSaveExtra').innerText = '✏️ Update Extra';
+  document.getElementById('btnCancelExtra').style.display = 'block';
+}
+
+function cancelEditExtra() {
+  ['editExtraIdx','newExtraName','newExtraDesc','newExtraPrice','newExtraDiscount'].forEach(k => document.getElementById(k).value = '');
+  document.getElementById('newExtraPriceType').value = 'daily';
+  document.getElementById('btnSaveExtra').innerText = '💾 Save Extra';
+  document.getElementById('btnCancelExtra').style.display = 'none';
 }
 
 // ── RENDER CAR OPTIONS ──
@@ -1144,13 +1678,23 @@ function renderCarOptions() {
   if (inventory[cur]) sel.value = cur;
 }
 
-// ── RENDER LOC OPTIONS ──
+// ── RENDER LOC OPTIONS (with KLIA as default) ──
 function renderLocOptions() {
-  const html = Object.keys(locations).map(id =>
-    `<option value="${id}">${locations[id].name} (RM ${locations[id].price})</option>`
+  const keys = Object.keys(locations);
+  // Find KLIA key
+  let kliaKey = keys.find(k => (locations[k].name||'').toLowerCase().includes('klia')) || keys[0] || '';
+
+  const html = keys.map(id =>
+    `<option value="${id}">${locations[id].name}${locations[id].price > 0 ? ' (RM '+locations[id].price+')' : ''}</option>`
   ).join('') || '<option value="">No locations</option>';
-  document.getElementById('pickupLoc').innerHTML = html;
-  document.getElementById('returnLoc').innerHTML = html;
+
+  const pLoc = document.getElementById('pickupLoc');
+  const rLoc = document.getElementById('returnLoc');
+  pLoc.innerHTML = html;
+  rLoc.innerHTML = html;
+
+  // Set KLIA as default
+  if (kliaKey) { pLoc.value = kliaKey; rLoc.value = kliaKey; }
   calculate();
 }
 
@@ -1173,10 +1717,9 @@ function calculate() {
   const d2str = document.getElementById('returnDate').value;
   const pLocId = document.getElementById('pickupLoc').value;
   const rLocId = document.getElementById('returnLoc').value;
-  const locFees = (locations[pLocId]?.price || 0) + (locations[rLocId]?.price || 0);
+  const locFees = (parseFloat(locations[pLocId]?.price)||0) + (parseFloat(locations[rLocId]?.price)||0);
 
   if (d1str && d2str) {
-    // Parse DD/MM/YYYY from flatpickr
     const parseDate = str => { const p = str.split('/'); return new Date(p[2], p[1]-1, p[0]); };
     const start = parseDate(d1str);
     const end   = parseDate(d2str);
@@ -1186,7 +1729,7 @@ function calculate() {
       document.getElementById('daysLabel').innerText = `Min. ${MIN_DAYS} Days Required`;
       document.getElementById('daysLabel').style.color = "var(--red)";
       document.getElementById('totalLabel').innerText = "RM 0.00";
-      currentTotals.grand = 0; toggleButtons(); return;
+      currentTotals.grand = 0; currentTotals.days = 0; toggleButtons(); return;
     }
 
     document.getElementById('daysLabel').innerText = `${days} Days`;
@@ -1195,7 +1738,6 @@ function calculate() {
     const rentalBase = days * parseFloat(car.price);
     let discVal = 0, surchargeVal = 0, isSpecial = false, specialPercent = 0;
 
-    // Check special dates
     Object.values(specialDates).forEach(sd => {
       const sFrom = new Date(sd.from); const sTo = new Date(sd.to);
       if ((start <= sTo && start >= sFrom) || (end <= sTo && end >= sFrom) || (start <= sFrom && end >= sTo)) {
@@ -1213,36 +1755,34 @@ function calculate() {
       document.getElementById('discountLabel').innerHTML = `- RM ${discVal.toFixed(2)} (${bestDisc}%)`;
     }
 
-    const subtotal = rentalBase + locFees + surchargeVal - discVal;
+    const extrasCost = calcExtrasForDays(days);
+    const subtotal = rentalBase + locFees + surchargeVal - discVal + extrasCost;
     const grand = subtotal + DEPOSIT;
-    currentTotals = { days, rentalCost: rentalBase, locFee: locFees, discVal: isSpecial ? -surchargeVal : discVal, preDeposit: subtotal, grand, isSpecial, specialRate: specialPercent };
+    currentTotals = { days, rentalCost: rentalBase, locFee: locFees, discVal: isSpecial ? -surchargeVal : discVal, preDeposit: subtotal, grand, isSpecial, specialRate: specialPercent, extrasCost };
 
     document.getElementById('rateLabel').innerText = `RM ${parseFloat(car.price).toFixed(2)}`;
     document.getElementById('locationFeeLabel').innerText = `RM ${locFees.toFixed(2)}`;
     document.getElementById('subtotalLabel').innerText = `RM ${subtotal.toFixed(2)}`;
     document.getElementById('totalLabel').innerText = `RM ${grand.toFixed(2)}`;
+
+    updateExtrasTotal();
   }
   toggleButtons();
 }
 
 // ── STEP NAVIGATION ──
 function goStep(n) {
-  // Validate step 1 → 2
   if (n > 1) {
     if (!document.getElementById('custCountry').value) { showToast('⚠️ Please select country'); return; }
     if (!document.getElementById('custAge').value) { showToast('⚠️ Please enter age'); return; }
   }
-  // Validate step 2 → 3
   if (n > 2) {
     if (!document.getElementById('carSelect').value) { showToast('⚠️ Please select a vehicle'); return; }
-  }
-  // Validate step 3 → 4
-  if (n > 3) {
     if (!document.getElementById('pickupDate').value) { showToast('⚠️ Please select pickup date'); return; }
     if (!document.getElementById('returnDate').value) { showToast('⚠️ Please select return date'); return; }
     if (currentTotals.days < MIN_DAYS) { showToast(`⚠️ Minimum ${MIN_DAYS} days rental`); return; }
-    renderReview();
   }
+  if (n > 3) { renderReview(); }
 
   currentStep = n;
   document.querySelectorAll('.form-section').forEach((s, i) => s.classList.toggle('active', i + 1 === n));
@@ -1254,7 +1794,7 @@ function goStep(n) {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-// ── RENDER REVIEW (inline in step 4) ──
+// ── RENDER REVIEW ──
 function renderReview() {
   const car = inventory[document.getElementById('carSelect').value];
   const country = document.getElementById('custCountry').value;
@@ -1262,11 +1802,25 @@ function renderReview() {
   const profession = document.getElementById('custProfession').value;
   const pickupL = locations[document.getElementById('pickupLoc').value]?.name || '-';
   const returnL = locations[document.getElementById('returnLoc').value]?.name || '-';
+  const note = document.getElementById('custNote').value;
+
+  // Build extras lines
+  const extraLines = Object.keys(extraQtys)
+    .filter(id => extraQtys[id] > 0 && extras[id])
+    .map(id => {
+      const e = extras[id];
+      const price = parseFloat(e.price || 0);
+      const disc = parseFloat(e.discount || 0);
+      const discPrice = disc > 0 ? price * (1 - disc/100) : price;
+      const isDaily = e.priceType !== 'onetime';
+      const cost = discPrice * extraQtys[id] * (isDaily ? currentTotals.days : 1);
+      return `<div class="review-row"><span>✨ ${e.name} x${extraQtys[id]}</span><span>RM ${cost.toFixed(2)}</span></div>`;
+    }).join('');
 
   document.getElementById('reviewContent').innerHTML = `
     <div class="review-row"><span>Country</span><span>${country}</span></div>
     <div class="review-row"><span>Age</span><span>${age} yrs · ${profession}</span></div>
-    <div class="review-row"><span>Vehicle</span><span>${car.name}</span></div>
+    <div class="review-row"><span>Vehicle</span><span>${car?.name || '-'}</span></div>
     <div class="review-row"><span>Pickup</span><span>${document.getElementById('pickupDate').value} · ${document.getElementById('pickupTime').value}</span></div>
     <div class="review-row"><span>Return</span><span>${document.getElementById('returnDate').value} · ${document.getElementById('returnTime').value}</span></div>
     <div class="review-row"><span>Pickup Loc</span><span>${pickupL}</span></div>
@@ -1274,11 +1828,14 @@ function renderReview() {
     <div class="review-row"><span>Duration</span><span>${currentTotals.days} Days</span></div>
     <div class="review-row"><span>Delivery Fee</span><span>RM ${currentTotals.locFee.toFixed(2)}</span></div>
     <div class="review-row"><span>${currentTotals.isSpecial ? 'Surcharge' : 'Discount'}</span><span>RM ${Math.abs(currentTotals.discVal).toFixed(2)}</span></div>
+    ${extraLines}
+    ${currentTotals.extrasCost > 0 ? `<div class="review-row"><span>Extras Total</span><span>RM ${currentTotals.extrasCost.toFixed(2)}</span></div>` : ''}
     <div class="review-row"><span>Subtotal</span><span>RM ${currentTotals.preDeposit.toFixed(2)}</span></div>
-    <div class="review-row"><span>Deposit</span><span>RM ${DEPOSIT.toFixed(2)}</span></div>
-    <div class="review-row" style="border-top:2px solid var(--gold);margin-top:8px;padding-top:12px">
+    <div class="review-row"><span>Deposit (Refundable)</span><span>RM ${DEPOSIT.toFixed(2)}</span></div>
+    ${note ? `<div class="review-row"><span>Notes</span><span>${note}</span></div>` : ''}
+    <div class="review-row" style="border-top:2px solid var(--accent);margin-top:8px;padding-top:12px">
       <span style="color:var(--ink);font-weight:800;font-size:0.9rem">GRAND TOTAL</span>
-      <span style="color:var(--gold);font-family:Fraunces,serif;font-size:1.3rem;font-weight:700">RM ${currentTotals.grand.toFixed(2)}</span>
+      <span style="color:var(--accent);font-family:Fraunces,serif;font-size:1.3rem;font-weight:700">RM ${currentTotals.grand.toFixed(2)}</span>
     </div>`;
 
   document.getElementById('termsCheck').checked = false;
@@ -1295,47 +1852,30 @@ function toggleButtons() {
   document.getElementById('termsBox').classList.toggle('agreed', checked);
 }
 
-// ── OPEN REVIEW MODAL ──
-function openReview() {
-  const car = inventory[document.getElementById('carSelect').value];
-  const country = document.getElementById('custCountry').value;
-  const age = document.getElementById('custAge').value;
-  const profession = document.getElementById('custProfession').value;
-  const pickupL = locations[document.getElementById('pickupLoc').value]?.name || '-';
-  const returnL = locations[document.getElementById('returnLoc').value]?.name || '-';
-
-  document.getElementById('reviewModalContent').innerHTML = `
-    <div class="review-row"><span>Country</span><span>${country}</span></div>
-    <div class="review-row"><span>Age</span><span>${age} yrs · ${profession}</span></div>
-    <div class="review-row"><span>Vehicle</span><span>${car?.name || '-'}</span></div>
-    <div class="review-row"><span>Pickup</span><span>${document.getElementById('pickupDate').value} · ${document.getElementById('pickupTime').value}</span></div>
-    <div class="review-row"><span>Return</span><span>${document.getElementById('returnDate').value} · ${document.getElementById('returnTime').value}</span></div>
-    <div class="review-row"><span>Pickup Loc</span><span>${pickupL}</span></div>
-    <div class="review-row"><span>Return Loc</span><span>${returnL}</span></div>
-    <div class="review-row"><span>Duration</span><span>${currentTotals.days} Days</span></div>
-    <div class="review-row"><span>Delivery Fee</span><span>RM ${currentTotals.locFee.toFixed(2)}</span></div>
-    <div class="review-row"><span>${currentTotals.isSpecial ? 'Surcharge' : 'Discount'}</span><span>RM ${Math.abs(currentTotals.discVal).toFixed(2)}</span></div>
-    <div class="review-row"><span>Subtotal</span><span>RM ${currentTotals.preDeposit.toFixed(2)}</span></div>
-    <div class="review-row"><span>Deposit (Refundable)</span><span>RM ${DEPOSIT.toFixed(2)}</span></div>
-    <div class="review-row" style="border-top:2px solid var(--gold);margin-top:8px;padding-top:12px">
-      <span style="color:var(--ink);font-weight:800">GRAND TOTAL</span>
-      <span style="color:var(--gold);font-family:Fraunces,serif;font-size:1.3rem;font-weight:700">RM ${currentTotals.grand.toFixed(2)}</span>
-    </div>`;
-  document.getElementById('reviewModal').style.display = 'flex';
-}
-function closeReview() { document.getElementById('reviewModal').style.display = 'none'; }
-
 // ── HANDLE SUBMIT ──
 function handleSubmit(method) {
   const car = inventory[document.getElementById('carSelect').value];
   const country = document.getElementById('custCountry').value;
   const pickupL = locations[document.getElementById('pickupLoc').value]?.name || '-';
   const returnL = locations[document.getElementById('returnLoc').value]?.name || '-';
+  const note = document.getElementById('custNote').value;
+
+  const extraLines = Object.keys(extraQtys)
+    .filter(id => extraQtys[id] > 0 && extras[id])
+    .map(id => {
+      const e = extras[id];
+      const price = parseFloat(e.price || 0);
+      const disc = parseFloat(e.discount || 0);
+      const discPrice = disc > 0 ? price * (1 - disc/100) : price;
+      const isDaily = e.priceType !== 'onetime';
+      const cost = discPrice * extraQtys[id] * (isDaily ? currentTotals.days : 1);
+      return `   • ${extraQtys[id]}x ${e.name} (RM ${cost.toFixed(2)})`;
+    }).join('\n');
 
   let msg = `*EZ TRANSPORT RENTAL — NEW BOOKING*\n`;
   msg += `━━━━━━━━━━━━━━━━━━━━━━━━\n`;
   msg += `👤 *CUSTOMER:* ${country} (${document.getElementById('custAge').value} yrs, ${document.getElementById('custProfession').value})\n`;
-  msg += `🚗 *VEHICLE:* ${car.name}\n`;
+  msg += `🚗 *VEHICLE:* ${car?.name || '-'}\n`;
   msg += `━━━━━━━━━━━━━━━━━━━━━━━━\n`;
   msg += `📅 *PICKUP:* ${document.getElementById('pickupDate').value} (${document.getElementById('pickupTime').value})\n`;
   msg += `📍 *PICKUP LOC:* ${pickupL}\n`;
@@ -1344,17 +1884,20 @@ function handleSubmit(method) {
   msg += `⏳ *DURATION:* ${currentTotals.days} Days\n`;
   msg += `━━━━━━━━━━━━━━━━━━━━━━━━\n`;
   msg += `💳 *PRICING*\n`;
-  msg += `   Daily Rate: RM ${parseFloat(car.price).toFixed(2)}\n`;
+  msg += `   Daily Rate: RM ${parseFloat(car?.price||0).toFixed(2)}\n`;
   msg += `   Delivery Fee: RM ${currentTotals.locFee.toFixed(2)}\n`;
   if (currentTotals.isSpecial) {
     msg += `   Seasonal Surcharge: +RM ${Math.abs(currentTotals.discVal).toFixed(2)} (${currentTotals.specialRate}%)\n`;
   } else {
     msg += `   Discount: -RM ${currentTotals.discVal.toFixed(2)}\n`;
   }
+  if (extraLines) msg += `\n✨ *EXTRAS*\n${extraLines}\n\n`;
+  if (currentTotals.extrasCost > 0) msg += `   Extras Total: RM ${currentTotals.extrasCost.toFixed(2)}\n`;
   msg += `   Subtotal: RM ${currentTotals.preDeposit.toFixed(2)}\n`;
   msg += `   Deposit: RM ${DEPOSIT.toFixed(2)} (Refundable)\n`;
   msg += `━━━━━━━━━━━━━━━━━━━━━━━━\n`;
   msg += `💰 *GRAND TOTAL: RM ${currentTotals.grand.toFixed(2)}*\n`;
+  if (note) msg += `📝 *NOTES:* ${note}\n`;
 
   if (method === 'wa') window.open(`https://wa.me/${settings.adminPhone}?text=${encodeURIComponent(msg)}`, '_blank');
   else window.location.href = `mailto:${settings.adminEmail}?subject=Car Rental Booking&body=${encodeURIComponent(msg)}`;
@@ -1365,6 +1908,14 @@ function renderBookingLinks() {
   document.getElementById('bookingLinks').innerHTML = Object.keys(links).map(id =>
     `<a href="${links[id].url}" target="_blank" class="terms-link-item">📄 ${links[id].name}</a>`
   ).join('');
+}
+
+// ── ADMIN INNER TABS ──
+function adminInnerTab(tabId, btn) {
+  document.querySelectorAll('.admin-inner-tab').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.admin-inner-content').forEach(c => c.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(tabId).classList.add('active');
 }
 
 // ── ADMIN RENDERS ──
@@ -1378,6 +1929,7 @@ function renderAdminCars() {
       </div>
     </div>`).join('') || '<p style="color:var(--ink-soft);font-size:0.78rem;text-align:center;padding:10px">No vehicles yet.</p>';
 }
+
 function renderAdminLocs() {
   document.getElementById('adminLocList').innerHTML = Object.keys(locations).map(id => `
     <div class="admin-item">
@@ -1388,6 +1940,7 @@ function renderAdminLocs() {
       </div>
     </div>`).join('') || '<p style="color:var(--ink-soft);font-size:0.78rem;text-align:center;padding:10px">No locations yet.</p>';
 }
+
 function renderAdminDiscs() {
   document.getElementById('adminDiscList').innerHTML = Object.keys(discounts).map(id => `
     <div class="admin-item">
@@ -1398,6 +1951,7 @@ function renderAdminDiscs() {
       </div>
     </div>`).join('') || '<p style="color:var(--ink-soft);font-size:0.78rem;text-align:center;padding:10px">No discounts yet.</p>';
 }
+
 function renderAdminSpecial() {
   document.getElementById('adminSpecialList').innerHTML = Object.keys(specialDates).map(id => `
     <div class="admin-item">
@@ -1408,6 +1962,7 @@ function renderAdminSpecial() {
       </div>
     </div>`).join('') || '<p style="color:var(--ink-soft);font-size:0.78rem;text-align:center;padding:10px">No special dates yet.</p>';
 }
+
 function renderAdminLinks() {
   document.getElementById('adminLinkList').innerHTML = Object.keys(links).map(id => `
     <div class="admin-item">
@@ -1542,6 +2097,7 @@ function saveSettings() {
     adminPhone: document.getElementById('confPhone').value
   }).then(() => showToast('✅ Settings updated'));
 }
+
 function saveBranding() {
   db.ref('ez_settings').update({
     siteName: document.getElementById('confSiteName').value.trim(),
